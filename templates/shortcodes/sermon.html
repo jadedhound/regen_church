@@ -1,0 +1,16 @@
+<a href="https://www.youtube.com/playlist?list={{playlist}}" target="_blank">
+  <div class="">
+    {% set image = "sermons/" ~ image ~ ".png" %}
+    {% set small = resize_image(path=image, width=400, height=400, op="fit", format="webp", quality=70) %}
+    {% set big = resize_image(path=image, width=800, height=800, op="fit", format="webp", quality=70) %}
+
+    <picture>
+      <source media="(max-width: 768px)" srcset="{{ small.url }}">
+      <img 
+        class="rounded-lg"
+        src="{{ big.url }}" 
+        alt="lead image"
+      >
+    </picture>
+  </div>
+</a>

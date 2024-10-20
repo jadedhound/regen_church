@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "dev": "zola serve --interface 0.0.0.0 --base-url 192.168.1.21 & npx tailwindcss -i styles/styles.css -o static/styles.css --watch",
+    "pretty": "npx prettier --write content/ README.md",
+    "prod": "NODE_ENV=production npx tailwindcss -i styles/styles.css -o static/styles.css --minify; zola build",
+    "upload": "ssh rohit@192.168.1.11 'cd /quick/docker/shadowdark/; docker-compose down; rm -r public/'; scp -r public/ rohit@192.168.1.11:/quick/docker/shadowdark/; ssh rohit@192.168.1.11 'cd /quick/docker/shadowdark/; docker-compose up -d'"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "tailwindcss": "^3.4.1"
+  },
+  "devDependencies": {
+    "prettier": "3.2.4"
+  }
+}

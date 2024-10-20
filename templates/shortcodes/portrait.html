@@ -1,0 +1,15 @@
+{% set image = path %}
+{% set small = resize_image(path=image, width=400, height=400, op="fit", format="webp", quality=70) %}
+{% set big = resize_image(path=image, width=800, height=800, op="fit", format="webp", quality=70) %}
+
+<figure class="float-left max-w-[40%] mr-4 my-2">
+<picture>
+  <source media="(max-width: 768px)" srcset="{{ small.url }}">
+  <img 
+    class="rounded-lg"
+    src="{{ big.url }}" 
+    alt="lead image"
+  >
+</picture>
+<figcaption class="italic text-lg font-serif text-center text-rose-400"> {{ caption }} </figcaption>
+</figure>

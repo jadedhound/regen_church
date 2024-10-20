@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dolmenwood player resources">
+  <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}" />
+  <link rel="icon" type="image/svg" href="{{ get_url(path="favicon.svg") | safe }}">
+  <title>Dolmenwood</title>
+</head>
+
+<body class="bg-zinc-900 text-zinc-200">
+    <div class="grid grid-cols-zero">
+      {% block content %} {% endblock %}
+
+      <a href="#" class="sticky place-self-end bottom-4 mr-4 mt-[100vh]" aria-label="Scroll back to the top of the page">
+        <div class="rounded-full bg-zinc-700 p-2 shadow shadow-black">
+          <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 650" class="fill-green-500 w-10 h-10">
+            <path fill-rule="evenodd" d="m330 353 13 2 8 3c2 1 3 3 3 5a8686 8686 0 0 1-2 278l-6 4-5 1-1-27a1311 1311 0 0 0-8-96l-3-12c-1-1-1 0-1 6l-1 11a1346 1346 0 0 0-2 95l-1 25-4 1-4-1-7-2-9-3c-3-2-4-3-4-7l-1-274 3-3 7-4a66 66 0 0 1 25-2zM325 0l4 6 10 22 13 27 9 21a4890 4890 0 0 0 24 49l11 23a9328 9328 0 0 1 20 41l17 36 16 34 12 24 8 18 13 27c8 15 9 20 10 25l-1 9c0 2-3 5-5 7-3 3-5 4-8 4l-19-5a592 592 0 0 0-102-27 298 298 0 0 0-110 8 505 505 0 0 0-75 24c-3 0-5-1-7-3-2-1-4-4-5-7l-2-8 3-12 13-27a789 789 0 0 0 32-67l9-20 11-23a5170 5170 0 0 0 34-70l9-19 9-19 17-36 17-36a1112 1112 0 0 0 13-26zm-4 128-5 63-3 44 5 46a848 848 0 0 0 8 36l5-36 4-36-6-107-2-41-2-9-1 5-3 35z"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+</body>
+
+</html>

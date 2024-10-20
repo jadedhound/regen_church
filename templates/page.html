@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main class= "prose prose-zinc prose-invert p-2 max-w-3xl mx-auto w-screen">
+    <div class="flex items-center justify-between">
+      <h1 class="text-6xl"> {{ page.title }} </h1>
+      <a href="/" class="mr-4" aria-label="Return to the homepage">
+        <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fill-green-600 w-8 h-8">
+          <path fill-rule="evenodd" d="m256 0 7 2a9009 9009 0 0 1 247 247c2 4 2 6 2 31 0 24 0 28-2 31l-5 6-8 2-6-1-115-114C280 109 263 92 260 91h-8c-3 1-12 10-116 113L21 319l-6 1-8-2-5-5c-2-3-2-5-2-31s0-28 2-32l123-125L249 2l7-2zm105 0h76l4 3 6 7 1 67-1 64c0 1-22-20-96-94V31l1-20c1-3 2-5 5-7zM256 482c242 0 244 0 248 2q4 2 6 6l2 7-2 7c-1 2-3 5-9 8H11l-4-2-5-6-2-7 2-7c1-2 3-5 6-6 3-2 7-2 248-2zm0-354 17 17v77h-34v-77l8-9 9-8zm-48 48 1 46h-47l23-23 23-23zm96 0 46 46h-47v-23l1-23zm-173 76h249l34 34H97zm-3 65 1 135H64v-66l1-68c2-2 4-2 63-1zm31-1h194v136h-34v-45c0-44 0-46-2-49l-5-5c-3-2-5-2-56-2s-53 0-56 2l-5 5c-2 3-2 5-2 94h-34zm255 0c28 0 31 0 32 2 2 1 2 6 2 134h-65V317l31-1zm-191 65h66v71h-66z"/>
+        </svg>
+      </a>
+    </div>
+    <div class="italic mb-4"> {{ page.description }} </div>
+
+    {% if page.extra.lead_image %}
+
+    {% set image = page.extra.lead_image %}
+    {% set meta = get_image_metadata(path=image) %}
+    {% set small = resize_image(path=image, width=800, height=450, op="fill", format="webp", quality=70) %}
+    {% set big = resize_image(path=image, width=1600, height=900, op="fill", format="webp", quality=70) %}
+
+    <picture>
+      <source media="(max-width: 768px)" srcset="{{ small.url }}">
+      <img 
+        class="mb-6 w-full rounded-lg"
+        src="{{ big.url }}" 
+        alt="lead image"
+      >
+    </picture>
+    {% endif %}
+
+    {% include "partial/toc.html" %}
+
+    <article>
+      {{ page.content | safe }}
+    </article>
+
+    {# Need to give space for the scroll up FAB #}
+    <div class="psuedo h-12"></div>
+  </main>
+{% endblock content %}
