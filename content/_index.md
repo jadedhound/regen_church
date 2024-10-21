@@ -41,3 +41,5 @@ Name
 Email*
 Message*
 We are a church community in Clayton, across the street from Monash University Clayton campus. We host missional communities in peoples’ homes, in the surrounding suburbs of Melbourne; such as Springvale, Oakleigh, Clayton South, Wheelers Hill, Mulgrave, Endeavour Hills, Mount Waverley and Glen Waverley.
+
+{{ maps() }}
