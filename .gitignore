@@ -1,8 +1,8 @@
 node_modules/
-public/
+dist/
 static/styles.css
-static/images/
+build_only/images/
 static/processed_images/
-static/sermons/
+build_only/sermons/
 *tar
 

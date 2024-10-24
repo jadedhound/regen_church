@@ -1,6 +1,6 @@
 <a href="https://www.youtube.com/playlist?list={{playlist}}" target="_blank">
   <div class="">
-    {% set image = "sermons/" ~ image ~ ".png" %}
+    {% set image = "build_only/sermons/" ~ image ~ ".png" %}
     {% set small = resize_image(path=image, width=400, height=400, op="fit", format="webp", quality=70) %}
     {% set big = resize_image(path=image, width=800, height=800, op="fit", format="webp", quality=70) %}
 
