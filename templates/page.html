@@ -1,32 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <main class= "prose prose-zinc prose-invert p-2 max-w-3xl mx-auto w-screen">
-    <div class="flex items-center justify-between">
-      <h1 class="text-6xl"> {{ page.title }} </h1>
+  <main>
+    <div class="flex items-center justify-center min-h-[20vh] bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
+      {% if page.title is defined %}
+        {% set title = page.title %}
+      {% elif section.title is defined %}
+        {% set title = section.title %}
+      {% endif %}
+      <div class="text-center uppercase text-4xl sm:text-6xl font-bold p-4"> {{ title }} </div>
     </div>
-    <div class="italic mb-4"> {{ page.description }} </div>
 
-    {% if page.extra.lead_image %}
-
-    {% set image = page.extra.lead_image %}
-    {% set meta = get_image_metadata(path=image) %}
-    {% set small = resize_image(path=image, width=800, height=450, op="fill", format="webp", quality=70) %}
-    {% set big = resize_image(path=image, width=1600, height=900, op="fill", format="webp", quality=70) %}
-
-    <picture>
-      <source media="(max-width: 768px)" srcset="{{ small.url }}">
-      <img 
-        class="mb-6 w-full rounded-lg"
-        src="{{ big.url }}" 
-        alt="lead image"
-      >
-    </picture>
-    {% endif %}
-
-    <article>
-      {{ page.content | safe }}
+    <div class="psuedo h-4"></div>
+    <article class="prose prose-zinc prose-invert [&>p]:px-4 max-w-2xl mx-auto w-screen bg-zinc-900 rounded-md">
+      {% if page.content is defined %}
+        {% set content = page.content %}
+      {% elif section.content is defined %}
+        {% set content = section.content %}
+      {% endif %}
+      {{ content | safe }}
     </article>
+    <div class="psuedo h-8"></div>
 
   </main>
 {% endblock content %}

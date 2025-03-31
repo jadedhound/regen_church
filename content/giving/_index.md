@@ -1,7 +1,6 @@
 +++
 title = "Giving"
-page_template = "page.html"
-redirect_to = "/"
+template = "page.html"
 weight = 4
 +++
 

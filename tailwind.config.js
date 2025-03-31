@@ -11,11 +11,20 @@ module.exports = {
         DEFAULT: {
           css: {
             h1: {
-              fontWeight: '400',
+              fontWeight: '600',
               fontSize: '3rem',
               marginTop: '0.5rem',
               marginBottom: '0.5rem',
-              color: '#16a34a'
+              padding: '1rem',
+              paddingTop: '2rem',
+              display: 'flex',
+              alignItems: 'center',
+              backgroundImage: 'url("bin/circles-background.svg")',
+              minHeight: '40vh',
+              backgroundAttachment: "fixed",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
             },
             h2: {
               marginTop: '0.75rem',

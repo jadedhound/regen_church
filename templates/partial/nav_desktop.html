@@ -1,0 +1,11 @@
+{% set base_section = get_section(path="_index.md") %}
+
+<div class="psuedo grow hidden md:block"></div>
+<div class="hidden md:flex gap-4 lg:text-lg font-bold text-zinc-200 whitespace-nowrap">
+  {% for section_path in base_section.subsections %}
+    {% set section = get_section(path=section_path) %}
+    <a href="{{ section.permalink }}">
+        <div>{{ section.title }}</div>
+    </a>
+  {% endfor %}
+</div>

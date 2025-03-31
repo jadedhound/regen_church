@@ -11,7 +11,7 @@ In the heart of Clayton, Monash.
 
 {% end %}
 
-<div class="bg-black py-8">
+<div class="py-8">
 
 {% title_with_highlight() %}
 
@@ -46,7 +46,7 @@ Join a **service**
 
 </div>
 
-<div class="py-8">
+<div class="bg-zinc-900 py-8">
 
 {% title_with_highlight() %}
 
@@ -60,7 +60,7 @@ Be **transformed** by gospel-centred sermons
 
 </div>
 
-<div class="py-8 bg-black">
+<div class="py-8">
 
 {% title_with_highlight() %}
 
@@ -92,7 +92,7 @@ praying for each other, studying God’s word and on occasion serving the commun
 
 </div>
 
-<div class="py-8">
+<div class="bg-zinc-800 py-8">
 
 {% title_with_highlight() %}
 
@@ -107,6 +107,6 @@ across the street from Monash University Clayton campus.
 
 </div>
 
-{{ google_map() }}
+{{ regen_map() }}
 
 </div>

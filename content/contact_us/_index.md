@@ -1,6 +1,7 @@
 +++
 title = "Contact Us"
 weight = 3
+template="page.html"
 +++
 
 If you’re new, have a prayer request, or have had a testimony/answer to prayer.
