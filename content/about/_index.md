@@ -5,7 +5,7 @@ sort_by = "weight"
 weight = 1
 +++
 
-# Our Leaders 
+# Our Leaders
 
 Our Leaders Stephen Tan profile picture. Stephen Tan Senior Pastor & Morning
 Church Pastor
@@ -71,7 +71,6 @@ in the Baptist doctrinal basis. We believe in:
   resurrection; the Lord’s Supper being a memorial, until He comes, of the
   sacrifice of the body and blood of the Lord Jesus Christ.
 
-
 # Our Values
 
 ## Purpose & Mission
@@ -124,12 +123,12 @@ travel to a faraway land to proclaim the gospel. Instead, it means that every
 Christian should be obedient to the Great Commission to make disciples of all
 nations. Every disciple of Christ should be a disciple maker. It is our hope
 that as we proclaim this gospel in the city of Monash that many would repent and
-put their faith in Jesus and be reconciled to God.
-At Regeneration Church Monash, we think children are an important part of our
-church family! We would love children at our church to know the hope and peace
-that Jesus brings. Our children’s ministry is committed to demonstrating that
-Jesus welcomes them, and that daily life in Jesus’ lordship is far valuable than
-living for anything else in this world, through:
+put their faith in Jesus and be reconciled to God. At Regeneration Church
+Monash, we think children are an important part of our church family! We would
+love children at our church to know the hope and peace that Jesus brings. Our
+children’s ministry is committed to demonstrating that Jesus welcomes them, and
+that daily life in Jesus’ lordship is far valuable than living for anything else
+in this world, through:
 
 - Presenting the Bible in ways that they understand
 - The example of volunteers in our church community

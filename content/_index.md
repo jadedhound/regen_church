@@ -5,9 +5,7 @@ sort_by = "weight"
 
 {% image_with_banner(image="build_only/images/cover.png") %}
 
-Making Disciples of All Nations.
-<br>
-In the heart of Clayton, Monash.
+Making Disciples of All Nations. <br> In the heart of Clayton, Monash.
 
 {% end %}
 
@@ -55,6 +53,7 @@ Be **transformed** by gospel-centred sermons
 {% end %}
 
 {{ sermon_series() }}
+
 <div class="psuedo h-8"></div>
 {{ livestream_button() }}
 
@@ -70,9 +69,10 @@ Be **equipped** to make disciples in community
 
 <div class="text-xl md:px-20 px-8 font-bold">
 
-Missional Communities (MCs) are small groups committed to being formed by Jesus in
-community for the sake of others. We usually meet weekly in homes for a time of eating,
-praying for each other, studying God’s word and on occasion serving the community.
+Missional Communities (MCs) are small groups committed to being formed by Jesus
+in community for the sake of others. We usually meet weekly in homes for a time
+of eating, praying for each other, studying God’s word and on occasion serving
+the community.
 
 </div>
 
@@ -102,8 +102,8 @@ Get in **touch**
 
 <div class="text-xl md:px-20 px-8 font-bold pb-4">
 
-We are a church community in Clayton,
-across the street from Monash University Clayton campus.
+We are a church community in Clayton, across the street from Monash University
+Clayton campus.
 
 </div>
 
