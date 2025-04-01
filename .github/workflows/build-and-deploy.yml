@@ -1,0 +1,55 @@
+name: Build and Deploy Website
+
+on: 
+ push:
+  branches:
+   - stable
+
+jobs:
+  build:
+    name: Build Website
+
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout main
+      uses: actions/checkout@v4
+    - name: Download Zola
+      uses: taiki-e/install-action@v2
+      with:
+        tool: zola@0.20.0
+    - name: Decrypt secrets
+      env:
+        GPG_PASSPHRASE: ${{ secrets.REGEN_PASSPHRASE }}
+      run: gpg --batch --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" --decrypt secrets.env.gpg > secrets.env
+    - name: Download assets
+      run: ./assets.sh download
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+    - name: Build with Bun and Zola
+      run: |
+        bun install
+        bun run prod
+    - name: Upload static files as artifact
+      id: deployment
+      uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
+      with:
+        path: dist/
+
+  deploy:
+    name: Deploy the Artifact Created
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

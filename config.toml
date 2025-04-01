@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://regeneration.org.au"
+base_url = "https://jadedhound.github.io/regen_church/"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
