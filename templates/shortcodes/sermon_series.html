@@ -1,23 +1,15 @@
 {% set data = load_data(path="build_only/sermon_series.yaml", format="yaml") %}
 
-
 <div class="grid md:grid-cols-4 grid-cols-2 gap-2 px-4 [&>*:nth-child(n+4)]:hidden ">
 
   {% for series in data %}
-    {% set image = "build_only/sermons/" ~ series.image ~ ".png" %}
-    {% set small = resize_image(path=image, width=400, height=400, op="fit", format="webp", quality=70) %}
-    {% set big = resize_image(path=image, width=800, height=800, op="fit", format="webp", quality=70) %}
-
     <a href={{ series.link }} target="_blank">
       <div class="rounded-md">
-        <picture>
-          <source media="(max-width: 768px)" srcset="{{ small.url }}">
-          <img 
-            class="rounded-lg"
-            src="{{ big.url }}" 
-            alt="lead image"
-          >
-        </picture>
+        {% set image = "build_only/sermons/" ~ series.image ~ ".png" %}
+        {% set optimg_class = "rounded-md" %}
+        {% set optimg_alt = "sermon series thumbnail" %}
+        {% set optimg_sizes = "50vw" %}
+        {% include "partial/optimised_image.html" %}
       </div>
     </a>
   {% endfor %}

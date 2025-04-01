@@ -1,0 +1,19 @@
+{% set lqip = resize_image(path=image, width=144, op="fit_width", format="webp", quality=70) %}
+{% set small = resize_image(path=image, width=720, op="fit_width", format="webp", quality=75) %}
+{% set medium = resize_image(path=image, width=1280, op="fit_width", format="webp", quality=75) %}
+{% set large = resize_image(path=image, width=1920, op="fit_width", format="webp", quality=75) %}
+
+<img 
+  class="{{ optimg_class ~ ' bg-no-repeat bg-center bg-cover' }}"
+  src="{{ large.url }}" 
+  srcset="
+    {{ small.url }} 640w,
+    {{ medium.url }} 768w,
+    {{ large.url }} 1280w,
+  "
+  sizes="{{ optimg_sizes }}"
+  style="background-image: url({{ lqip.url }})"
+  alt="{{ optimg_alt }}"
+  height="{{ large.height }}"
+  width="{{ large.width }}"
+>

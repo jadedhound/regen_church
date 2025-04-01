@@ -5,19 +5,15 @@ sort_by = "weight"
 
 {% image_with_banner(image="build_only/images/cover.png") %}
 
-Making Disciples of All Nations. <br> In the heart of Clayton, Monash.
+Making Disciples of All Nations. <br>In the heart of Clayton, Monash.
 
 {% end %}
 
 <div class="py-8">
 
-{% title_with_highlight() %}
+{{ title_with_highlight(title="Join a **service**") }}
 
-Join a **service**
-
-{% end %}
-
-<div class="grid md:grid-cols-3 gap-2 px-8 mx-auto">
+<div class="grid md:grid-cols-3 gap-2 px-8">
 
 {% card_with_image(image="build_only/images/morning_church.png", title="Morning") %}
 
@@ -46,26 +42,19 @@ Join a **service**
 
 <div class="bg-zinc-900 py-8">
 
-{% title_with_highlight() %}
-
-Be **transformed** by gospel-centred sermons
-
-{% end %}
+{{ title_with_highlight(title="Be **transformed** by gospel-centred sermons") }}
 
 {{ sermon_series() }}
 
 <div class="psuedo h-8"></div>
+
 {{ livestream_button() }}
 
 </div>
 
 <div class="py-8">
 
-{% title_with_highlight() %}
-
-Be **equipped** to make disciples in community
-
-{% end %}
+{{ title_with_highlight(title="Be **equipped** to make disciples in community") }}
 
 <div class="text-xl md:px-20 px-8 font-bold">
 
@@ -79,7 +68,9 @@ the community.
 {{ simple_image(
   image="build_only/images/mc.png",
   container_class="p-4 flex justify-center"
-  image_class="max-h-[30vh] rounded-md"
+  image_class="max-h-[30vh] max-w-[800px] rounded-md"
+  desc="mc gathering"
+  sizes="80vw"
 )}}
 
 <div class="flex justify-center gap-2 md:px-4 px-2">
@@ -94,11 +85,7 @@ the community.
 
 <div class="bg-zinc-800 py-8">
 
-{% title_with_highlight() %}
-
-Get in **touch**
-
-{% end %}
+{{ title_with_highlight(title="Get in **touch**") }}
 
 <div class="text-xl md:px-20 px-8 font-bold pb-4">
 
