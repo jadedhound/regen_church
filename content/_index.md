@@ -25,7 +25,6 @@ Making Disciples of All Nations. <br>In the heart of Clayton, Monash.
 {% card_with_image(image="build_only/images/mandarin_service.jpg", title="Mandarin") %}
 
 - Service starts: 2PM
-- Jan: 12th, 26th. Feb: 9th, 23rd. March-onward: weekly.
 
 {% end %}
 
@@ -63,15 +62,15 @@ in community for the sake of others. We usually meet weekly in homes for a time
 of eating, praying for each other, studying God’s word and on occasion serving
 the community.
 
-</div>
-
 {{ simple_image(
   image="build_only/images/mc.png",
   container_class="p-4 flex justify-center"
-  image_class="max-h-[30vh] max-w-[800px] rounded-md"
+  image_class="max-h-[30vh] max-w-[80vw] min-[900px]:max-w-[720px] rounded-md"
   desc="mc gathering"
-  sizes="80vw"
+  sizes="(min-width: 900px) 720px, (min-width: 700px) calc(71.11vw + 62px), calc(89.47vw - 64px)"
 )}}
+
+</div>
 
 <div class="flex justify-center gap-2 md:px-4 px-2">
 

@@ -1,19 +1,21 @@
-{% set lqip = resize_image(path=image, width=144, op="fit_width", format="webp", quality=70) %}
-{% set small = resize_image(path=image, width=720, op="fit_width", format="webp", quality=75) %}
-{% set medium = resize_image(path=image, width=1280, op="fit_width", format="webp", quality=75) %}
-{% set large = resize_image(path=image, width=1920, op="fit_width", format="webp", quality=75) %}
+{% set optimg_op = optimg_op | default(value="fit_width") %}
+{% set mdata = get_image_metadata(path=image) %}
+{% set sm = resize_image(path=image, width=360, height=mdata.height, op=optimg_op, format="webp", quality=75) %}
+{% set md = resize_image(path=image, width=720, height=mdata.height, op=optimg_op, format="webp", quality=75) %}
+{% set lg = resize_image(path=image, width=1080,height=mdata.height,  op=optimg_op, format="webp", quality=75) %}
+{% set xl = resize_image(path=image, width=1920,height=mdata.height,  op=optimg_op, format="webp", quality=75) %}
 
 <img 
-  class="{{ optimg_class ~ ' bg-no-repeat bg-center bg-cover' }}"
-  src="{{ large.url }}" 
+  class="{{ optimg_class }}"
+  src="{{ xl.url }}" 
   srcset="
-    {{ small.url }} 640w,
-    {{ medium.url }} 768w,
-    {{ large.url }} 1280w,
+    {{ sm.url }} {{ sm.width }}w,
+    {{ md.url }} {{ md.width }}w,
+    {{ lg.url }} {{ lg.width }}w,
+    {{ xl.url }} {{ xl.width }}w,
   "
   sizes="{{ optimg_sizes }}"
-  style="background-image: url({{ lqip.url }})"
   alt="{{ optimg_alt }}"
-  height="{{ large.height }}"
-  width="{{ large.width }}"
+  height="{{ xl.height }}"
+  width="{{ xl.width }}"
 >

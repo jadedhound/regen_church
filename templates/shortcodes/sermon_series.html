@@ -1,28 +1,36 @@
 {% set data = load_data(path="build_only/sermon_series.yaml", format="yaml") %}
 
-<div class="grid md:grid-cols-4 grid-cols-2 gap-2 px-4 [&>*:nth-child(n+4)]:hidden ">
+<div id="sermonContainer" class="grid md:grid-cols-4 grid-cols-2 gap-2 px-4 group">
 
   {% for series in data %}
-    <a href={{ series.link }} target="_blank">
-      <div class="rounded-md">
-        {% set image = "build_only/sermons/" ~ series.image ~ ".png" %}
-        {% set optimg_class = "rounded-md" %}
-        {% set optimg_alt = "sermon series thumbnail" %}
-        {% set optimg_sizes = "50vw" %}
-        {% include "partial/optimised_image.html" %}
-      </div>
+    <a
+      href={{ series.link }} target="_blank"
+      class="opacity-100
+      group-has-[:checked]:[&:nth-child(n+4)]:hidden
+      "
+    >
+      {% set image = "build_only/sermons/" ~ series.image ~ ".png" %}
+      {% set optimg_class = "rounded-md" %}
+      {% set optimg_alt = "sermon series thumbnail" %}
+      {% set optimg_sizes = "(min-width: 780px) calc(25vw - 14px), calc(50vw - 20px)" %}
+      {% include "partial/optimised_image.html" %}
     </a>
   {% endfor %}
 
-    <div class="bg-indigo-300 rounded-md !flex flex-col items-center justify-center font-bold gap-2">
-      <div class="text-2xl text-zinc-300">MORE</div>
-      <div class="flex items-center gap-2">
-        <div class="psuedo rounded-full bg-zinc-300 w-6 h-6 drop-shadow-xl"></div>
-        <div class="psuedo rounded-full bg-zinc-300 w-6 h-6 drop-shadow-xl"></div>
-        <div class="psuedo rounded-full bg-zinc-300 w-6 h-6 drop-shadow-xl"></div>
+    <label class="cursor-pointer bg-violet-800 rounded-md flex flex-col items-center justify-center font-bold gap-2">
+      <input type="checkbox" class="w-0 h-0 opacity-0 peer" checked />
+      <div class="">
+        <div class="hidden group-has-[:checked]:flex gap-2 justify-center">
+          <div class="rounded-full w-5 h-5 bg-zinc-200"></div>
+          <div class="rounded-full w-5 h-5 bg-zinc-200"></div>
+          <div class="rounded-full w-5 h-5 bg-zinc-200"></div>
+        </div>
+        <div class="group-has-[:checked]:hidden flex justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" class="w-16 h-16 stroke-zinc-200">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+          </svg>
+        </div>
       </div>
-    </div>
+    </label>
 
 </div>
-
-
