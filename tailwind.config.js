@@ -17,14 +17,6 @@ module.exports = {
               marginBottom: '0.5rem',
               padding: '1rem',
               paddingTop: '2rem',
-              display: 'flex',
-              alignItems: 'center',
-              backgroundImage: 'url("bin/circles-background.svg")',
-              minHeight: '40vh',
-              backgroundAttachment: "fixed",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
             },
             h2: {
               marginTop: '0.75rem',
@@ -36,12 +28,9 @@ module.exports = {
               borderImage: 'linear-gradient(to right, #f97316 0, #f97316 30%, transparent 100%) 1'
             },
             h3: {
-              fontSize: '1rem',
+              fontSize: '1.25rem',
               marginTop: '0.25rem',
               marginBottom: '0.25rem',
-              textTransform: 'uppercase',
-              textAlign: 'center',
-              color: '#0ea5e9',
             },
             a: {
               textTransform: 'capitalize',

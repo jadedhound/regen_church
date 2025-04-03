@@ -1,7 +1,7 @@
 +++
 title = "Giving"
 template = "page.html"
-weight = 4
+weight = 2
 +++
 
 The work of the church is made possible by the generous giving of God’s people.

@@ -1,18 +1,25 @@
 {% extends "base.html" %}
+{% import "macros/image.html" as img_macro %}
 
 {% block content %}
   <main>
-    <div class="flex items-center justify-center min-h-[20vh] bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
-      {% if page.title is defined %}
-        {% set title = page.title %}
-      {% elif section.title is defined %}
-        {% set title = section.title %}
-      {% endif %}
-      <div class="text-center uppercase text-4xl sm:text-6xl font-bold p-4"> {{ title }} </div>
+    <div class="relative h-[30vh]">
+      <!-- Background layer (moves slower) -->
+      {{ img_macro::parallax(image=title_image | default(value="bin/memphis-colorful.webp")) }}
+  
+      <!-- Content layer (moves normally) -->
+      <div class="relative h-full flex items-center justify-center text-black">
+        {% if page.title is defined %}
+          {% set title = page.title %}
+        {% elif section.title is defined %}
+          {% set title = section.title %}
+        {% endif %}
+        <div class="text-center uppercase text-4xl sm:text-6xl font-bold p-4"> {{ title }} </div>
+      </div>
     </div>
 
-    <div class="psuedo h-4"></div>
-    <article class="prose prose-zinc prose-invert [&>p]:px-4 max-w-2xl mx-auto w-screen bg-zinc-900 rounded-md">
+    <div class="p-4">
+    <article class="prose prose-zinc prose-invert p-4 max-w-2xl mx-auto w-full bg-zinc-900 rounded-md">
       {% if page.content is defined %}
         {% set content = page.content %}
       {% elif section.content is defined %}
@@ -20,7 +27,7 @@
       {% endif %}
       {{ content | safe }}
     </article>
-    <div class="psuedo h-8"></div>
+    </div>
 
   </main>
 {% endblock content %}

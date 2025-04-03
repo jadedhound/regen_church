@@ -1,0 +1,8 @@
+{% macro parallax(image) %}
+    {% set mdata = get_image_metadata(path=image) %}
+
+    <div class="bg-center bg-fixed absolute top-0 left-0 h-full w-full"
+         style="background-image:url('{{ get_url(path=image) }}')"
+    ></div>
+{% endmacro input %}
+

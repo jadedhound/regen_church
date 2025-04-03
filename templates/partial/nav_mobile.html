@@ -26,36 +26,39 @@
     <div class="psuedo grow"></div>
     {% set section = get_section(path="_index.md") %}
     <div class="text-right px-8 uppercase font-bold">
-    {% for subpath in section.subsections %}
-      {% set subsection = get_section(path=subpath) %}
-      <div>
-          <h2 class="text-2xl font-bold uppercase">
-          {% if subsection.extra.no_link %}
+      {% for subpath in section.subsections %}
+        {% set subsection = get_section(path=subpath) %}
+        <h2 class="text-2xl">
+        {% if subsection.extra.no_link %}
+          {{ subsection.title }}
+        {% else %}
+          <a href="{{ subsection.permalink }}">
             {{ subsection.title }}
-          {% else %}
-            <a href="{{ subsection.permalink }}">
-              {{ subsection.title }}
-            </a>
-          {% endif %}
-          </h2>
-          {% if subsection.pages %}
-            <ul class="list-none flex flex-col gap-2 py-4">
-              {% for page in subsection.pages %}
-              <li class="flex gap-2 items-center">
-                <a href="{{ page.permalink | safe }}" class="mt-[2px] w-full">
-                  {{ page.title }}
-                </a>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="w-6 h-6 stroke-red-600">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                </svg>
-              </li>
-              {% endfor %}
-            </ul>
-          {% else %}
-            <div class="psuedo h-4"></div>
-          {% endif %}
-      </div>
-    {% endfor %}
+          </a>
+        {% endif %}
+        </h2>
+        {% if subsection.pages %}
+          <ul class="list-none flex flex-col gap-2 py-4">
+            {% for page in subsection.pages %}
+            <li class="flex gap-2 items-center">
+              <a href="{{ page.permalink | safe }}" class="mt-[2px] w-full">
+                {{ page.title }}
+              </a>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="w-6 h-6 stroke-red-600">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
+            </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="psuedo h-4"></div>
+        {% endif %}
+      {% endfor %}
+      <h2 class="text-2xl text-sky-500">
+        <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" onclick="closeNavModal()" class="mt-[2px] w-full">
+          Visit Us
+        </a>
+      </h2>
     </div>
     <div class="psuedo grow"></div>
   </div>
