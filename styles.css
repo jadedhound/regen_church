@@ -2,15 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@tailwind theme {
+    --color-background: var(--color-zinc-950);
+    --color-on-background: var(--color-zinc-200);
+    --color-primary: var(--color-red-600);
+    --color-secondary: var(--color-yellow-500);
+}
+
 .pseudo {
     content: "\200C";
-}
-
-details summary svg {
-    transform: rotate(90deg);
-    transition: all 0.3s;
-}
-
-details[open] summary svg {
-    transform: rotate(-90deg);
 }

@@ -1,0 +1,14 @@
+- name: "Morning"
+  image: "build_only/images/morning_church.png"
+  info:
+    - "Service starts: 10AM"
+    - "Childrens program for all ages"
+- name: "Mandarin"
+  image: "build_only/images/mandarin_service.jpg"
+  info:
+    - "Service starts: 10AM"
+- name: "Night"
+  image: "build_only/images/night_church.png"
+  info:
+    - "Service starts: 10AM"
+    - "Dinner provided after service"

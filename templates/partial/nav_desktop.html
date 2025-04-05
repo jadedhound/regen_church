@@ -1,11 +1,31 @@
-{% set base_section = get_section(path="_index.md") %}
-
-<div class="psuedo grow hidden md:block"></div>
-<div class="hidden md:flex gap-4 lg:text-lg font-bold text-zinc-200 whitespace-nowrap">
-  {% for section_path in base_section.subsections %}
-    {% set section = get_section(path=section_path) %}
-    <a href="{{ section.permalink }}">
-        <div>{{ section.title }}</div>
-    </a>
-  {% endfor %}
-</div>
+<nav class="hidden md:flex gap-4 lg:text-lg font-bold text-zinc-200 whitespace-nowrap">
+  {% set section = get_section(path="_index.md") %}
+  <div class="text-right px-8 uppercase font-bold">
+    {% for subpath in section.subsections %}
+      {% set subsection = get_section(path=subpath) %}
+      {% if subsection.pages %}
+        <ul class="list-none flex flex-col gap-2 py-4">
+          {% for page in subsection.pages %}
+          <li class="flex gap-2 items-center">
+            <a href="{{ page.permalink | safe }}" class="mt-[2px] w-full">
+              {{ page.title }}
+            </a>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="w-6 h-6 stroke-red-600">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>
+          </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <a href="{{ subsection.permalink }}">
+          {{ subsection.title }}
+        </a>
+      {% endif %}
+    {% endfor %}
+    <div class="text-2xl text-secondary">
+      <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-[2px] w-full">
+        Visit Us
+      </a>
+    </div>
+  </div>
+</nav>

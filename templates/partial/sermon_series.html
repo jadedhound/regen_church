@@ -1,3 +1,4 @@
+{% import "macros/image.html" as img_macro %}
 {% set data = load_data(path="build_only/sermon_series.yaml", format="yaml") %}
 
 <div id="sermonContainer" class="grid md:grid-cols-4 grid-cols-2 gap-2 px-4 group">
@@ -9,11 +10,13 @@
       group-has-[:checked]:[&:nth-child(n+4)]:hidden
       "
     >
-      {% set image = "build_only/sermons/" ~ series.image ~ ".png" %}
-      {% set optimg_class = "rounded-md" %}
-      {% set optimg_alt = "sermon series thumbnail" %}
-      {% set optimg_sizes = "(min-width: 780px) calc(25vw - 14px), calc(50vw - 20px)" %}
-      {% include "partial/optimised_image.html" %}
+      {{ img_macro::simple(
+          image="build_only/sermons/" ~ series.image ~ ".png",
+          sizes="(min-width: 780px) calc(25vw - 14px), calc(50vw - 20px)",
+          alt="sermon series thumbnail",
+          class="rounded-md",
+      ) }}
+
     </a>
   {% endfor %}
 
