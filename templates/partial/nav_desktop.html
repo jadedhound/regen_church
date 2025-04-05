@@ -1,4 +1,4 @@
-<nav class="hidden md:flex gap-4 lg:text-lg font-bold whitespace-nowrap">
+<nav class="hidden md:flex gap-4 lg:text-lg font-semibold whitespace-nowrap uppercase">
   {% set section = get_section(path="_index.md") %}
   {% for subpath in section.subsections %}
     <div class="relative group">
@@ -12,15 +12,17 @@
         </div>
         <div class="hidden group-hover:flex absolute right-0">
           <div class="psuedo h-6"></div>
-          <ul class="list-none flex flex-col gap-2 p-4 mt-6 bg-background text-right rounded-md">
+          <ul class="list-none flex flex-col px-4 py-2 mt-6 bg-background text-right rounded-md">
             {% for page in subsection.pages %}
-            <li class="flex gap-2 items-center">
-              <a href="{{ page.permalink | safe }}" class="mt-[2px] w-full">
-                {{ page.title }}
+            <li>
+              <a href="{{ page.permalink | safe }}" class="flex gap-2 items-center py-3">
+                <div class="mt-[2px] w-full">
+                  {{ page.title }}
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="w-6 h-6 stroke-red-600">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
               </a>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="w-6 h-6 stroke-red-600">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-              </svg>
             </li>
             {% endfor %}
           </ul>
@@ -34,7 +36,7 @@
   {% endfor %}
   <div class="text-secondary">
     <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-[2px] w-full">
-      Visit Us
+      Visit
     </a>
   </div>
 </nav>

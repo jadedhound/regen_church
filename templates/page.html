@@ -18,8 +18,7 @@
       </div>
     </div>
 
-    <div class="p-4">
-    <article class="prose prose-zinc prose-invert p-4 max-w-2xl mx-auto w-full bg-zinc-900 rounded-md">
+    <article class="prose prose-zinc prose-invert p-4 mt-8 max-w-4xl mx-auto w-full">
       {% if page.content is defined %}
         {% set content = page.content %}
       {% elif section.content is defined %}
@@ -27,7 +26,6 @@
       {% endif %}
       {{ content | safe }}
     </article>
-    </div>
 
   </main>
 {% endblock content %}

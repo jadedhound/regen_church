@@ -9,7 +9,7 @@
 {% set md = resize_image(path=lg_image, width=1080, op="fit_width", format="webp", quality=75) %}
 
 <div class="flex justify-center">
-  <div class="p-4 aspect-square w-[95vw] md:w-[540px] lg:w-[720px]">
+  <div class="px-4 aspect-square w-[95vw] md:w-[540px] lg:w-[720px]">
     <a href="https://maps.app.goo.gl/s9WxYijs8rEQn3X18" target="_blank">
       <picture>
         <source media="(max-width: {{ xs.width }}px)" srcset="{{ xs.url }}">
