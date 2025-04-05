@@ -7,7 +7,7 @@
     <a
       href={{ series.link }} target="_blank"
       class="opacity-100
-      group-has-[:checked]:[&:nth-child(n+4)]:hidden
+      nth-[n+4]:group-has-checked:hidden
       "
     >
       {{ img_macro::simple(
@@ -23,12 +23,12 @@
     <label class="cursor-pointer bg-violet-800 rounded-md flex flex-col items-center justify-center font-bold gap-2">
       <input type="checkbox" class="w-0 h-0 opacity-0 peer" checked />
       <div class="">
-        <div class="hidden group-has-[:checked]:flex gap-2 justify-center">
+        <div class="hidden group-has-checked:flex gap-2 justify-center">
           <div class="rounded-full w-5 h-5 bg-zinc-200"></div>
           <div class="rounded-full w-5 h-5 bg-zinc-200"></div>
           <div class="rounded-full w-5 h-5 bg-zinc-200"></div>
         </div>
-        <div class="group-has-[:checked]:hidden flex justify-center">
+        <div class="group-has-checked:hidden flex justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" class="w-16 h-16 stroke-zinc-200">
             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
           </svg>

@@ -1,12 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@config './tailwind.config.js';
 
-@tailwind theme {
-    --color-background: var(--color-zinc-950);
-    --color-on-background: var(--color-zinc-200);
-    --color-primary: var(--color-red-600);
-    --color-secondary: var(--color-yellow-500);
+@theme {
+  --color-black: #000000;
+  --color-background: var(--color-black);
+  --color-on-background: var(--color-zinc-200);
+  --color-primary: var(--color-red-600);
+  --color-secondary: var(--color-yellow-400);
 }
 
 .pseudo {

@@ -1,31 +1,40 @@
-<nav class="hidden md:flex gap-4 lg:text-lg font-bold text-zinc-200 whitespace-nowrap">
+<nav class="hidden md:flex gap-4 lg:text-lg font-bold whitespace-nowrap">
   {% set section = get_section(path="_index.md") %}
-  <div class="text-right px-8 uppercase font-bold">
-    {% for subpath in section.subsections %}
+  {% for subpath in section.subsections %}
+    <div class="relative group">
       {% set subsection = get_section(path=subpath) %}
       {% if subsection.pages %}
-        <ul class="list-none flex flex-col gap-2 py-4">
-          {% for page in subsection.pages %}
-          <li class="flex gap-2 items-center">
-            <a href="{{ page.permalink | safe }}" class="mt-[2px] w-full">
-              {{ page.title }}
-            </a>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="w-6 h-6 stroke-red-600">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-            </svg>
-          </li>
-          {% endfor %}
-        </ul>
+        <div class="flex gap-1 items-center">
+          {{ subsection.title }}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="stroke-on-background w-4 h-4 mb-1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+        </svg>
+        </div>
+        <div class="hidden group-hover:flex absolute right-0">
+          <div class="psuedo h-6"></div>
+          <ul class="list-none flex flex-col gap-2 p-4 mt-6 bg-background text-right rounded-md">
+            {% for page in subsection.pages %}
+            <li class="flex gap-2 items-center">
+              <a href="{{ page.permalink | safe }}" class="mt-[2px] w-full">
+                {{ page.title }}
+              </a>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="w-6 h-6 stroke-red-600">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
       {% else %}
         <a href="{{ subsection.permalink }}">
           {{ subsection.title }}
         </a>
       {% endif %}
-    {% endfor %}
-    <div class="text-2xl text-secondary">
-      <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-[2px] w-full">
-        Visit Us
-      </a>
     </div>
+  {% endfor %}
+  <div class="text-secondary">
+    <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-[2px] w-full">
+      Visit Us
+    </a>
   </div>
 </nav>

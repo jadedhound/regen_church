@@ -3,10 +3,6 @@ module.exports = {
   content: ["./templates/**/*.html", "./theme/**/*.html", "./content/**/*.md"],
   theme: {
     extend: {
-      colors: {
-        black: '#000000',
-        blackTransparent: 'rgba(0, 0, 0, 0.75)'
-      },
       typography: {
         DEFAULT: {
           css: {
