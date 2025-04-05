@@ -1,37 +1,78 @@
-<div class="md:hidden psuedo grow"></div>
-<a class="md:hidden" href="#mobile_menu">
+<button class="md:hidden" onclick="openNavModal()" aria-label="Open the navigation drawer for mobile devices only">
   <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill=""> 
     <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
     <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" style="display: none;"></path>
   </svg>
-</a>
-<div class="fixed top-0 left-0 z-10 h-screen w-screen hidden target:block bg-[#000000]" id="mobile_menu">
-  <div class="flex flex-col h-full">
-    <a href="javascript:history.back()" class="self-end px-4 md:px-8 py-5">
+</button>
+
+<div class="fixed top-0 left-0 z-10 h-screen w-screen hidden" id="nav_modal">
+  <div class="psuedo bg-red-700 h-full"></div>
+  <div class="flex z-10 absolute top-0 left-0 h-full w-full">
+  <div class="flex flex-col justify-center items-center px-4 gap-4">
+    <div class="psuedo h-12"></div>
+    <div class="[writing-mode:sideways-lr] whitespace-nowrap text-2xl font-bold ml-1">Regeneration Church Monash</div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 61 61" class="w-12 h-12 -rotate-90">
+      <path class="fill-zinc-200" d="M27.9.6h2.9c3.6 0 7.7 0 10.3 2.8a8.3 8.3 0 0 1 2.3 6.2v.8l-.2.9-.2.8-.3.8-.4.8-.4.7-.6.7-.5.6C38.3 18 35.5 18 32.3 18c-.3 2.6-.1 5.3-.1 7.9 4.5-3.5 8.4-7.5 12.7-11.2.7-.6 1.3-1.3 2.2-1.2 1.5.8 2.3 2.2 3.1 3.6-1.9 2.2-4.7 3.9-6.9 5.6l-9.7 7.5c2.5 2 4.7 4.4 7.2 6.5 2.1 1.9 4.6 3.6 6.7 5.6l1.4 1.6-.2 1c-.4 1-1.3 2.1-2.4 2.5-.6-.1-.9-.3-1.4-.7-1.5-1.3-2.9-2.9-4.3-4.3l-8.1-7.6c.3 2.6.1 5.3.1 7.9l.2 11.3c.1 1.9.6 4.5-.1 6.3-.6.4-1.3.5-2 .5s-1.3 0-1.8-.5c-1.1-3.7-.4-20.2-.4-25.3-5.3 4.2-9.9 9.2-15.3 13.3l-1.5-1.6c-.6-.7-.9-1.3-.8-2.2.5-1.4 14.7-12.5 16.8-14.2-5.3-5-11.5-10-17.2-14.7l1.3-2.4c.5-.7 1.1-1.5 1.9-1.7 2.3 1.8 4.1 4 6.2 5.9l8.5 7.8-.1-15.5c0-1.6.2-3.8-.2-5.4-.2-1.1-1.3-2.2-1.8-3.3.5-.5 1-.3 1.6-.4z" />
+      <path class="fill-red-700" d="M32.3 3.5h1c1.7-.1 3 .2 4.3 1.4 1.1 1 1.8 2.5 1.8 4.1.1 2-.6 3.6-1.9 5l-.6.4c-.8.5-2.2 1-3.2.7-.5-.1-.9-.5-1.2-1-1.4-2.3-.8-8-.2-10.6z" />
+    </svg>
+  </div>
+  <div class="flex flex-col bg-black w-full rounded-l-xl">
+    <button onclick="closeNavModal()" class="self-end px-4 md:px-8 py-5">
       <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
         <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd" style="display: none;"></path>
         <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
       </svg>
-    </a>
+    </button>
     <div class="psuedo grow"></div>
     {% set section = get_section(path="_index.md") %}
-    <div class="mx-auto w-fit text-right">
-    {% for subpath in section.subsections %}
-      {% set subsection = get_section(path=subpath) %}
-      <div>
-          <h2 class="text-xl text-sky-500 font-bold font-serif">{{ subsection.title }}</h2>
-          <ul class="list-none mr-4 gap-2">
+    <div class="text-right px-8 uppercase font-bold">
+      {% for subpath in section.subsections %}
+        {% set subsection = get_section(path=subpath) %}
+        <h2 class="text-2xl">
+        {% if subsection.extra.no_link %}
+          {{ subsection.title }}
+        {% else %}
+          <a href="{{ subsection.permalink }}">
+            {{ subsection.title }}
+          </a>
+        {% endif %}
+        </h2>
+        {% if subsection.pages %}
+          <ul class="list-none flex flex-col gap-2 py-4">
             {% for page in subsection.pages %}
-            <li class="mt-4">
-              <a href="{{ page.permalink | safe }}" class="md:max-w-3xl md:place-self-center w-full">
+            <li class="flex gap-2 items-center">
+              <a href="{{ page.permalink | safe }}" class="mt-[2px] w-full">
                 {{ page.title }}
               </a>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="w-6 h-6 stroke-red-600">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
             </li>
             {% endfor %}
           </ul>
-      </div>
-    {% endfor %}
+        {% else %}
+          <div class="psuedo h-4"></div>
+        {% endif %}
+      {% endfor %}
+      <h2 class="text-2xl text-secondary">
+        <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" onclick="closeNavModal()" class="mt-[2px] w-full">
+          Visit Us
+        </a>
+      </h2>
     </div>
     <div class="psuedo grow"></div>
   </div>
+  </div>
 </div>
+
+
+<script>
+  function openNavModal() {
+    document.body.classList.add('overflow-hidden');
+    document.getElementById('nav_modal').classList.remove('hidden');
+  }
+  function closeNavModal() {
+    document.body.classList.remove('overflow-hidden');
+    document.getElementById('nav_modal').classList.add('hidden');
+  }
+</script>

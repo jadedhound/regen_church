@@ -1,0 +1,26 @@
+{% set sm_image = "build_only/images/regen_map_small.png" %}
+{% set sm_meta = get_image_metadata(path=sm_image) %}
+{% set sm = resize_image(path=sm_image, width=720, op="fit_width", format="webp", quality=75) %}
+{% set xs = resize_image(path=sm_image, width=1080, op="fit_width", format="webp", quality=75) %}
+
+{% set lg_image = "build_only/images/regen_map.png" %}
+{% set lg_meta = get_image_metadata(path=lg_image) %}
+{% set lg = resize_image(path=lg_image, width=lg_meta.width, op="fit_width", format="webp", quality=75) %}
+{% set md = resize_image(path=lg_image, width=1080, op="fit_width", format="webp", quality=75) %}
+
+<div class="flex justify-center">
+  <div class="px-4 aspect-square w-[95vw] md:w-[540px] lg:w-[720px]">
+    <a href="https://maps.app.goo.gl/s9WxYijs8rEQn3X18" target="_blank">
+      <picture>
+        <source media="(max-width: {{ xs.width }}px)" srcset="{{ xs.url }}">
+        <source media="(max-width: {{ sm.width }}px)" srcset="{{ sm.url }}">
+        <source media="(max-width: {{ md.width }}px)" srcset="{{ md.url }}">
+        <img 
+          class="rounded-md shadow-md shadow-black"
+          src="{{ lg.url }}" 
+          alt="simplified regen map"
+        >
+      </picture>
+    </a>
+  </div>
+</div>

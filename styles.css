@@ -1,16 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@config './tailwind.config.js';
+
+@theme {
+  --color-black: #000000;
+  --color-background: var(--color-black);
+  --color-on-background: var(--color-zinc-200);
+  --color-surface: var(--color-zinc-900);
+  --color-primary: var(--color-red-600);
+  --color-secondary: var(--color-yellow-400);
+}
 
 .pseudo {
     content: "\200C";
-}
-
-details summary svg {
-    transform: rotate(90deg);
-    transition: all 0.3s;
-}
-
-details[open] summary svg {
-    transform: rotate(-90deg);
 }

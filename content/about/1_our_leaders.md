@@ -3,10 +3,15 @@ title = "Our Leaders"
 weight = 1
 +++
 
-Our Leaders Stephen Tan profile picture. Stephen Tan Senior Pastor & Morning
-Church Pastor
+{% pastor_bio(
+  name="Stephen Tan",
+  number="+61 411 363 234",
+  email="pastor@regeneration.org.au"
+  role="Senior Pastor & Morning Church Pastor",
+  day_off="Thursday",
+  image="build_only/images/stephen_tan.jpg"
+) %}
 
-Email: pastor@regeneration.org.au Regular Day Off: Thursday View Bio
 
 Stephen is the Senior Pastor of Regeneration Church Monash. He has a heart to
 see the regeneration of Monash and seeks to make disciples in Monash, Melbourne,
@@ -26,7 +31,18 @@ dog Cloud. Stephen grew up in Malaysia and his favourite food is Char Kuey Teow.
 He is an avid Liverpool FC supporter. Stephen Tan profile picture. Paul McIntosh
 Night Church Pastor
 
-Email: paul@regeneration.org.au Regular Day Off: Wednesday View Bio
+{% end %}
+
+<div class="psuedo h-8"></div>
+
+{% pastor_bio(
+  name="Paul McIntosh",
+  number="+61 470 463 941",
+  email="paul@regeneration.org.au",
+  role="Night Church Pastor",
+  day_off="Wednesday",
+  image="build_only/images/paul_mcintosh.jpg"
+) %}
 
 Paul serves as the Pastor of Regeneration Monash’s Night Church. Paul is married
 to Sharon and they have an adult daughter. Paul completed his Master of Biblical
@@ -36,3 +52,5 @@ spent many years in Malaysia and America. Paul has an electrical engineering
 background and has engineering management and project management qualifications
 and experience. He enjoys walking with Sharon and their chocolate labradoodle
 named Boaz, and telling Dad jokes to whoever will listen.
+
+{% end %}

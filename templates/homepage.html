@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% import "macros/text.html" as text_macro %}
+{% import "macros/image.html" as img_macro %}
+
+{% block content %}
+<main>
+
+   <div class="relative">
+      {{ img_macro::simple(
+          image="build_only/images/cover.png",
+          sizes="100vw",
+          alt="cover image",
+          class="h-[calc(100vh-4rem)] w-full object-cover bg-no-repeat bg-cover bg-center",
+          op="fill"
+      ) }}
+
+      <div class="absolute w-full bg-black/60 bottom-8 left-0 px-4 py-8 text-2xl md:text-4xl lg:text-5xl font-bold">
+        <div class="flex">
+          <div class="psuedo h-2 w-36 bg-red-600 mb-4"></div>
+          <div class="psuedo grow"></div>
+        </div>
+        <p>Making Disciples of All Nations.</p>
+        <p>In the heart of Clayton, Monash.</p>
+      </div>
+  </div>
+
+  <div class="py-8">
+    {{ text_macro::title_with_highlight(title="Join a **service**") }}
+
+    <div class="grid md:grid-cols-3 gap-2 px-8">
+      {% set service_data = load_data(literal='
+        [["Morning", "build_only/images/morning_church.png", ["Service starts: 10AM", "Childrens program for all ages"]],
+        ["Mandarin", "build_only/images/mandarin_service.jpg", ["Service starts: 10AM"]],
+        ["Night", "build_only/images/night_church.png", ["Service starts: 10AM", "Dinner provided after service"]]]',
+        format="json")
+      %}
+
+      {% for service in service_data %}
+        <div class="bg-slate-100 rounded-md">
+
+            {{ img_macro::simple(
+                image=service[1],
+                sizes="(max-width: 768px) 90vw, (max-width: 1200px) 30vw",
+                alt="service picture",
+                class="rounded-t-md mb-4",
+            ) }}
+
+            <div class="text-black p-4">
+                <div class="text-4xl font-bold relative">
+                  <div class="absolute top-0 left-0"> {{ service[0] }} </div>
+                  <div class="psuedo py-2"></div>
+                  <div class="psuedo bg-blue-500 py-2"></div>
+                </div>
+                <ul class="list-disc pl-5 text-2xl">
+                  {% for info in service[2] %}
+                    <li class="py-2">{{ info }}</li>
+                  {% endfor %}
+                </ul>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="bg-zinc-900 py-8">
+    {{ text_macro::title_with_highlight(title="Be **transformed** by gospel-centred sermons") }}
+
+    {% include "partial/sermon_series.html" %}
+
+    <div class="psuedo h-8"></div>
+
+    <div class="flex justify-center">
+      <a href="https://www.youtube.com/@RegenerationMonash/live" target="_blank">
+        <div class="bg-zinc-200 rounded-full py-4 px-6 md:px-8 flex gap-4 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="external-icon" viewBox="0 0 28.57 20" class="w-8 h-8 mt-px">
+            <svg viewBox="0 0 28.57 20" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"/>
+                <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"/>
+              </g>
+            </svg>
+          </svg>
+          <div class="md:text-lg text-zinc-800 font-bold mt-2 whitespace-nowrap">JOIN OUR LIVESTREAM</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="py-8">
+    {{ text_macro::title_with_highlight(title="Be **equipped** to make disciples in community") }}
+
+    <p class="text-xl md:px-20 px-8 font-bold">
+      Missional Communities (MCs) are small groups committed to being formed by Jesus
+      in community for the sake of others. We usually meet weekly in homes for a time
+      of eating, praying for each other, studying God’s word and on occasion serving
+      the community.
+    </p>
+
+    <div class="p-4 flex justify-center">
+      {{ img_macro::simple(
+          image="build_only/images/mc.png",
+          sizes="(min-width: 900px) 720px, (min-width: 700px) calc(71.11vw + 62px), calc(89.47vw - 64px)",
+          alt="mc gathering",
+          class="max-h-[30vh] max-w-[80vw] min-[900px]:max-w-[720px] rounded-md",
+          op="fill"
+      ) }}
+    </div>
+
+    <div class="flex justify-center gap-2 md:px-4 px-2">
+      <a href="https://regenerationchurchmonash.elvanto.com.au/form/f44cfb9d-8cd0-4368-8d6d-cc4a538d3c9d" target="_blank">
+        <div class="rounded-full bg-red-700 flex justify-center items-center h-full">
+          <div class="font-bold md:p-4 p-2 text-center">GET CONNECTED</div>
+        </div>
+      </a>
+      <a href="/mc_locations">
+        <div class="rounded-full border-zinc-200 border-2 flex justify-center items-center">
+          <div class="font-bold p-4 text-center">MC LOCATIONS</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="py-8 md:grid grid-cols-2">
+    <div class="md:col-span-2">{{ text_macro::title_with_highlight(title="Get in **touch**") }}</div>
+    <div class="">
+      <p class="text-xl md:px-20 px-8 font-bold pb-4">
+        We are a church community in Clayton, across the street from Monash University
+        Clayton campus.
+      </p>
+
+      <a href={{ get_url(path='@/about/1_our_leaders.md') }}>
+        <div class="rounded-full border-zinc-200 border-2 flex justify-center items-center mx-6">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 fill-zinc-200">
+            <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 0 0-1.032-.211 50.89 50.89 0 0 0-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 0 0 2.433 3.984L7.28 21.53A.75.75 0 0 1 6 21v-4.03a48.527 48.527 0 0 1-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979Z" />
+            <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 0 0 1.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0 0 15.75 7.5Z" />
+          </svg>
+          <div class="font-bold p-4 text-center">TALK TO A PASTOR</div>
+        </div>
+      </a>
+    </div>
+
+
+    {% include "partial/regen_map.html" %}
+  </div>
+
+</main>
+{% endblock content %}
