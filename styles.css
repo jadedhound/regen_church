@@ -12,3 +12,14 @@
 .pseudo {
     content: "\200C";
 }
+
+.regen-title {
+  @apply text-2xl md:text-4xl lg:text-5xl text-center pb-8 px-2 font-bold;
+  b {
+    @apply text-ascent;
+  }
+}
+
+hr {
+  @apply mx-4 my-8;
+}
