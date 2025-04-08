@@ -23,41 +23,7 @@
       </div>
   </div>
 
-  <div class="regen-title mt-8">Join a <b>SERVICE</b></div>
-
-  <div class="grid md:grid-cols-3 gap-2 px-8">
-    {% set service_data = load_data(literal='
-      [["Morning", "build_only/images/morning_church.png", ["Service starts: 10AM", "Childrens program for all ages"]],
-      ["Mandarin", "build_only/images/mandarin_service.jpg", ["Service starts: 10AM"]],
-      ["Night", "build_only/images/night_church.png", ["Service starts: 10AM", "Dinner provided after service"]]]',
-      format="json")
-    %}
-
-    {% for service in service_data %}
-      <div class="bg-slate-100 rounded-md">
-
-          {{ img_macro::simple(
-              image=service[1],
-              sizes="(max-width: 768px) 90vw, (max-width: 1200px) 30vw",
-              alt="service picture",
-              class="rounded-t-md mb-4",
-          ) }}
-
-          <div class="text-black p-4">
-              <div class="text-4xl font-bold relative">
-                <div class="absolute top-0 left-0"> {{ service[0] }} </div>
-                <div class="psuedo py-2"></div>
-                <div class="psuedo bg-blue-500 py-2"></div>
-              </div>
-              <ul class="list-disc pl-5 text-2xl">
-                {% for info in service[2] %}
-                  <li class="py-2">{{ info }}</li>
-                {% endfor %}
-              </ul>
-          </div>
-      </div>
-    {% endfor %}
-  </div>
+  {% include 'partial/services.html' %}
 
   <hr>
 

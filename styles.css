@@ -20,6 +20,14 @@
   }
 }
 
+.regen-button {
+  @apply rounded-full border-zinc-200 border-2 flex justify-center items-center mx-6 p-4 gap-4 font-semibold text-lg;
+}
+
+.regen-service-title {
+  @apply rounded-full border-zinc-200 border-y-2 border-l-2 flex justify-center items-center mx-6 p-4;
+}
+
 hr {
   @apply mx-4 my-8;
 }

@@ -1,0 +1,59 @@
+<div class="grid grid-cols-5 h-28 items-center mx-2">
+  <div class="regen-title col-span-2 !text-right !p-0">Join</div>
+  <div id="service-title-base" class="regen-title !text-left !p-0 !mx-2 col-span-3">a <b> SERVICE</b></div>
+
+  <div id="service-title-button" class="hidden w-full col-span-3 pr-2">
+    <button class="regen-button !mx-2 w-full" onclick="service_reset()">
+      <span id="service-title" class="!text-left !p-0 !mx-0 capitalize"></span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" class="size-6 stroke-zinc-200">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- Radio buttons container (visible initially) -->
+<div id="service-buttons" class="flex flex-col gap-4">
+  {% set service_data = load_data(literal='[
+    { "name": "Morning", "partial": "build_only/images/morning_church.png" },
+    { "name": "Mandarin", "image": "build_only/images/mandarin_church.png" },
+    { "name": "Night", "image": "build_only/images/night_church.png" }
+    ]', format="json")
+  %}
+
+  {% for service in service_data %}
+    {% set id = service.name | lower %}
+    <button
+      id="{{ id }}"
+      class="regen-button"
+      onclick="service_chosen(this)"
+    >{{ service.name }}</button>
+  {% endfor %}
+</div>
+
+{% include "partial/service_morning.html" %}
+{% include "partial/service_mandarin.html" %}
+{% include "partial/service_night.html" %}
+
+<script>
+  const title = document.getElementById('service-title');
+  const titleWrapper = document.getElementById('service-title-button');
+  const titleOG = document.getElementById('service-title-base');
+  const radioBtns = document.getElementById('service-buttons');
+
+  function service_chosen(ele) {
+    title.textContent = ele.id;
+    const svid = `service-preview-${ele.id}`;
+    document.getElementById(svid).classList.remove('hidden');
+    [titleOG, radioBtns, titleWrapper]
+      .forEach(ele => ele.classList.toggle('hidden'));
+  }
+
+  function service_reset() {
+    [titleOG, radioBtns, titleWrapper]
+      .forEach(ele => ele.classList.toggle('hidden'));
+    ["morning", "mandarin", "night"].forEach(id => {
+      document.getElementById(`service-preview-${id}`).classList.add('hidden');
+    });
+  }
+</script>
