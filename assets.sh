@@ -15,7 +15,7 @@ download() {
   for dir in "${directories[@]}"; do
     rclone "$mode" "regen:/$branch/$dir" "$dir" \
       --config="./rclone.conf" \
-      --progress \
+      --verbose \
       --size-only 
   done
 }
@@ -28,37 +28,9 @@ upload() {
   for dir in "${directories[@]}"; do
     rclone "$mode" "$dir" "regen:/$branch/$dir" \
       --config="./rclone.conf" \
-      --progress \
+      --verbose \
       --size-only 
   done
-}
-
-decrypt_conf() {
-  config="./rclone.conf"
-  config_gpg="./rclone.conf.gpg"
-
-  if [[ ! -f "$config" ]]; then
-    echo "Decrypting $config_gpg..."
-
-    # Check if a passphrase is given in the environment (usually because of CI)
-    if [ -z "$GPG_PASSPHRASE" ]; then
-      gpg --quiet --pinentry-mode loopback --decrypt "$config_gpg" > "$config"
-    else
-      gpg --quiet --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" --decrypt "$config_gpg" > "$config"
-    fi
-    if [[ ! -f "$config" ]]; then
-      echo "Unable to source config. Exiting."
-      exit 1
-    fi
-  fi
-}
-
-rclone_check() {
-  # Check if rclone is installed
-  if ! command -v rclone &> /dev/null; then
-      echo "ERROR: rclone is not installed. Please install rclone first."
-      exit 1
-  fi
 }
 
 main() {
@@ -83,6 +55,35 @@ main() {
   esac
 
   exit 0
+}
+
+decrypt_conf() {
+  config="./rclone.conf"
+  config_gpg="./rclone.conf.gpg"
+
+  if [[ ! -f "$config" ]]; then
+    echo "Decrypting $config_gpg..."
+
+    # Check if a passphrase is given in the environment (usually because of CI)
+    if [ -z "$GPG_PASSPHRASE" ]; then
+      gpg --quiet --pinentry-mode loopback --decrypt "$config_gpg" > "$config"
+    else
+      gpg --quiet --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" --decrypt "$config_gpg" > "$config"
+    fi
+
+    if [[ ! -f "$config" ]]; then
+      echo "Unable to source config. Exiting."
+      exit 1
+    fi
+  fi
+}
+
+rclone_check() {
+  # Check if rclone is installed
+  if ! command -v rclone &> /dev/null; then
+      echo "ERROR: rclone is not installed. Please install rclone first."
+      exit 1
+  fi
 }
 
 
