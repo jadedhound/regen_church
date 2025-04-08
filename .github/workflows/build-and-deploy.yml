@@ -13,22 +13,43 @@ jobs:
     steps:
     - name: Checkout main
       uses: actions/checkout@v4
-    - name: Download Zola
+
+    - name: Download zola and rclone
       uses: taiki-e/install-action@v2
       with:
-        tool: zola@0.20.0
-    - name: Decrypt secrets
+        tool: zola@0.20.0,rclone@1.69.1
+
+    - name: Restore cached assets (images and binaries)
+      id: cache-assets-restore
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          build_only/
+          static/bin/
+        key: assets
+
+    - name: Download assets
       env:
         GPG_PASSPHRASE: ${{ secrets.REGEN_PASSPHRASE }}
-      run: gpg --batch --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" --decrypt secrets.env.gpg > secrets.env
-    - name: Download assets
-      run: ./assets.sh download
-    - name: Setup Bun
+      run: ./assets.sh download --force
+
+    - name: Save assets
+      id: cache-assets-save
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          build_only/
+          static/bin/
+        key: ${{ steps.cache-assets-restore.outputs.cache-primary-key }}
+
+    - name: Setup bun
       uses: oven-sh/setup-bun@v2
-    - name: Build with Bun and Zola
+
+    - name: Build with bun and zola
       run: |
         bun install
         bun run prod
+
     - name: Upload static files as artifact
       id: deployment
       uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
@@ -36,11 +57,13 @@ jobs:
         path: dist/
 
   deploy:
-    name: Deploy the Artifact Created
+    name: Deploy the artifact created
     needs: build
+
     permissions:
       pages: write
       id-token: write
+
     # Deploy to the github-pages environment
     environment:
       name: github-pages
@@ -50,6 +73,7 @@ jobs:
     steps:
     - name: Download artifact
       uses: actions/download-artifact@v4
-    - name: Deploy to GitHub Pages
+
+    - name: Deploy to github pages
       id: deployment
       uses: actions/deploy-pages@v4

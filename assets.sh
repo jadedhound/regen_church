@@ -1,128 +1,91 @@
 #!/bin/bash
 
-DIRECTORIES=(
+directories=(
   "build_only/images"
   "build_only/sermons"
   "static/bin"
 )
-SELECTED=""
+branch=$(git rev-parse --abbrev-ref HEAD)
 
 download() {
-  for DIR in "${DIRECTORIES[@]}"; do
-      echo "------------------------------------"
-      echo "Downloading: $DIR"
-      mkdir -p "$DIR"
-      curl -u "$USERNAME:$PASSWORD" \
-        -X PROPFIND "$WEBDAV_URL/$DIR/" \
-        -H "Depth: 1" \
-        --output - 2>/dev/null | \
-        grep -oP '<D:href>[^<]+</D:href>' | \
-        sed 's#<D:href>\(.*\)</D:href>#\1#' | \
-        while read -r path; do
-          file="${path##*/}"
-          [[ -z "$file" ]] && continue  # Skip directory entries
-  
-          echo "Downloading $file..."
-          curl -f -u "$USERNAME:$PASSWORD" \
-               -o "$DIR/$file" \
-               "$WEBDAV_URL/$DIR/$file" 2>/dev/null
-        done
-  done
-}
-
-select_dir() {
-  # Display menu
-  echo "Which directory do you want to clean?"
-  echo "------------------------------------"
-  for i in "${!DIRECTORIES[@]}"; do
-    echo "$((i+1)). ${DIRECTORIES[$i]}"
-  done
-  echo "------------------------------------"
-
-  # Get user input
-  read -p "Enter number (1-${#DIRECTORIES[@]}): " CHOICE
-
-  # Validate input
-  if [[ ! "$CHOICE" =~ ^[1-9][0-9]*$ ]] || (( CHOICE > ${#DIRECTORIES[@]} )); then
-    echo "Invalid selection. Exiting."
-    exit 1
+  mode="copy"
+  if [ "$1" = "--force" ]; then
+      mode="sync"
   fi
-
-  # Return the selected directory (adjusting for zero-based array)
-  SELECTED="${DIRECTORIES[$((CHOICE-1))]}"
+  for dir in "${directories[@]}"; do
+    rclone "$mode" "regen:/$branch/$dir" "$dir" \
+      --config="./rclone.conf" \
+      --progress \
+      --size-only 
+  done
 }
 
 upload() {
-  select_dir
-  echo "Processing: $SELECTED"
-  # Recursively upload each file.
-  for FILE in "$SELECTED"/*; do
-      if [ -f "$FILE" ]; then
-          curl -X PUT -u "$USERNAME:$PASSWORD" -T "$FILE" "$WEBDAV_URL/$SELECTED/$(basename "$FILE")"
-          echo "Uploaded: $FILE"
-      fi
+  mode="copy"
+  if [ "$1" = "--force" ]; then
+      mode="sync"
+  fi
+  for dir in "${directories[@]}"; do
+    rclone "$mode" "$dir" "regen:/$branch/$dir" \
+      --config="./rclone.conf" \
+      --progress \
+      --size-only 
   done
 }
 
-clean() {
-  select_dir
-  # Confirm deletion
-  read -p "Are you sure you want to delete '$SELECTED'? [y/N] " CONFIRM
-  if [[ "$CONFIRM" != [yY] ]]; then
-    echo "Aborted."
-    exit 0
-  fi
+decrypt_conf() {
+  config="./rclone.conf"
+  config_gpg="./rclone.conf.gpg"
 
-  curl -X DELETE -u "$USERNAME:$PASSWORD" "$WEBDAV_URL/$SELECTED"
-  curl -X MKCOL -u "$USERNAME:$PASSWORD" "$WEBDAV_URL/$SELECTED"
-}
+  if [[ ! -f "$config" ]]; then
+    echo "Decrypting $config_gpg..."
 
-get_credentials() {
-  SECRETS_FILE="./secrets.env"
-  SECRETS_GPG="./secrets.env.gpg"
-  if [[ -f "$SECRETS_FILE" ]]
-  then
-    source "$SECRETS_FILE"
-  else
-    echo "Decrypting $SECRETS_GPG..."
-    gpg --quiet --pinentry-mode loopback --decrypt "$SECRETS_GPG" > "$SECRETS_FILE"
-    if [[ -f "$SECRETS_FILE" ]]
-    then
-      source "$SECRETS_FILE"
+    # Check if a passphrase is given in the environment (usually because of CI)
+    if [ -z "$GPG_PASSPHRASE" ]; then
+      gpg --quiet --pinentry-mode loopback --decrypt "$config_gpg" > "$config"
     else
-      echo "Unable to source secrets. Exiting."
+      gpg --quiet --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" --decrypt "$config_gpg" > "$config"
+    fi
+    if [[ ! -f "$config" ]]; then
+      echo "Unable to source config. Exiting."
       exit 1
     fi
   fi
 }
 
-main() {
-  get_credentials
+rclone_check() {
+  # Check if rclone is installed
+  if ! command -v rclone &> /dev/null; then
+      echo "ERROR: rclone is not installed. Please install rclone first."
+      exit 1
+  fi
+}
 
+main() {
   # Check if an argument was provided
   if [ -z "$1" ]; then
-      echo "Error: No argument provided. Usage: $0 [download|upload|clean]"
+      echo "Error: No argument provided. Usage: $0 [download|upload] (--force)"
       exit 1
   fi
 
   # Check if the argument is "download" or "upload"
   case "$1" in
       download)
-          download
+        download "$2"
           ;;
       upload)
-          upload
-          ;;
-      clean)
-          clean
+        upload "$2"
           ;;
       *)
-          echo "Error: Invalid argument. Must be 'download', 'upload' or 'clean'."
-          exit 1
-          ;;
+        echo "Error: Invalid argument. Must be 'download' or 'upload'."
+        exit 1
+        ;;
   esac
 
   exit 0
 }
 
+
+rclone_check
+decrypt_conf
 main $1
