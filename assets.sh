@@ -9,7 +9,7 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 
 download() {
   mode="copy"
-  if [ "$1" = "--force" ]; then
+  if [ "$1" = "--sync" ]; then
       mode="sync"
   fi
   for dir in "${directories[@]}"; do
@@ -22,7 +22,7 @@ download() {
 
 upload() {
   mode="copy"
-  if [ "$1" = "--force" ]; then
+  if [ "$1" = "--sync" ]; then
       mode="sync"
   fi
   for dir in "${directories[@]}"; do
@@ -36,7 +36,7 @@ upload() {
 main() {
   # Check if an argument was provided
   if [ -z "$1" ]; then
-      echo "Error: No argument provided. Usage: $0 [download|upload] (--force)"
+      echo "Error: No argument provided. Usage: $0 [download|upload] (--sync)"
       exit 1
   fi
 

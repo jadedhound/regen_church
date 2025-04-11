@@ -31,7 +31,7 @@ jobs:
     - name: Download assets
       env:
         GPG_PASSPHRASE: ${{ secrets.REGEN_PASSPHRASE }}
-      run: ./assets.sh download --force
+      run: ./assets.sh download --sync
 
     - name: Save assets
       id: cache-assets-save
