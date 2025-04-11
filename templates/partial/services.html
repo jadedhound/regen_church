@@ -1,15 +1,15 @@
-<div class="grid grid-cols-5 h-28 items-center mx-2">
-  <div class="regen-title col-span-2 !text-right !p-0">Join</div>
-  <div id="service-title-base" class="regen-title !text-left !p-0 !mx-2 col-span-3">a <b> SERVICE</b></div>
+<div id="service-title-base" class="regen-title mt-8">Join a <b> SERVICE</b></div>
 
-  <div id="service-title-button" class="hidden w-full col-span-3 pr-2">
-    <button class="regen-button !mx-2 w-full" onclick="service_reset()">
-      <span id="service-title" class="!text-left !p-0 !mx-0 capitalize"></span>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" class="size-6 stroke-zinc-200">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-      </svg>
-    </button>
-  </div>
+<div id="service-title-button" class="hidden mt-8 pb-8 px-6">
+  <button class="regen-button !mx-0 w-full" onclick="service_reset()">
+    <div class="ml-6 grow">
+      Join
+      <span id="service-title" class="uppercase text-ascent"></span>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" class="size-6 stroke-zinc-200">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+    </svg>
+  </button>
 </div>
 
 <!-- Radio buttons container (visible initially) -->
@@ -56,4 +56,6 @@
       document.getElementById(`service-preview-${id}`).classList.add('hidden');
     });
   }
+
+  document.getElementById('morning').click();
 </script>

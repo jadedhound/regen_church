@@ -1,0 +1,19 @@
+{% import "macros/image.html" as img_macro %}
+
+{% macro service(image="build_only/images/placeholder.png", caption) %}
+  
+  <div class="flex-shrink-0 relative">
+    {{ img_macro::simple(
+        image=image,
+        sizes="18rem",
+        alt="service-preview",
+        class="rounded-md aspect-[9/16] w-2xs",
+        op="fill"
+    ) }}
+    <div class="absolute inset-0 bg-gradient-to-t from-zinc-900/90 to-transparent flex items-end p-4 rounded-md">
+      <div class="text-2xl text-center w-full">{{ caption }}</div>
+    </div>
+  </div>
+
+{% endmacro service %}
+
