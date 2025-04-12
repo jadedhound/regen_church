@@ -1,12 +1,28 @@
 @import 'tailwindcss';
 @config './tailwind.config.js';
 
+:root {
+  --regen-background: var(--color-white);
+  --regen-onBackground: var(--color-black);
+  --regen-surface: var(--color-zinc-900);
+  --regen-ascent: var(--color-red-600);
+  --regen-flair: var(--color-yellow-400);
+}
+
+[data-theme="dark"] {
+  --regen-background: var(--color-black);
+  --regen-onBackground: var(--color-zinc-200);
+  --regen-surface: var(--color-zinc-900);
+  --regen-ascent: var(--color-red-600);
+  --regen-flair: var(--color-yellow-400);
+}
+
 @theme {
-  --color-background: var(--color-black);
-  --color-on-background: var(--color-zinc-200);
-  --color-surface: var(--color-zinc-900);
-  --color-ascent: var(--color-red-600);
-  --color-flair: var(--color-yellow-400);
+  --color-background: var(--regen-background);
+  --color-onBackground: var(--regen-onBackground);
+  --color-surface: var(--regen-surface);
+  --color-ascent: var(--regen-ascent);
+  --color-flair: var(--regen-flair);
 }
 
 .pseudo {

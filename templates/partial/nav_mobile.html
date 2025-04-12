@@ -14,7 +14,7 @@
         <div class="text-xl font-bold">REGENERATION</div>
       </div>
       {% set section = get_section(path="_index.md") %}
-      <div class="text-right px-8 uppercase font-medium text-2xl">
+      <div class="text-right px-8 font-medium text-2xl">
         {% for subpath in section.subsections %}
           {% set subsection = get_section(path=subpath) %}
           <div>
