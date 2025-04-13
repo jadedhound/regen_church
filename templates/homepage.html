@@ -28,24 +28,20 @@
 
   <hr>
 
-  <div class="regen-title">We are all changed by <b>CHRIST-CENTRED</b>, biblical sermons</div>
+  <div class="regen-title">Be transformed by <b class="whitespace-nowrap">GOSPEL-CENTRED</b> sermons</div>
 
   {% include "partial/sermon_series.html" %}
 
   <div class="psuedo h-8"></div>
 
-  <div class="flex justify-center">
+  <div class="px-6">
     <a href="https://www.youtube.com/@RegenerationMonash/live" target="_blank">
-      <div class="bg-zinc-200 rounded-full py-4 px-6 md:px-8 flex gap-4 items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="external-icon" viewBox="0 0 28.57 20" class="w-8 h-8 mt-px">
-          <svg viewBox="0 0 28.57 20" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-            <g>
-              <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"/>
-              <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"/>
-            </g>
-          </svg>
+      <div class="regen-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.57 20" class="w-8 h-8 mt-px">
+          <path fill="#FF0000" d="M27.97 3.12C27.64 1.89 26.68.926 25.45.597C23.22 0 14.29 0 14.29 0S5.35 0 3.12.597C1.89.926.927 1.89.597 3.12 0 5.35 0 10 0 10s0 4.65.597 6.88c.33 1.23 1.29 2.19 2.52 2.52 2.23.6 11.16.6 11.16.6s8.94 0 11.17-.6c1.23-.33 2.19-1.29 2.52-2.52.6-2.23.6-6.88.6-6.88s0-4.65-.6-6.88z"/>
+          <path fill="#FFF" d="M11.43 14.29l7.42-4.28-7.42-4.29v8.57z"/>
         </svg>
-        <div class="md:text-lg text-zinc-800 font-bold mt-2 whitespace-nowrap">JOIN OUR LIVESTREAM</div>
+        <div>JOIN OUR LIVESTREAM</div>
       </div>
     </a>
   </div>
@@ -94,20 +90,24 @@
 
   <div class="grid md:grid-cols-2 gap-4">
     <div class="">
+
       <p class="text-lg md:px-20 px-8 pb-4">
         We are a church community in Clayton, across the street from Monash University
         Clayton campus.
       </p>
 
-      <a href={{ get_url(path='@/about/1_our_leaders.md') }}>
-        <div class="rounded-full border-zinc-200 border-2 flex justify-center items-center mx-6">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 fill-zinc-200">
-            <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 0 0-1.032-.211 50.89 50.89 0 0 0-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 0 0 2.433 3.984L7.28 21.53A.75.75 0 0 1 6 21v-4.03a48.527 48.527 0 0 1-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979Z" />
-            <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 0 0 1.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0 0 15.75 7.5Z" />
-          </svg>
-          <div class="font-bold p-4 text-center">TALK TO A PASTOR</div>
-        </div>
-      </a>
+      <div class="px-6">
+        <a href={{ get_url(path='@/about/1_our_leaders.md') }}>
+          <div class="regen-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 fill-green-600">
+              <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 0 0-1.032-.211 50.89 50.89 0 0 0-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 0 0 2.433 3.984L7.28 21.53A.75.75 0 0 1 6 21v-4.03a48.527 48.527 0 0 1-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979Z" />
+              <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 0 0 1.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0 0 15.75 7.5Z" />
+            </svg>
+            <div>TALK TO A PASTOR</div>
+          </div>
+        </a>
+      </div>
+
     </div>
 
 

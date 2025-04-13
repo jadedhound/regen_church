@@ -30,7 +30,7 @@
   </head>
 
   <body class="bg-background text-onBackground">
-    <div class="w-full h-16 flex bg-background gap-4 items-center justify-between px-4 md:px-8 fixed top-0 z-10 shadow-xs shadow-onBackground/60">
+    <div class="w-full h-16 flex bg-background gap-4 items-center justify-between px-4 md:px-8 fixed top-0 z-10 shadow-xs shadow-black">
       <a href="{{ get_url(path='@/_index.md') }}" class="mt-8">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 76 118" class="h-24">
         	<path fill="#D92C2C" d="M0 0L76 0L76 116.963L76 117.568C75.9133 117.624 75.8259 117.675 75.7334 117.72C75.1687 118 74.5949 117.982 73.9791 117.993C57.3139 118.303 40.5866 118.01 23.9155 118.008C20.3065 118.007 2.33682 118.512 0 117.733L0 117.288L0 0ZM37.3533 96.633C36.3796 97.9617 2.24449 117.014 0.443072 117.288C0.29053 117.311 0.151763 117.314 0 117.288L0 117.733C2.33682 118.512 20.3065 118.007 23.9155 118.008C40.5866 118.01 57.3139 118.303 73.9791 117.993C74.5949 117.982 75.1687 118 75.7334 117.72C75.8259 117.675 75.9133 117.624 76 117.568L76 116.963C75.3076 117.105 75.1428 117.15 74.4867 116.878C72.123 115.897 69.7915 114.479 67.538 113.263L54.968 106.438L43.5153 100.217C41.6825 99.2235 39.6673 98.3025 37.9273 97.1658C37.7064 97.0215 37.5215 96.835 37.3533 96.633Z"/>
@@ -48,6 +48,8 @@
     <div class="pseudo h-16"></div>
 
     {% block content %} {% endblock %}
+
+    <div class="h-8"></div>
 
     {% include "partial/source_code.html" %}
   </body>

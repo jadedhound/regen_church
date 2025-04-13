@@ -4,15 +4,15 @@
 :root {
   --regen-background: var(--color-white);
   --regen-onBackground: var(--color-black);
-  --regen-surface: var(--color-zinc-900);
+  --regen-surface: var(--color-zinc-200);
   --regen-ascent: var(--color-red-600);
   --regen-flair: var(--color-yellow-400);
 }
 
 [data-theme="dark"] {
-  --regen-background: var(--color-black);
+  --regen-background: var(--color-zinc-900);
   --regen-onBackground: var(--color-zinc-200);
-  --regen-surface: var(--color-zinc-900);
+  --regen-surface: var(--color-zinc-700);
   --regen-ascent: var(--color-red-600);
   --regen-flair: var(--color-yellow-400);
 }
@@ -23,6 +23,43 @@
   --color-surface: var(--regen-surface);
   --color-ascent: var(--regen-ascent);
   --color-flair: var(--regen-flair);
+}
+
+/* ============================================= */
+/* TAGS */
+/* ============================================= */
+
+h1 {
+  @apply text-3xl;
+}
+
+h2 {
+  @apply text-2xl;
+}
+
+h3 {
+  @apply text-xl;
+}
+
+h4 {
+  @apply text-lg;
+}
+
+hr {
+  @apply mx-4 my-8;
+}
+
+/* ============================================= */
+/* CUSTOM CLASSES */
+/* ============================================= */
+
+@layer components {
+  .regen-button {
+    @apply rounded-full border-onBackground border-2;
+    @apply flex justify-center items-center p-4 gap-4 w-full max-w-xs mx-auto;
+    @apply font-semibold;
+    @apply overflow-x-auto;
+  }
 }
 
 .pseudo {
@@ -36,17 +73,8 @@
   }
 }
 
-.regen-button {
-  @apply rounded-full border-zinc-200 border-2 flex justify-center items-center mx-6 p-4 gap-4;
-  @apply font-semibold text-lg;
-}
-
 .regen-service-title {
   @apply rounded-full border-zinc-200 border-y-2 border-l-2 flex justify-center items-center mx-6 p-4;
-}
-
-hr {
-  @apply mx-4 my-8;
 }
 
 .regen-service-cards {

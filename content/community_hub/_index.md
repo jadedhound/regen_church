@@ -1,5 +1,5 @@
 +++
-title = "For Members"
+title = "Community Hub"
 template = "page.html"
 weight = 2
 +++
