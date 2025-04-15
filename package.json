@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev": "zola serve & bunx @tailwindcss/cli -i styles.css -o static/styles.css --watch",
-    "dev-mobile": "zola serve --interface 0.0.0.0 --base-url 192.168.1.20 & bunx @tailwindcss/cli -i styles.css -o static/styles.css --watch",
+    "dev": "IP=$(ip addr | grep 'inet ' | grep -v 127.0.0.1 | awk '{print $2}' | cut -d'/' -f1 | head -n 1) && zola serve --interface 0.0.0.0 --base-url $IP & bunx @tailwindcss/cli -i styles.css -o static/styles.css --watch",
+    "dev-base": "zola serve & bunx @tailwindcss/cli -i styles.css -o static/styles.css --watch",
     "pretty": "bunx prettier --write content/ README.md",
     "prod": "NODE_ENV=production bunx @tailwindcss/cli -i styles.css -o static/styles.css --minify; zola build"
   },

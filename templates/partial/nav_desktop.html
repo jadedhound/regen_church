@@ -11,17 +11,12 @@
         </svg>
         </div>
         <div class="hidden group-hover:flex absolute right-0">
-          <div class="psuedo h-6"></div>
-          <ul class="list-none flex flex-col px-4 py-2 mt-6 bg-background text-right rounded-md">
+          <div class="h-6"></div>
+          <ul class="list-none flex flex-col px-4 py-2 mt-6 bg-background text-right rounded-md flip-bullet shadow-xs shadow-black">
             {% for page in subsection.pages %}
-            <li>
-              <a href="{{ page.permalink | safe }}" class="flex gap-2 items-center py-3">
-                <div class="mt-[2px] w-full">
-                  {{ page.title }}
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="w-6 h-6 stroke-red-600">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                </svg>
+            <li class="py-2 !pl-8">
+              <a href="{{ page.permalink | safe }}">
+                {{ page.title }}
               </a>
             </li>
             {% endfor %}

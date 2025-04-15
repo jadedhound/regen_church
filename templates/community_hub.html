@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% import "macros/image.html" as img_macro %}
+{% import "macros/card.html" as card_macro %}
+
+{% block content %}
+<div class="regen-title">Be <b>EQUIPPED</b> to make disciples in community</div>
+
+<p class="text-lg md:px-20 px-8">
+  Missional Communities (MCs) are small groups committed to being formed by Jesus
+  in community for the sake of others. We usually meet weekly in homes for a time
+  of eating, praying for each other, studying God’s word and on occasion serving
+  the community.
+</p>
+
+<div class="p-4 flex justify-center">
+  {{ img_macro::simple(
+      image="build_only/images/mc.png",
+      sizes="(min-width: 900px) 720px, (min-width: 700px) calc(71.11vw + 62px), calc(89.47vw - 64px)",
+      alt="mc gathering",
+      class="max-h-[30vh] max-w-[80vw] min-[900px]:max-w-[720px] rounded-md",
+      op="fill"
+  ) }}
+</div>
+
+<div class="flex justify-center gap-2 md:px-4 px-2">
+  <a href="/mc_locations">
+    <div class="rounded-full border-zinc-200 border-2 flex justify-center items-center">
+      <div class="font-bold p-4 text-center">MC LOCATIONS</div>
+    </div>
+  </a>
+</div>
+
+<h1>Giving</h1>
+
+<p>
+The work of the church is made possible by the generous giving of God’s people.
+If you are a member or regular attendee who would like to give to the work of
+the church, you can give electronically by depositing funds into one of the
+following accounts:
+</p>
+
+<h2>MORNING CHURCH – OFFERING/PLEDGE</h2>
+
+Name: Regeneration Church Monash Incorporated
+
+BSB: 033-385 (Westpac)
+
+ACC: 191311
+
+REF: “[name/anon] – pledge” or “[name/anon] – offering”
+
+For example “VINH – OFFERING”
+
+<h2>NIGHT CHURCH – OFFERING/PLEDGE</h2>
+
+Name: Regeneration Church Monash Incorporated
+
+BSB: 033-385 (Westpac)
+
+ACC: 192891
+
+REF: “[name/anon] – pledge” or “[name/anon] – offering”
+
+For example “VINH – OFFERING”
+
+<h2>OTHER/DESIGNATED FUNDS</h2>
+
+PayID: 89 655 781 797
+
+Name: Regeneration Church Monash Incorporated
+
+BSB: 033-385 (Westpac)
+
+ACC: 192904
+
+REF: “[name/anon] – description”
+
+For example “ANON – MEAL” ; “VINH – FOR NARA”
+
+<h2>INTERNATIONAL SUPPORT</h2>
+
+Account Holder: Regeneration Church Monash Incorporated
+
+Routing Number: 084009519
+
+Account number: 9600002236432804
+
+Account type: Checking
+
+Bank: Wise
+
+Wise Address: 19 W 24th Street, New York NY 10010, United States
+
+<p>
+As a new church plant, we also appreciate the support of external donors. If you
+are not a member or attendee of the church, but would like to give, please
+contact Kien.
+</p>
+
+{% endblock content %}

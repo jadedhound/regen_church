@@ -1,6 +1,6 @@
 {% import "macros/image.html" as img_macro %}
 
-{% macro service(image="build_only/images/placeholder_vertical.png", caption) %}
+{% macro image_with_caption(image="build_only/images/placeholder_vertical.png", title, body="") %}
   
   <div class="flex-shrink-0 relative">
     {{ img_macro::simple(
@@ -9,10 +9,12 @@
         alt="service-preview",
         class="rounded-md aspect-[9/16] w-2xs",
     ) }}
-    <div class="absolute inset-0 bg-gradient-to-t from-zinc-900/70 to-transparent flex items-end p-4 rounded-md">
-      <div class="text-2xl text-center w-full text-white">{{ caption }}</div>
+    <div class="absolute bottom-10 left-0 bg-black/40 flex flex-col gap-2 items-end justify-end p-4 w-full text-white">
+      <h3 class="text-center w-full">{{ title }}</h3>
+      {% if body | length != 0 %}
+        <p>{{ body }}</p>
+      {% endif %}
     </div>
   </div>
 
-{% endmacro service %}
-
+{% endmacro image_with_caption %}

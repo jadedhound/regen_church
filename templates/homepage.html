@@ -3,9 +3,9 @@
 {% import "macros/card.html" as card_macro %}
 
 {% block content %}
-<main>
+<main class="flex flex-col gap-4 px-4">
 
-   <div class="relative">
+   <div class="relative -mx-4">
       {{ img_macro::simple(
           image="build_only/images/cover.png",
           sizes="100vw",
@@ -24,84 +24,124 @@
       </div>
   </div>
 
-  {% include 'partial/services.html' %}
+  <h2 class="regen-title mt-4">
+    <b>3 SERVICES,</b> 1 mission: encountering Jesus together every Sunday
+  </h2>
 
-  <hr>
-
-  <div class="regen-title">Be transformed by <b class="whitespace-nowrap">GOSPEL-CENTRED</b> sermons</div>
-
-  {% include "partial/sermon_series.html" %}
-
-  <div class="psuedo h-8"></div>
-
-  <div class="px-6">
-    <a href="https://www.youtube.com/@RegenerationMonash/live" target="_blank">
-      <div class="regen-button">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.57 20" class="w-8 h-8 mt-px">
-          <path fill="#FF0000" d="M27.97 3.12C27.64 1.89 26.68.926 25.45.597C23.22 0 14.29 0 14.29 0S5.35 0 3.12.597C1.89.926.927 1.89.597 3.12 0 5.35 0 10 0 10s0 4.65.597 6.88c.33 1.23 1.29 2.19 2.52 2.52 2.23.6 11.16.6 11.16.6s8.94 0 11.17-.6c1.23-.33 2.19-1.29 2.52-2.52.6-2.23.6-6.88.6-6.88s0-4.65-.6-6.88z"/>
-          <path fill="#FFF" d="M11.43 14.29l7.42-4.28-7.42-4.29v8.57z"/>
-        </svg>
-        <div>JOIN OUR LIVESTREAM</div>
-      </div>
-    </a>
-  </div>
-
-  <hr>
-
-  <div class="regen-title">Be <b>EQUIPPED</b> to make disciples in community</div>
-
-  <p class="text-lg md:px-20 px-8">
-    Missional Communities (MCs) are small groups committed to being formed by Jesus
-    in community for the sake of others. We usually meet weekly in homes for a time
-    of eating, praying for each other, studying God’s word and on occasion serving
-    the community.
-  </p>
-
-  <div class="p-4 flex justify-center">
-    {{ img_macro::simple(
-        image="build_only/images/mc.png",
-        sizes="(min-width: 900px) 720px, (min-width: 700px) calc(71.11vw + 62px), calc(89.47vw - 64px)",
-        alt="mc gathering",
-        class="max-h-[30vh] max-w-[80vw] min-[900px]:max-w-[720px] rounded-md",
-        op="fill"
+  <div class="flex gap-4 overflow-x-auto md:mx-auto">
+    {{ card_macro::image_with_caption(
+      image="build_only/images/morning_kids_program.png",
+      title="10AM Morning Service",
+      body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
+    ) }}
+    {{ card_macro::image_with_caption(
+      image="build_only/images/mandarin_service.png",
+      title="2PM Mandarin Service",
+      body="A welcoming service in Mandarin, tailored for the Chinese-speaking community."
+    ) }}
+    {{ card_macro::image_with_caption(
+      image="build_only/images/night_dinner.png",
+      title="5PM Night Service",
+      body="A dynamic space for students and young adults to connect through worship and a meal together."
     ) }}
   </div>
 
-  <div class="flex justify-center gap-2 md:px-4 px-2">
-    <a href="/mc_locations">
-      <div class="rounded-full border-zinc-200 border-2 flex justify-center items-center">
-        <div class="font-bold p-4 text-center">MC LOCATIONS</div>
-      </div>
-    </a>
-  </div>
+  <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-4">
+    <div class="regen-button">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 512 512" class="fill-yellow-400">
+        <path d="M46 368 0 395v100h94l-1-154-47 27zm372 50 1 76 93 1V395l-93-54-1 77zM245 18l-1 13v12h-35v23h35v37L46 268l12 15 12 15a147881 147881 0 0 0 186-152l88 71 92 76 6 5 24-30-99-82-99-81V66h35V43h-35V18h-23zm-63 210-72 60v206h96c0-85 0-94 2-99l4-12 9-11a56 56 0 0 1 23-13l12-2 13 2 11 4a56 56 0 0 1 20 20c1 3 4 8 4 12 2 5 2 14 2 53v46h96V288L256 168l-74 60z"/>
+      </svg>
+      <div>PLAN A VISIT</div>
+    </div>
+  </a>
 
   <hr>
 
-  <div id="get-in-touch" class="regen-title">
-    Join us.
-    <br>
-    We follow Jesus who makes <b>DISCIPLES</b> of all nations.
+  <h2 class="regen-title">
+    More Than a Small Group: <b>MISSIONAL COMMUNITIES</b>
+  </h2>
+  <p class="-my-2">
+    Missional Communities (MCs) are small groups committed to being formed by Jesus in community for the sake of others.
+    We usually meet weekly in homes where we:
+  </p>
+
+  <div class="grid grid-cols-2 gap-2 text-white mx-auto">
+    <div class="regen-mc-card rounded-t-full rounded-l-full">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 352 449" fill="currentColor" class="size-6">
+        <path d="M67 3 55 8 39 21A122 122 0 0 0 8 74L2 96a117 117 0 0 0 8 70l8 14 11 11 14 8 9 5a7875 7875 0 0 1-10 224l4 9a30 30 0 0 0 16 11l18 1 18-1 8-4 8-7 4-9a28013 28013 0 0 1-10-219v-5l23-13 11-11a96 96 0 0 0 17-44 128 128 0 0 0-2-43 177 177 0 0 0-22-55 122 122 0 0 0-29-30L94 3 80 1 67 3zm131 2c-3 2-4 4-5 7l-1 67c1 63 1 64 3 71a95 95 0 0 0 11 25 106 106 0 0 0 21 20l12 7 5 2-5 115c-5 84-6 105-5 109l4 9 8 7 8 4 18 1 18-1 8-4 8-7 4-9a12727 12727 0 0 1-9-219v-5a84 84 0 0 0 48-54c2-7 2-8 3-71l-1-67c-1-3-2-5-5-7-4-4-5-4-10-4-4 0-6 1-9 3l-5 5-2 56c0 53 0 54-3 57l-4 4c-3 2-5 2-14 3h-11l-1-118-6-7c-3-3-4-3-9-3s-6 0-9 3l-6 7-1 61v57c-20 0-22-1-25-3l-4-4c-2-3-2-5-3-57 0-49-1-54-2-56l-5-5c-3-2-5-3-9-3-5 0-6 0-10 4z"/>
+      </svg>
+      <h3>Eat</h3>
+    </div>
+    <div class="regen-mc-card rounded-t-full rounded-r-full">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 512 491" fill="currentColor" class="size-6">
+        <path d="M211 3c-4 1-8 3-10 6a19828 19828 0 0 0-70 170l-1 33a1627 1627 0 0 0 7 115c0 6 0 9-2 12l-7 7A2894 2894 0 0 1 2 406a2602 2602 0 0 0 117 84 7384 7384 0 0 0 113-95c3-2 6-7 7-10l5-12 2-19a1099 1099 0 0 0 0-122c-1-25-1-26-3-29l-6-7c-4-2-5-2-12-2s-8 0-12 3l-7 7c-2 5-2 5-2 40 0 31 0 35-2 39l-5 5-4 1-5-2-5-5-1-36 1-38 4-13 8-11a48 48 0 0 1 26-12l7-1a29642 29642 0 0 0 15-146l-2-10-5-8a36 36 0 0 0-17-7l-8 3zm74-1-9 6-4 7-2 9 5 48 7 70 3 28 8 2c4 0 10 2 14 4l11 8 8 11 4 13a524 524 0 0 1 0 74l-5 5-5 2-4-1-5-5c-2-4-2-8-2-39 0-33 0-35-2-39l-5-6c-1-2-4-4-7-5l-9-1c-3 0-6 2-9 4-3 1-6 4-7 6-2 3-3 6-3 16a1941 1941 0 0 0 2 151 78 78 0 0 0 12 25 4966 4966 0 0 0 113 96l59-42 58-43-62-29a2587 2587 0 0 1-71-36l-3-7c-1-2 0-22 4-70 2-39 4-69 3-72a163 163 0 0 0-9-36A4648 4648 0 0 0 309 7l-8-5-8-2-9 2z"/>
+      </svg>
+      <h3>Pray</h3>
+    </div>
+    <div class="regen-mc-card rounded-b-full rounded-l-full">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 382 481" fill="currentColor" class="size-6">
+        <path fill-rule="evenodd" d="m215 0 166 1v391h-4l-9 3-7 6-5 8-2 10a28 28 0 0 0 9 21l7 5 12 3v32l-165 1c-165 0-165 0-173-2l-14-6-13-10-10-13-5-12-2-195C0 57 0 53 2 45l5-14 10-14L31 7l13-5c6-2 13-2 171-2zm-37 131h-70v28h70v184h28V159h70v-28h-70V47h-28zM54 394l-9 6-5 8c-2 4-2 7-2 12 0 4 0 8 2 11a34 34 0 0 0 15 15l140 2c130 0 137 0 137-2l-4-9c-2-6-2-9-2-18 0-8 0-11 2-17l3-8c1-2-6-2-136-2H59z"/>
+      </svg>
+      <h3>Study</h3>
+    </div>
+    <div class="regen-mc-card rounded-b-full rounded-r-full">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 512 512" fill="currentColor" class="size-6">
+        <path d="m23 2-5 7-2 6 2 7c2 4 3 4 22 14 13 7 21 10 23 10l7-2 6-5c2-3 2-4 2-8l-3-9c-1-2-6-5-21-12C39 2 34 0 31 0l-8 2zm142 1-16 8c-4 3-10 7-13 11-3 3-7 9-9 15l-6 14a81 81 0 0 0 0 30l6 14c3 7 6 10 62 67 45 44 60 59 63 60h7c4-1 13-10 64-60 56-57 59-60 62-67l6-13a76 76 0 0 0 0-32l-5-13-7-12a76 76 0 0 0-18-16 71 71 0 0 0-50-7l-14 6c-6 3-11 7-24 20l-17 17c-30-30-35-34-40-37l-14-6-17-2c-9 0-12 1-20 3zm293 7c-15 7-20 10-21 12l-3 8c0 4 0 6 2 9l6 5 7 2c2 0 10-3 23-10 15-7 20-10 21-13l3-6c0-3 0-5-2-8l-5-7-8-2c-4 0-9 2-23 10zM31 330c-4 1-8 4-11 6a50 50 0 0 0-14 16c-2 2-4 7-4 11-2 5-2 15-2 71 0 62 0 66 2 70l5 6 4 2c119 0 122 0 121-2a798 798 0 0 1 5-117l6-12a92 92 0 0 1 22-22c3-3 8-5 10-6l5-3c-4-9-6-12-9-14l-12-6-6-3-16 11-12 6-16 4a91 91 0 0 1-49-7 105 105 0 0 1-22-14l-7 3zm321 0-11 6c-3 3-5 5-6 9l-2 5a95 95 0 0 1 36 31l6 12c2 3 4 9 4 13a798 798 0 0 1 0 104c0 2 3 2 61 2h61c6-3 8-6 9-8 2-4 2-8 2-70 0-63 0-67-2-73a57 57 0 0 0-13-21 53 53 0 0 0-18-11l-5-2a70 70 0 0 1-21 14l-13 5a88 88 0 0 1-75-15l-6-4-7 3zm-160 48c-4 1-8 4-11 6a49 49 0 0 0-15 17l-4 10a560 560 0 0 0 1 93c0 2 3 4 4 5l4 3h171l8-8 1-48v-46c-6-11-9-17-12-19-2-2-5-6-8-7l-10-6-7-3-18 12-15 7c-8 2-10 2-25 2s-17 0-25-2a111 111 0 0 1-27-15l-6-4zM40 123l-21 12-3 7c0 3 0 6 2 8l5 6 8 2a189 189 0 0 0 42-19l4-5 1-6-1-7-5-5c-2-2-4-3-8-3-5 0-8 1-24 10zm400-7-5 5-1 7 1 6 4 5a189 189 0 0 0 42 19l7-1 5-5 3-6-1-7c0-2-2-5-4-6a197 197 0 0 0-43-20c-4 0-5 1-8 3zM82 211l-12 4c-4 2-9 6-13 11-5 4-9 9-11 14l-5 13-1 11 1 11 5 14c2 5 5 9 11 14 5 5 9 8 14 10l14 5 15 1a53 53 0 0 0 28-10l10-10a66 66 0 0 0 11-23 67 67 0 0 0-2-30c-1-4-4-10-7-13l-9-11-11-7-12-5a66 66 0 0 0-26 1zm322 0a60 60 0 0 0-21 10 72 72 0 0 0-15 18l-4 11c-2 3-2 9-2 14l2 15 4 12c2 3 6 9 10 12l13 10 13 5a62 62 0 0 0 27-1l12-4 13-10 10-14c1-4 4-10 4-15 2-5 2-9 2-14l-3-13-5-12-10-11-12-9-12-4a60 60 0 0 0-26 0zm-160 48-13 4c-4 2-9 6-13 11-4 3-9 9-11 13l-4 12c-2 5-2 9-2 16l4 17 7 13 9 10 11 7 10 4a62 62 0 0 0 31-1l13-7 10-8a60 60 0 0 0 14-25l1-16-3-15-6-12-9-11-13-8-13-5-11-1-12 2z"/>
+      </svg>
+      <h3>Serve</h3>
+    </div>
   </div>
+
+  <a href="{{ get_url(path='@/community_hub/_index.md') }}#mc_locations" class="mt-4">
+    <div class="regen-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="fill-rose-500">
+          <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+        </svg>
+        <div>FIND A MC</div>
+    </div>
+  </a>
+
+  <hr>
+
+  <h2 class="regen-title">
+    Come be transformed by <b>GOSPEL-CENTRED</b> sermons
+  </h2>
+
+  {% include "partial/sermon_series.html" %}
+
+  <a href="https://www.youtube.com/@RegenerationMonash/live" target="_blank" class="mt-4">
+    <div class="regen-button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.57 20" class="w-8 h-8 mt-px">
+        <path fill="#FF0000" d="M27.97 3.12C27.64 1.89 26.68.926 25.45.597C23.22 0 14.29 0 14.29 0S5.35 0 3.12.597C1.89.926.927 1.89.597 3.12 0 5.35 0 10 0 10s0 4.65.597 6.88c.33 1.23 1.29 2.19 2.52 2.52 2.23.6 11.16.6 11.16.6s8.94 0 11.17-.6c1.23-.33 2.19-1.29 2.52-2.52.6-2.23.6-6.88.6-6.88s0-4.65-.6-6.88z"/>
+        <path fill="#FFF" d="M11.43 14.29l7.42-4.28-7.42-4.29v8.57z"/>
+      </svg>
+      <div>JOIN OUR LIVESTREAM</div>
+    </div>
+  </a>
+
+  <hr>
+
+  <h2 id="get-in-touch" class="regen-title">
+    Join us as we follow Jesus, who makes <b>DISCIPLES</b> of all nations.
+  </h2>
 
   <div class="grid md:grid-cols-2 gap-4">
     <div class="flex flex-col gap-4">
 
-      <p class="text-lg md:px-20 px-8">
+      <p class="text-lg md:px-20">
         We are a church community in Clayton, across the street from Monash University
         Clayton campus.
       </p>
 
-      <div class="px-6">
-        <a href={{ get_url(path='@/about/1_our_leaders.md') }}>
-          <div class="regen-button">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 fill-green-600">
-              <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 0 0-1.032-.211 50.89 50.89 0 0 0-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 0 0 2.433 3.984L7.28 21.53A.75.75 0 0 1 6 21v-4.03a48.527 48.527 0 0 1-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979Z" />
-              <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 0 0 1.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0 0 15.75 7.5Z" />
-            </svg>
-            <div>TALK TO A PASTOR</div>
-          </div>
-        </a>
-      </div>
+      <a href={{ get_url(path='@/about/1_our_leaders.md') }}>
+        <div class="regen-button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 fill-green-600">
+            <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 0 0-1.032-.211 50.89 50.89 0 0 0-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 0 0 2.433 3.984L7.28 21.53A.75.75 0 0 1 6 21v-4.03a48.527 48.527 0 0 1-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979Z" />
+            <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 0 0 1.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0 0 15.75 7.5Z" />
+          </svg>
+          <div>TALK TO A PASTOR</div>
+        </div>
+      </a>
 
       <a href="https://regenerationchurchmonash.elvanto.com.au/form/f44cfb9d-8cd0-4368-8d6d-cc4a538d3c9d" target="_blank">
         <div class="regen-button-important">

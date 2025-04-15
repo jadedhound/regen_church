@@ -1,7 +1,7 @@
 {% import "macros/image.html" as img_macro %}
 {% set data = load_data(path="build_only/sermon_series.yaml", format="yaml") %}
 
-<div id="sermonContainer" class="grid md:grid-cols-4 grid-cols-2 gap-2 px-4 group">
+<div id="sermonContainer" class="grid md:grid-cols-4 grid-cols-2 gap-2 group">
 
   {% for series in data %}
     <a
@@ -20,7 +20,7 @@
     </a>
   {% endfor %}
 
-    <label class="cursor-pointer bg-violet-800 rounded-md flex flex-col items-center justify-center font-bold gap-2">
+    <label class="cursor-pointer bg-ascent rounded-md flex flex-col items-center justify-center font-bold gap-2">
       <input type="checkbox" class="w-0 h-0 opacity-0 peer" checked />
       <div class="">
         <div class="hidden group-has-checked:flex gap-2 justify-center">
