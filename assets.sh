@@ -1,9 +1,9 @@
 #!/bin/bash
 
 directories=(
-  "build_only/images"
-  "build_only/sermons"
-  "static/bin"
+  "build/images"
+  "build/sermons"
+  "static/images"
 )
 branch=$(git rev-parse --abbrev-ref HEAD)
 
