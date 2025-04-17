@@ -9,7 +9,7 @@ weight = 1
   email="pastor@regeneration.org.au"
   role="Senior Pastor & Morning Church Pastor",
   day_off="Thursday",
-  image="build_only/images/stephen_tan.jpg"
+  image="build/images/stephen_tan.jpg"
 ) %}
 
 
@@ -41,7 +41,7 @@ Night Church Pastor
   email="paul@regeneration.org.au",
   role="Night Church Pastor",
   day_off="Wednesday",
-  image="build_only/images/paul_mcintosh.jpg"
+  image="build/images/paul_mcintosh.jpg"
 ) %}
 
 Paul serves as the Pastor of Regeneration Monash’s Night Church. Paul is married

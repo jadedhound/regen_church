@@ -2,9 +2,8 @@ node_modules/
 dist/
 static/styles.css
 static/processed_images/
-static/bin/
-build_only/images/
-build_only/sermons/
-secrets.env
+static/images/
+build/images/
+build/sermons/
 rclone.conf
 

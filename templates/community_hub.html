@@ -3,32 +3,10 @@
 {% import "macros/card.html" as card_macro %}
 
 {% block content %}
-<div class="regen-title">Be <b>EQUIPPED</b> to make disciples in community</div>
 
-<p class="text-lg md:px-20 px-8">
-  Missional Communities (MCs) are small groups committed to being formed by Jesus
-  in community for the sake of others. We usually meet weekly in homes for a time
-  of eating, praying for each other, studying God’s word and on occasion serving
-  the community.
-</p>
+<h1 id="mc-locations">MC Locations</h1>
 
-<div class="p-4 flex justify-center">
-  {{ img_macro::simple(
-      image="build_only/images/mc.png",
-      sizes="(min-width: 900px) 720px, (min-width: 700px) calc(71.11vw + 62px), calc(89.47vw - 64px)",
-      alt="mc gathering",
-      class="max-h-[30vh] max-w-[80vw] min-[900px]:max-w-[720px] rounded-md",
-      op="fill"
-  ) }}
-</div>
-
-<div class="flex justify-center gap-2 md:px-4 px-2">
-  <a href="/mc_locations">
-    <div class="rounded-full border-zinc-200 border-2 flex justify-center items-center">
-      <div class="font-bold p-4 text-center">MC LOCATIONS</div>
-    </div>
-  </a>
-</div>
+{% include 'partial/mc_locations.html' %}
 
 <h1>Giving</h1>
 

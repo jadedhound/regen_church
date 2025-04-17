@@ -1,0 +1,16 @@
+{% set data = load_data(path="build/mc_locations.yml", format="yaml") %}
+
+<div class="grid md:grid-cols-4 grid-cols-2 gap-2 group">
+  {% for mc in data %}
+    <div class="">
+      {{ mc.name }}
+      {{ mc.day }}
+      {{ mc.location}}
+      <ul>
+        {% for leader in mc.leaders %}
+          <li> {{ leader }} </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+</div>
