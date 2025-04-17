@@ -111,7 +111,7 @@
   }
 
   .regen-mc-card {
-    @apply flex flex-col gap-2 items-center justify-center aspect-square p-8 w-full h-full bg-red-400;
+    @apply flex flex-col gap-2 items-center justify-center aspect-square p-8 w-full h-full bg-red-500;
   }
 }
 

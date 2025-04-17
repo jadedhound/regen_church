@@ -1,3 +1,5 @@
+{% set sprites_url = get_url(path='sprites.svg', cachebust=true) | safe %}
+
 <!DOCTYPE html>
 <html lang="en" data-theme='light'>
 
@@ -7,6 +9,7 @@
     <meta name="description" content="Come join us, a gospel-centred, community on mission for Jesus in Clayton, City of Monash. We meet every Sunday 10AM, Saturday 5PM.">
     <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}" />
     <link rel="icon" type="image/svg" href="{{ get_url(path="favicon.svg") | safe }}">
+    <link rel="preload" href="{{ sprites_url }}" as="image" type="image/svg+xml">
     <title>Regneration Church Monash</title>
     {% block head %} {% endblock %}
 
@@ -31,14 +34,14 @@
 
   <body class="bg-background text-onBackground">
     <div class="w-full h-16 flex bg-background gap-4 items-center justify-between px-4 md:px-8 fixed top-0 z-10 shadow-xs shadow-black">
-      <a href="{{ get_url(path='@/_index.md') }}" class="mt-8">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 330 512" class="size-[unset] h-24">
-          <path class="fill-ascent" fill-rule="evenodd" d="M330 0v512l-165-93L0 512V0z"/>
-          <path fill="#fff" d="M177 357s-3 4-10 4-8-4-8-4V246l-67 59s-4-1-9-6c-4-6-1-10-1-10l73-62-75-64s0-5 5-11 9-6 9-6l27 25 39 37-3-70v-24l-8-14c2-2 7-2 7-2h13s33 0 44 12c7 7 11 17 10 27v4l-1 3-1 4-1 3-2 4-2 3-2 3-2 2c-11 11-37 10-37 10v35l64-54s5 1 10 6c4 3 4 10 4 10l-30 24-42 33 31 28 35 31s2 5-3 10c-4 4-9 5-9 5l-24-22-35-33a3695 3695 0 0 0 1 111z"/>
-          <path class="fill-ascent" d="m175 111 4-1c8 0 13 2 19 7 5 4 8 11 8 17 0 9-3 16-9 22l-2 2c-4 2-10 4-14 3l-5-4c-6-11-4-35-1-46z"/>
+      <a href="{{ get_url(path='@/_index.md') }}" class="mt-8" aria-label="Go back to homepage">
+        <svg class="size-[unset] w-16 text-ascent">
+          <use href="{{ sprites_url }}#chiro-banner"></use>
         </svg>
       </a>
-      <a href="{{ get_url(path='@/_index.md') }}" class="text-lg lg:text-3xl font-bold">REGENERATION CHURCH MONASH</a>
+      <a href="{{ get_url(path='@/_index.md') }}" class="sm:text-lg lg:text-3xl font-bold mt-2" aria-label="Go back to homepage">
+        REGENERATION CHURCH MONASH
+      </a>
       <div class="flex-grow"></div>
  
       {% include "partial/nav_desktop.html" %}

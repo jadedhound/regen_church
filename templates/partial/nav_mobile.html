@@ -1,7 +1,6 @@
 <button class="md:hidden" onclick="openNavModal()" aria-label="Open the navigation drawer for mobile devices only">
-  <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill=""> 
-    <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" style="display: none;"></path>
+  <svg class="text-onBackground size-5">
+    <use href="{{ sprites_url }}#hamburger-menu"></use>
   </svg>
 </button>
 
@@ -11,7 +10,7 @@
     <button onclick="closeNavModal()" class="flex-grow"></button>
     <div class="flex flex-col gap-4 bg-background min-w-56 rounded-l-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="nav-modal-drawer">
       <div class="bg-ascent flex flex-row-reverse gap-4 items-center rounded-tl-xl h-32 px-8">
-        <div class="text-xl font-bold">REGENERATION</div>
+        <div class="text-xl text-white font-bold">REGENERATION</div>
       </div>
       {% set section = get_section(path="_index.md") %}
       <div class="text-right px-8 font-medium text-2xl">
