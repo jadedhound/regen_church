@@ -25,9 +25,8 @@ jobs:
       with:
         path: |
           build/images
-          build/sermon
-          static/bin/
-        key: assets-${{ github.run_id }}
+          build/sermons
+          static/images
         restore-keys: |
           assets-
 
@@ -36,15 +35,22 @@ jobs:
         GPG_PASSPHRASE: ${{ secrets.REGEN_PASSPHRASE }}
       run: ./assets.sh download --sync
 
+    - name: Generate assets hash from file sizes
+      id: assets-hash
+      run: |
+        HASH=$(find build/images build/sermons static/images -type f -printf "%s %p\n" 2>/dev/null | sort | md5sum | cut -d' ' -f1)
+        echo "hash=${HASH}" >> $GITHUB_OUTPUT
+        echo "Generated cache key: assets-${HASH}"
+
     - name: Save assets
       id: cache-assets-save
       uses: actions/cache/save@v4
       with:
         path: |
           build/images
-          build/sermon
-          static/bin/
-        key: assets-${{ github.run_id }}
+          build/sermons
+          static/images
+        key: assets-${{ steps.assets-hash.outputs.hash }}
 
     - name: Setup bun
       uses: oven-sh/setup-bun@v2
