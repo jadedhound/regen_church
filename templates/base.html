@@ -1,5 +1,4 @@
-{% set sprites_busted = get_url(path='sprites.svg', cachebust=true) | split(pat="/") | last | safe %}
-{% set sprites = "/" ~ sprites_busted %}
+{% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
 
 <!DOCTYPE html>
 <html lang="en" data-theme='light'>
@@ -10,7 +9,7 @@
     <meta name="description" content="Come join us, a gospel-centred, community on mission for Jesus in Clayton, City of Monash. We meet every Sunday 10AM, Saturday 5PM.">
     <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}" />
     <link rel="icon" type="image/svg" href="{{ get_url(path='favicon.svg') | safe }}">
-    <link rel="preload" href="{{ get_url(path='sprites.svg', cachebust=true) | safe }}" as="image" type="image/svg+xml">
+    <link rel="preload" href="{{ sprites }}" as="image" type="image/svg+xml">
     <title>Regneration Church Monash</title>
     {% block head %} {% endblock %}
 

@@ -1,6 +1,5 @@
 {% import "macros/image.html" as img_macro %}
-{% set sprites_busted = get_url(path='sprites.svg', cachebust=true) | split(pat="/") | last | safe %}
-{% set sprites = "/" ~ sprites_busted %}
+{% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
 
 <div class="grid md:grid-cols-3 gap-4">
   <div class="md:col-span-3 text-center">
