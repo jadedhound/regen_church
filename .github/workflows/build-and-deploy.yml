@@ -27,6 +27,7 @@ jobs:
           build/images
           build/sermons
           static/images
+        key: assets-${{ steps.assets-hash.outputs.hash }}
         restore-keys: |
           assets-
 
