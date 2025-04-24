@@ -1,25 +1,32 @@
 {% set data = load_data(path="build/giving.yml", format="yaml") %}
 
 <!-- Radio buttons -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
   {% for account in data %}
 
     <label class="cursor-pointer">
       <input type="radio" name="giving_account" class="peer hidden" value="{{ account.title }}">
-      <div class="regen-button peer-checked:bg-ascent peer-checked:text-white peer-checked:border-ascent transition-colors">
+      <div class="regen-button max-w-full peer-checked:bg-ascent peer-checked:text-white peer-checked:border-ascent transition-colors">
         <span class="uppercase">{{ account.title }}</span>
       </div>
     </label>
 
   {% endfor %}
+
+    <label class="cursor-pointer col-span-2 lg:col-span-1">
+      <input type="radio" name="giving_account" class="peer hidden" value="international">
+      <div class="regen-button max-w-full peer-checked:bg-ascent peer-checked:text-white peer-checked:border-ascent transition-colors">
+        <span class="uppercase">International</span>
+      </div>
+    </label>
 </div>
 
 <!-- Account Info -->
-<div class="max-w-md mx-auto mt-4 px-2">
+<div class="max-w-md mx-auto mt-4 px-2 py-8 border-y-6 border-double border-onBackground/60">
   {% for account in data %}
 
   <div id="{{ account.title }}-content" class="hidden">
-    <div class="grid grid-cols-[auto_1fr] gap-4 [&>b]:text-right">
+    <div class="grid grid-cols-[6rem_auto] gap-4 [&>b]:text-right">
       <b>NAME:</b>
       <p class="capitalize">{{ account.name }}</p>
       <b>BSB:</b>
@@ -34,6 +41,21 @@
   </div>
 
   {% endfor %}
+
+  <div id="international-content" class="hidden">
+    <div class="grid grid-cols-[6rem_auto] gap-4 [&>b]:text-right items-center">
+      <b>Name:</b>
+      <p>Regeneration Church Monash Incorporated</p>
+      <b>ACH Routing Number:</b>
+      <p>026073150</p>
+      <b>Account Number:</b>
+      <p>8334265053</p>
+      <b>Bank:</b>
+      <p>Community Federal Savings Bank (Barclays Partner)</p>
+      <b>Bank Address:</b>
+      <p>810 Seventh Avenue, New York, NY 10019, US</p>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -55,10 +77,3 @@
   buttons[0].click();
 </script>
 
-- title: "international support"
-  account_holder: "regeneration church monash incorporated"
-  routing_number: "084009519"
-  account_number: "9600002236432804"
-  account_type: "checking"
-  bank: "wise"
-  wise_address: "19 w 24th street, new york ny 10010, united states"
