@@ -1,0 +1,64 @@
+{% set data = load_data(path="build/giving.yml", format="yaml") %}
+
+<!-- Radio buttons -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+  {% for account in data %}
+
+    <label class="cursor-pointer">
+      <input type="radio" name="giving_account" class="peer hidden" value="{{ account.title }}">
+      <div class="regen-button peer-checked:bg-ascent peer-checked:text-white peer-checked:border-ascent transition-colors">
+        <span class="uppercase">{{ account.title }}</span>
+      </div>
+    </label>
+
+  {% endfor %}
+</div>
+
+<!-- Account Info -->
+<div class="max-w-md mx-auto mt-4 px-2">
+  {% for account in data %}
+
+  <div id="{{ account.title }}-content" class="hidden">
+    <div class="grid grid-cols-[auto_1fr] gap-4 [&>b]:text-right">
+      <b>NAME:</b>
+      <p class="capitalize">{{ account.name }}</p>
+      <b>BSB:</b>
+      <p class="capitalize">{{ account.bsb ~ " (" ~ account.bank ~ ")" }}</p>
+      <b>ACCOUNT:</b>
+      <p>{{ account.account }}</p>
+      <b>REFERENCE:</b>
+      <p>{{ account.reference_format }}</p>
+      <b>EXAMPLE:</b>
+      <p>{{ account.example }}</p>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('input[name="giving_account"]');
+  buttons.forEach(radio => {
+      radio.addEventListener('change', function() {
+          // Hide all content divs
+          document.querySelectorAll('[id$="-content"]').forEach(div => {
+              div.classList.add('hidden');
+          });
+          
+          // Show the selected one
+          const contentId = `${this.value}-content`;
+          document.getElementById(contentId)?.classList.remove('hidden');
+      });
+  });
+
+  // Select the first button as a default.
+  buttons[0].click();
+</script>
+
+- title: "international support"
+  account_holder: "regeneration church monash incorporated"
+  routing_number: "084009519"
+  account_number: "9600002236432804"
+  account_type: "checking"
+  bank: "wise"
+  wise_address: "19 w 24th street, new york ny 10010, united states"

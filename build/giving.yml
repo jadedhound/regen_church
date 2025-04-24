@@ -1,31 +1,32 @@
-- title: "morning church – offering/pledge"
+- title: "morning"
   name: "regeneration church monash incorporated"
   bsb: "033-385"
   bank: "westpac"
   account: "191311"
-  reference_format: '"[name/anon] – pledge" or "[name/anon] – offering"'
-  example: "vinh – offering"
+  reference_format: '"[name/anon] – pledge" OR "[name/anon] – offering"'
+  example: "Vinh – Offering"
 
-- title: "night church – offering/pledge"
+- title: "mandarin"
+  name: "regeneration church monash incorporated"
+  bsb: "033-385"
+  bank: "westpac"
+  account: "243556"
+  reference_format: '"[name/anon] – pledge" OR "[name/anon] – offering"'
+  example: "Vinh – Offering"
+
+
+- title: "night"
   name: "regeneration church monash incorporated"
   bsb: "033-385"
   bank: "westpac"
   account: "192891"
-  reference_format: '"[name/anon] – pledge" or "[name/anon] – offering"'
-  example: "vinh – offering"
+  reference_format: '"[name/anon] – pledge" OR "[name/anon] – offering"'
+  example: "Vinh – Offering"
 
-- title: "other/designated funds"
+- title: "other"
   name: "regeneration church monash incorporated"
   bsb: "033-385"
   bank: "westpac"
   account: "192904"
-  reference_format: "[name/anon] – description"
-  example: "anon – meal; vinh – for nara"
-
-- title: "international support"
-  account_holder: "regeneration church monash incorporated"
-  routing_number: "084009519"
-  account_number: "9600002236432804"
-  account_type: "checking"
-  bank: "wise"
-  wise_address: "19 w 24th street, new york ny 10010, united states"
+  reference_format: "[name/anon] – [description]"
+  example: "Anon – Meal; Vinh – For Nara"

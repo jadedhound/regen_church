@@ -32,6 +32,11 @@
 @layer base {
   h1 {
     @apply text-3xl;
+
+    /* Scroll down lower than the navbar when navigating with anchor links. */
+    &:target {
+      @apply scroll-mt-28;
+    }
   }
 
   h2 {
@@ -94,6 +99,7 @@
       @apply mb-2;
     }
   }
+
 }
 
 /* ============================================= */

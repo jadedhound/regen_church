@@ -84,7 +84,7 @@
     </div>
   </div>
 
-  <a href="{{ get_url(path='@/community_hub/_index.md') }}#mc_locations" class="mt-4">
+  <a href="{{ get_url(path='@/community_hub/_index.md') }}#mc-locations" class="mt-4">
     <div class="regen-button">
       <svg class="text-rose-500">
         <use href="{{ sprites }}#heart"></use>
@@ -126,10 +126,15 @@
 
       <a href={{ get_url(path='@/about/1_our_leaders.md') }}>
         <div class="regen-button">
-          <svg class="text-green-500">
-            <use href="{{ sprites }}#chatboxes"></use>
-          </svg>
+          <svg class="text-green-500"><use href="{{ sprites }}#chatboxes"></use></svg>
           <div>TALK TO A PASTOR</div>
+        </div>
+      </a>
+
+      <a href="{{ get_url(path='@/community_hub/_index.md')}}#announcements">
+        <div class="regen-button">
+          <svg class="text-sky-500"><use href="{{ sprites }}#trumpet"></use></svg>
+          <div>ANNOUNCEMENTS</div>
         </div>
       </a>
 

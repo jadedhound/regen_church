@@ -1,103 +1,103 @@
-- name: mulgrave mc
+- name: Mulgrave MC
+  location: mulgrave
   day: monday evening
   leaders:
     - moshe jasper
     - justine jasper
-  location: mulgrave
 
-- name: taco & truth tuesday mc
+- name: Taco & Truth Tuesday MC
+  location: monash area
   day: tuesday evening
   leaders:
     - alicia hooimeyer
     - jarryd wyatt
-  location: monash area
 
-- name: mandarin wednesday mc
+- name: Mandarin Wednesday MC
+  location: clayton
   day: wednesday evening
   leaders:
     - clive zhu
     - jonathan zan
-  location: clayton
 
-- name: clayton south mc
+- name: Clayton South MC
+  location: clayton south
   day: wednesday evening
   leaders:
     - will farrer
-  location: clayton south
 
-- name: clayton mc
+- name: Clayton MC
+  location: clayton (church building)
   day: wednesday evening
   leaders:
     - richard thamm
-  location: clayton (church building)
 
-- name: kionga mc
+- name: Kionga MC
+  location: clayton
   day: wednesday evening
   leaders:
     - phrynne grant
-  location: clayton
 
-- name: mandarin thursday mc
+- name: Mandarin thursday MC
+  location: noble park
   day: thursday evening
   leaders:
     - john wang
     - peng cui
     - annika hang
-  location: noble park
 
-- name: res mc
+- name: RES MC
+  location: clayton
   day: thursday evening
   leaders:
-    - paul mcintosh
-    - sharon mcintosh
+    - paul MCintosh
+    - sharon MCintosh
     - dan beh
     - hannah ng
-  location: clayton
 
-- name: mcfriday mc 1 + 2
+- name: McFriday MC 1 + 2
+  location: clayton (church building)
   day: friday evening
   leaders:
-    - paul mcintosh
-    - sharon mcintosh
+    - paul MCintosh
+    - sharon MCintosh
     - ashley chong
     - shelby lim
-  location: clayton (church building)
 
-- name: mc pack
+- name: MC Pack
+  location: south-east
   day: friday evening
   leaders:
     - stephen tan
     - cameron forlong
-  location: south-east
 
-- name: antioch mc
+- name: Antioch MC
+  location: mulgrave
   day: friday evening
   leaders:
     - garry stevens
-  location: mulgrave
 
-- name: remnant mc (students)
+- name: Remnant MC (students)
+  location: clayton (church building)
   day: friday evening
   leaders:
     - ezekiel tan
-  location: clayton (church building)
 
-- name: mc saturday (fortnightly)
-  day: saturday evening
+- name: MC Saturday
+  location: clayton (church building)
+  day: saturday evening (fortnightly)
   leaders:
-    - paul mcintosh
-    - sharon mcintosh
+    - paul MCintosh
+    - sharon MCintosh
     - akshay vincent
-  location: clayton (church building)
 
-- name: ubuntu african fellowship (third saturday)
-  day: saturday evening
+- name: Ubuntu African Fellowship
+  location: clayton (church building)
+  day: saturday evening (third saturday)
   leaders:
     - miriam marembo
-  location: clayton (church building)
 
-- name: remnant mc (students)
+- name: Remnant MC (Students)
+  location: clayton (church building)
   day: sunday afternoon
   leaders:
     - ezekiel tan
-  location: clayton (church building)

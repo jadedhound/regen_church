@@ -4,23 +4,35 @@
 
 {% block content %}
 
-<h1 id="mc-locations">MC Locations</h1>
+<div class="mt-16 px-4 flex flex-col gap-4">
 
-{% include 'partial/mc_locations.html' %}
+  <h1 id="announcements" class="regen-title">Announcements</h1>
 
-<h1>Giving</h1>
+  <div class="flex flex-col justify-center border-2 border-onBackground h-[60vh] rounded-md">
+    <h3 class="text-onBackground/80 text-center">COMING SOON</h3>
+  </div>
 
-<p>
-The work of the church is made possible by the generous giving of God’s people.
-If you are a member or regular attendee who would like to give to the work of
-the church, you can give electronically by depositing funds into one of the
-following accounts:
-</p>
+  <h1 id="giving" class="regen-title">Giving</h1>
 
-<p>
-As a new church plant, we also appreciate the support of external donors. If you
-are not a member or attendee of the church, but would like to give, please
-contact Kien.
-</p>
+  <p>
+  The work of the church is made possible by the generous giving of God’s people.
+  If you are a member or regular attendee who would like to give to the work of
+  the church, you can give electronically by depositing funds into one of the
+  following accounts:
+  </p>
+
+  {% include 'partial/giving_accounts.html' %}
+
+  <p>
+  As a new church plant, we also appreciate the support of external donors. If you
+  are not a member or attendee of the church, but would like to give, please
+  contact Kien.
+  </p>
+
+  <h1 id="mc-locations" class="regen-title">MC Locations</h1>
+
+  {% include 'partial/mc_locations.html' %}
+
+</div>
 
 {% endblock content %}
