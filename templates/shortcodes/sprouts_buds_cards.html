@@ -1,0 +1,20 @@
+{% import "macros/card.html" as card_macro %}
+
+<div class="flex gap-4 overflow-x-auto max-w-fit md:mx-auto my-4">
+
+    {{ card_macro::icon_with_caption(
+      icon="sprouts",
+      iconColor="text-green-600",
+      background="bg-green-700",
+      title="Sprouts",
+      body="For toddlers and pre-schoolers (~2 to 5yo)"
+    ) }}
+    {{ card_macro::icon_with_caption(
+      icon="buds",
+      iconColor="text-sky-700",
+      background="bg-sky-800",
+      title="Buds",
+      body="For children who have started school (~5 to 12yo)"
+    ) }}
+
+</div>

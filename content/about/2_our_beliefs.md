@@ -5,8 +5,6 @@ weight = 2
 
 ### We are a Christian church in the Baptist tradition. Our beliefs are summarised in the Baptist doctrinal basis. We believe in:
 
-<div class="h-8"></div>
-
 - The divine inspiration and supreme authority of the Scriptures of the Old and
   New Testaments.
 - The existence of one God in three persons – the Father, the Son, and the Holy
