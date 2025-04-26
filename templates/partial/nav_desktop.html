@@ -1,4 +1,4 @@
-<nav class="hidden md:flex gap-4 lg:text-lg font-semibold whitespace-nowrap">
+<nav class="hidden md:flex gap-4 lg:text-lg font-semibold whitespace-nowrap items-center">
   {% set section = get_section(path="_index.md") %}
   {% for subpath in section.subsections %}
     <div class="relative group">
@@ -6,15 +6,13 @@
       {% if subsection.pages %}
         <div class="flex gap-1 items-center">
           {{ subsection.title }}
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" class="stroke-onBackground w-4 h-4 mb-1">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-        </svg>
+          <svg class="text-onBackground size-4 mb-1 ml-1"><use href="{{ sprites }}#chevron-down"></use></svg>
         </div>
-        <div class="hidden group-hover:flex absolute right-0">
+        <div class="hidden group-hover:flex group-target:flex absolute right-0">
           <div class="h-6"></div>
-          <ul class="list-none flex flex-col px-4 py-2 mt-6 bg-background text-right rounded-md flip-bullet shadow-xs shadow-black">
+          <ul class="list-none flex flex-col px-4 py-2 mt-6 bg-surface text-right rounded-md flip-bullet">
             {% for page in subsection.pages %}
-            <li class="py-2 !pl-8">
+            <li class="py-2 !pl-4">
               <a href="{{ page.permalink | safe }}">
                 {{ page.title }}
               </a>
@@ -29,9 +27,9 @@
       {% endif %}
     </div>
   {% endfor %}
-  <div class="text-ascent">
-    <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-[2px] w-full">
-      Visit Us
-    </a>
-  </div>
+  <a href="{{ get_url(path='@/_index.md') }}#get-in-touch">
+    <div class="regen-button-important py-2 px-8">
+      <span class="mt-[4px]">VISIT</span>
+    </div>
+  </a>
 </nav>

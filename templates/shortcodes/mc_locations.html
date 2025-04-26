@@ -1,8 +1,9 @@
+{% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
 {% set data = load_data(path="build/mc_locations.yml", format="yaml") %}
 
-<div class="grid sm:grid-cols-3 gap-4 divide-y-1 md:divide-y-0 max-w-3xl md:mx-auto">
+<div class="grid sm:grid-cols-3 gap-4 md:mx-auto">
   {% for mc in data %}
-    <div class="flex flex-col gap-4 pb-2">
+    <div class="flex flex-col gap-2 px-4 bg-surface rounded-md">
       <h3>{{ mc.name }}</h3>
       <div class="flex gap-2 capitalize">
         <svg class="text-yellow-400"><use href="{{ sprites }}#clock"></use></svg>

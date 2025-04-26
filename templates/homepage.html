@@ -3,7 +3,7 @@
 {% import "macros/card.html" as card_macro %}
 
 {% block content %}
-<main class="flex flex-col gap-4 px-4">
+<main class="flex flex-col gap-8 px-4">
 
    <div class="relative -mx-4">
       {{ img_macro::simple(
@@ -48,9 +48,7 @@
 
   <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-4">
     <div class="regen-button">
-      <svg class="text-yellow-400">
-        <use href="{{ sprites }}#church"></use>
-      </svg>
+      <svg class="text-yellow-400"><use href="{{ sprites }}#church"></use></svg>
       <div>PLAN A VISIT</div>
     </div>
   </a>
@@ -60,10 +58,10 @@
   <h2 class="regen-title">
     More Than a Small Group: <b>MISSIONAL COMMUNITIES</b>
   </h2>
-  <p class="-my-2">
+  <h4 class="-my-2 max-w-xl mx-auto">
     Missional Communities (MCs) are small groups committed to being formed by Jesus in community for the sake of others.
     We usually meet weekly in homes where we:
-  </p>
+  </h4>
 
   <div class="grid grid-cols-2 gap-2 text-white mx-auto">
     <div class="regen-mc-card rounded-t-full rounded-l-full">
@@ -84,12 +82,12 @@
     </div>
   </div>
 
-  <a href="{{ get_url(path='@/community_hub/_index.md') }}#mc-locations" class="mt-4">
+  <a href="{{ get_url(path='@/for_our_church/3_mcs.md') }}" class="mt-4">
     <div class="regen-button">
       <svg class="text-rose-500">
         <use href="{{ sprites }}#heart"></use>
       </svg>
-      <div>FIND A MC</div>
+      <div>FIND AN MC</div>
     </div>
   </a>
 
@@ -116,7 +114,8 @@
     Join us as we follow Jesus, who makes <b>DISCIPLES</b> of all nations.
   </h2>
 
-  <div class="grid md:grid-cols-2 gap-4">
+  <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
     <div class="flex flex-col gap-4">
 
       <p class="text-lg md:px-20">
@@ -131,7 +130,7 @@
         </div>
       </a>
 
-      <a href="{{ get_url(path='@/community_hub/_index.md')}}#announcements">
+      <a href="{{ get_url(path='@/for_our_church/1_announcements.md')}}">
         <div class="regen-button">
           <svg class="text-sky-500"><use href="{{ sprites }}#trumpet"></use></svg>
           <div>ANNOUNCEMENTS</div>
@@ -146,7 +145,6 @@
       </a>
 
     </div>
-
 
     {% include "partial/regen_map.html" %}
   </div>

@@ -13,20 +13,12 @@
         <div class="text-xl text-white font-bold">REGENERATION</div>
       </div>
       {% set section = get_section(path="_index.md") %}
-      <div class="text-right px-8 font-medium text-2xl">
+      <div class="text-right px-8">
         {% for subpath in section.subsections %}
           {% set subsection = get_section(path=subpath) %}
-          <div>
-          {% if subsection.extra.no_link %}
-            {{ subsection.title }}
-          {% else %}
-            <a href="{{ subsection.permalink }}">
-              {{ subsection.title }}
-            </a>
-          {% endif %}
-          </div>
+          <h2>{{ subsection.title }}</h2>
           {% if subsection.pages %}
-            <ul class="list-none flex flex-col gap-4 py-4 text-base flip-bullet !pr-0">
+            <ul class="list-none flex flex-col gap-4 py-4 flip-bullet !pr-0">
               {% for page in subsection.pages %}
               <li class="flex gap-2 items-center">
                 <a href="{{ page.permalink | safe }}" class="w-full">
@@ -39,10 +31,10 @@
             <div class="psuedo h-4"></div>
           {% endif %}
         {% endfor %}
-        <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" onclick="closeNavModal()" class="mt-[2px] w-full">
-          <h1 class="font-semibold text-ascent">
-          Visit Us
-          </h1>
+        <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" onclick="closeNavModal()">
+          <div class="regen-button-important py-2">
+              VISIT
+          </div>
         </a>
       </div>
     </div>
