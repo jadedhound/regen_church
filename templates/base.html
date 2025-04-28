@@ -34,26 +34,31 @@
   <body class="bg-background text-onBackground">
     <div class="w-full h-16 flex bg-background gap-4 items-center justify-between px-4 md:px-8 fixed top-0 z-10 shadow-xs shadow-black">
       <a href="{{ get_url(path='@/_index.md') }}" class="mt-8" aria-label="Go back to homepage">
-        <svg class="size-[unset] w-16 text-ascent">
-          <use href="{{ sprites }}#chiro-banner"></use>
-        </svg>
+        <svg class="size-[unset] w-16 text-primary"><use href="{{ sprites }}#chiro-banner"></use></svg>
       </a>
-      <a href="{{ get_url(path='@/_index.md') }}" class="sm:text-lg lg:text-3xl font-bold mt-2" aria-label="Go back to homepage">
+      <a href="{{ get_url(path='@/_index.md') }}" class="hidden lg:block text-3xl font-bold mt-2" aria-label="Go back to homepage">
         REGENERATION CHURCH MONASH
       </a>
       <div class="flex-grow"></div>
  
       {% include "partial/nav_desktop.html" %}
+
+      <a href="{{ get_url(path='@/_index.md') }}#get-in-touch">
+        <div class="regen-button-important py-2 px-8">
+            VISIT
+        </div>
+      </a>
+
       {% include "partial/nav_mobile.html" %}
     </div>
 
-    <div class="pseudo h-16"></div>
+    <div class="h-16"></div>
 
     {% block content %} {% endblock %}
 
-    <div class="h-8"></div>
-
-    {% include "partial/source_code.html" %}
+    <div class="py-16 mt-16 bg-surface border-t-1">
+        {% include "partial/source_code.html" %}
+    </div>
   </body>
 
 </html>

@@ -1,22 +1,25 @@
-<nav class="hidden md:flex gap-4 lg:text-lg font-semibold whitespace-nowrap items-center">
+<nav class="hidden lg:flex gap-4 whitespace-nowrap items-center">
   {% set section = get_section(path="_index.md") %}
   {% for subpath in section.subsections %}
     <div class="relative group">
       {% set subsection = get_section(path=subpath) %}
       {% if subsection.pages %}
-        <div class="flex gap-1 items-center">
+        <div data-desktop-nav data-target="navdrop-{{ subsection.title }}" class="flex gap-1 items-center">
           {{ subsection.title }}
           <svg class="text-onBackground size-4 mb-1 ml-1"><use href="{{ sprites }}#chevron-down"></use></svg>
         </div>
-        <div class="hidden group-hover:flex group-target:flex absolute right-0">
-          <div class="h-6"></div>
-          <ul class="list-none flex flex-col px-4 py-2 mt-6 bg-surface text-right rounded-md flip-bullet">
+        <div id="navdrop-{{ subsection.title }}" class="hidden group-hover:block absolute right-0">
+          <ul class="list-none flex flex-col px-4 py-2 mt-6 rounded-md bg-background shadow-sm shadow-black">
             {% for page in subsection.pages %}
-            <li class="py-2 !pl-4">
-              <a href="{{ page.permalink | safe }}">
-                {{ page.title }}
-              </a>
-            </li>
+            <a href="{{ page.permalink | safe }}">
+              <li class="py-2 grid grid-cols-[4rem_auto] items-center">
+                <div class="row-span-2 p-2 border-2 border-onBackground/80 rounded-md aspect-square mr-2 w-fit">
+                  <svg><use href="{{ sprites }}#{{ page.extra.icon }}"></use></svg>
+                </div>
+                <div class="">{{ page.title }}</div>
+                <div class="text-onBackground/80 text-sm">{{ page.extra.desc }}</div>
+              </li>
+            </a>
             {% endfor %}
           </ul>
         </div>
@@ -27,9 +30,42 @@
       {% endif %}
     </div>
   {% endfor %}
-  <a href="{{ get_url(path='@/_index.md') }}#get-in-touch">
-    <div class="regen-button-important py-2 px-8">
-      <span class="mt-[4px]">VISIT</span>
-    </div>
-  </a>
 </nav>
+
+<script>
+  const navButtons = document.querySelectorAll('[data-desktop-nav]');
+  let currentOpenMenu = null;
+
+  // Handle clicks on navigation buttons
+  navButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const targetId = this.getAttribute('data-target');
+      const targetMenu = document.getElementById(targetId);
+      // Close currently open menu if clicking the same button
+      if (currentOpenMenu === targetMenu) {
+          targetMenu.classList.add('hidden');
+          currentOpenMenu = null;
+          return;
+      }
+      // Close any open menu
+      if (currentOpenMenu) {
+          currentOpenMenu.classList.add('hidden');
+      }
+      // Open the clicked menu
+      targetMenu.classList.remove('hidden');
+      currentOpenMenu = targetMenu;
+    });
+  });
+
+  // Check if screen is at least 1024px wide (Tailwind's 'lg' breakpoint)
+  if (window.matchMedia('(min-width: 1024px)').matches) {
+    // Close menus when clicking outside
+    document.addEventListener('click', function() {
+      if (currentOpenMenu) {
+        currentOpenMenu.classList.add('hidden');
+        currentOpenMenu = null;
+      }
+    });
+  }
+</script>

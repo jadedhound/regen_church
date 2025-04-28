@@ -1,41 +1,37 @@
-<button class="md:hidden" onclick="openNavModal()" aria-label="Open the navigation drawer for mobile devices only">
-  <svg class="text-onBackground size-5">
-    <use href="{{ sprites }}#hamburger-menu"></use>
-  </svg>
+<button class="lg:hidden ml-2" onclick="openNavModal()" aria-label="Open the navigation drawer for mobile devices only">
+  <svg class="text-onBackground"><use href="{{ sprites }}#hamburger-menu"></use></svg>
 </button>
 
 <div class="fixed top-0 left-0 z-10 h-screen w-screen hidden" id="nav-modal">
   <div class="psuedo h-full backdrop-blur-xs"></div>
   <div class="flex z-10 absolute top-0 left-0 h-full w-full">
     <button onclick="closeNavModal()" class="flex-grow"></button>
-    <div class="flex flex-col gap-4 bg-background min-w-56 rounded-l-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="nav-modal-drawer">
-      <div class="bg-ascent flex flex-row-reverse gap-4 items-center rounded-tl-xl h-32 px-8">
-        <div class="text-xl text-white font-bold">REGENERATION</div>
+    <div class="flex flex-col gap-4 bg-background shadow-sm shadow-black min-w-56 rounded-l-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="nav-modal-drawer">
+      <div class="bg-primary flex flex-row-reverse gap-4 items-center rounded-tl-xl h-32 px-8">
+        <h3 class="text-white w-min text-right font-bold">REGENERATION CHURCH</h3>
       </div>
       {% set section = get_section(path="_index.md") %}
       <div class="text-right px-8">
         {% for subpath in section.subsections %}
           {% set subsection = get_section(path=subpath) %}
-          <h2>{{ subsection.title }}</h2>
+          <p class="font-bold uppercase">{{ subsection.title }}</p>
           {% if subsection.pages %}
-            <ul class="list-none flex flex-col gap-4 py-4 flip-bullet !pr-0">
+            <ul class="flex flex-col gap-2 py-4 text-onBackground/90">
               {% for page in subsection.pages %}
-              <li class="flex gap-2 items-center">
-                <a href="{{ page.permalink | safe }}" class="w-full">
-                  {{ page.title }}
-                </a>
-              </li>
+              <a href="{{ page.permalink | safe }}">
+                <li class="py-2 flex flex-row-reverse items-center">
+                  <div class="row-span-2 p-2 border-2 border-onBackground/80 rounded-md aspect-square ml-2 w-fit">
+                    <svg><use href="{{ sprites }}#{{ page.extra.icon }}"></use></svg>
+                  </div>
+                  <div class="">{{ page.title }}</div>
+                </li>
+              </a>
               {% endfor %}
             </ul>
           {% else %}
             <div class="psuedo h-4"></div>
           {% endif %}
         {% endfor %}
-        <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" onclick="closeNavModal()">
-          <div class="regen-button-important py-2">
-              VISIT
-          </div>
-        </a>
       </div>
     </div>
   </div>

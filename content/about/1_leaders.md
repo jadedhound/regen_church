@@ -1,6 +1,9 @@
 +++
 title = "Our Leaders"
 weight = 1
+[extra]
+icon="leaders"
+desc="Pastors and Ministry Leaders"
 +++
 
 {% pastor_bio(

@@ -2,6 +2,9 @@
 title = "Announcements"
 template = "page.html"
 weight = 1
+[extra]
+icon="trumpet"
+desc="What's Happening"
 +++
 
 <div class="flex flex-col justify-center border-2 border-onBackground h-[60vh] rounded-md">

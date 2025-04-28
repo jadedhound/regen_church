@@ -1,21 +1,22 @@
 {% set data = load_data(path="build/giving.yml", format="yaml") %}
 
 <!-- Radio buttons -->
-<div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mt-8 max-w-md mx-auto">
+<div class="grid grid-cols-2 gap-4 mt-8 max-w-md mx-auto">
+  {% set btn_css = 'regen-button max-w-full peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-colors' %}
   {% for account in data %}
 
     <label class="cursor-pointer">
       <input type="radio" name="giving_account" class="peer hidden" value="{{ account.title }}">
-      <div class="regen-button max-w-full peer-checked:bg-ascent peer-checked:text-white peer-checked:border-ascent transition-colors">
+      <div class="{{ btn_css }}">
         <span class="uppercase">{{ account.title }}</span>
       </div>
     </label>
 
   {% endfor %}
 
-    <label class="cursor-pointer col-span-2 lg:col-span-1">
+    <label class="cursor-pointer col-span-2">
       <input type="radio" name="giving_account" class="peer hidden" value="international">
-      <div class="regen-button max-w-full peer-checked:bg-ascent peer-checked:text-white peer-checked:border-ascent transition-colors">
+      <div class="{{ btn_css }}">
         <span class="uppercase">International</span>
       </div>
     </label>
@@ -23,10 +24,11 @@
 
 <!-- Account Info -->
 <div class="max-w-md mx-auto mt-4 px-2 py-8 border-y-6 border-double border-onBackground/60 mb-8">
+  {% set info_css = 'grid grid-cols-[6rem_auto] gap-4 [&>b]:text-right items-center' %}
   {% for account in data %}
 
   <div id="{{ account.title }}-content" class="hidden">
-    <div class="grid grid-cols-[6rem_auto] gap-4 [&>b]:text-right">
+    <div class="{{ info_css }}">
       <b>NAME:</b>
       <p class="capitalize">{{ account.name }}</p>
       <b>BSB:</b>
@@ -43,7 +45,7 @@
   {% endfor %}
 
   <div id="international-content" class="hidden">
-    <div class="grid grid-cols-[6rem_auto] gap-4 [&>b]:text-right items-center">
+    <div class="{{ info_css }}">
       <b>Name:</b>
       <p>Regeneration Church Monash Incorporated</p>
       <b>ACH Routing Number:</b>

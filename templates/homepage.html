@@ -24,9 +24,9 @@
       </div>
   </div>
 
-  <h2 class="regen-title mt-4">
+  <h1 class="regen-title mt-4">
     <b>3 SERVICES,</b> 1 mission: encountering Jesus together every Sunday
-  </h2>
+  </h1>
 
   <div class="flex gap-4 overflow-x-auto md:mx-auto">
     {{ card_macro::image_with_caption(
@@ -55,34 +55,36 @@
 
   <hr>
 
-  <h2 class="regen-title">
+  <h1 class="regen-title">
     More Than a Small Group: <b>MISSIONAL COMMUNITIES</b>
-  </h2>
+  </h1>
   <h4 class="-my-2 max-w-xl mx-auto">
     Missional Communities (MCs) are small groups committed to being formed by Jesus in community for the sake of others.
     We usually meet weekly in homes where we:
   </h4>
 
-  <div class="grid grid-cols-2 gap-2 text-white mx-auto">
-    <div class="regen-mc-card rounded-t-full rounded-l-full">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 text-white mx-auto">
+    {% set card_css = 'flex flex-col gap-2 items-center justify-center aspect-square p-8 w-full h-full bg-red-500 md:rounded-full md:p-12' %}
+
+    <div class="{{ card_css }} rounded-t-full rounded-l-full">
       <svg><use href="{{ sprites }}#spoon-fork"></use></svg>
       <h3>Eat</h3>
     </div>
-    <div class="regen-mc-card rounded-t-full rounded-r-full">
+    <div class="{{ card_css }} rounded-t-full rounded-r-full">
       <svg><use href="{{ sprites }}#pray"></use></svg>
       <h3>Pray</h3>
     </div>
-    <div class="regen-mc-card rounded-b-full rounded-l-full">
+    <div class="{{ card_css }} rounded-b-full rounded-l-full">
       <svg><use href="{{ sprites }}#bible"></use></svg>
       <h3>Study</h3>
     </div>
-    <div class="regen-mc-card rounded-b-full rounded-r-full">
+    <div class="{{ card_css }} rounded-b-full rounded-r-full">
       <svg><use href="{{ sprites }}#people-heart"></use></svg>
       <h3>Serve</h3>
     </div>
   </div>
 
-  <a href="{{ get_url(path='@/for_our_church/3_mcs.md') }}" class="mt-4">
+  <a href="{{ get_url(path='@/church/3_mcs.md') }}" class="mt-4">
     <div class="regen-button">
       <svg class="text-rose-500">
         <use href="{{ sprites }}#heart"></use>
@@ -93,9 +95,9 @@
 
   <hr>
 
-  <h2 class="regen-title">
+  <h1 class="regen-title">
     Come be transformed by <b>GOSPEL-CENTRED</b> sermons
-  </h2>
+  </h1>
 
   {% include "partial/sermon_series.html" %}
 
@@ -110,9 +112,9 @@
 
   <hr>
 
-  <h2 id="get-in-touch" class="regen-title">
+  <h1 id="get-in-touch" class="regen-title">
     Join us as we follow Jesus, who makes <b>DISCIPLES</b> of all nations.
-  </h2>
+  </h1>
 
   <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
@@ -123,14 +125,14 @@
         Clayton campus.
       </p>
 
-      <a href={{ get_url(path='@/about/1_our_leaders.md') }}>
+      <a href={{ get_url(path='@/about/1_leaders.md') }}>
         <div class="regen-button">
           <svg class="text-green-500"><use href="{{ sprites }}#chatboxes"></use></svg>
           <div>TALK TO A PASTOR</div>
         </div>
       </a>
 
-      <a href="{{ get_url(path='@/for_our_church/1_announcements.md')}}">
+      <a href="{{ get_url(path='@/church/1_announcements.md')}}">
         <div class="regen-button">
           <svg class="text-sky-500"><use href="{{ sprites }}#trumpet"></use></svg>
           <div>ANNOUNCEMENTS</div>

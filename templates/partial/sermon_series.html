@@ -1,14 +1,12 @@
 {% import "macros/image.html" as img_macro %}
 {% set data = load_data(path="build/sermon_series.yml", format="yaml") %}
 
-<div id="sermonContainer" class="grid md:grid-cols-4 grid-cols-2 gap-2 group max-w-2xl mx-auto">
+<div class="grid md:grid-cols-4 grid-cols-2 gap-2 group max-w-2xl mx-auto">
 
   {% for series in data %}
     <a
       href={{ series.link }} target="_blank"
-      class="opacity-100
-      nth-[n+4]:group-has-checked:hidden
-      "
+      class="opacity-100 nth-[n+4]:group-has-checked:hidden"
     >
       {{ img_macro::simple(
           image="build/sermons/" ~ series.image ~ ".png",
@@ -20,16 +18,17 @@
     </a>
   {% endfor %}
 
-    <label class="cursor-pointer bg-ascent rounded-md flex flex-col items-center justify-center font-bold gap-2">
-      <input type="checkbox" class="w-0 h-0 opacity-0 peer" checked />
-      <div class="">
+    <label class="cursor-pointer bg-primary rounded-md flex flex-col items-center justify-center font-bold gap-2">
+      <input type="checkbox" class="size-0 opacity-0 peer" checked />
+      <div>
         <div class="hidden group-has-checked:flex gap-2 justify-center">
-          <div class="rounded-full w-5 h-5 bg-zinc-200"></div>
-          <div class="rounded-full w-5 h-5 bg-zinc-200"></div>
-          <div class="rounded-full w-5 h-5 bg-zinc-200"></div>
+          {% set circle_css = 'rounded-full size-5 bg-onPrimary' %}
+          <div class="{{ circle_css }}"></div>
+          <div class="{{ circle_css }}"></div>
+          <div class="{{ circle_css }}"></div>
         </div>
         <div class="group-has-checked:hidden flex justify-center">
-          <svg class="size-16"><use href="{{ sprites }}#chevron-up"></use></svg>
+          <svg class="size-16 text-onPrimary"><use href="{{ sprites }}#chevron-up"></use></svg>
         </div>
       </div>
     </label>

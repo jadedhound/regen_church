@@ -1,6 +1,9 @@
 +++
 title = "Children's Ministry"
 weight = 4
+[extra]
+icon="baby"
+desc="Faith like a mustard seed"
 +++
 
 At Regeneration Church Monash, we think children are an important part of our
