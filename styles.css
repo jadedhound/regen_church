@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&display=swap');
+
 @import 'tailwindcss';
 @config './tailwind.config.js';
 
@@ -8,7 +10,7 @@
   --regen-primary: var(--color-red-600);
   --regen-onPrimary: var(--color-white);
   --regen-primary-variant: var(--color-red-800);
-  --regen-flair: var(--color-yellow-400);
+  --regen-flair: var(--color-yellow-600);
 }
 
 [data-theme="dark"] {
@@ -18,7 +20,7 @@
   --regen-primary: var(--color-red-600);
   --regen-onPrimary: var(--color-zinc-200);
   --regen-primary-variant: var(--color-red-800);
-  --regen-flair: var(--color-yellow-400);
+  --regen-flair: var(--color-yellow-500);
 }
 
 @theme {
@@ -29,6 +31,7 @@
   --color-onPrimary: var(--regen-onPrimary);
   --color-primary-variant: var(--regen-primary-variant);
   --color-flair: var(--regen-flair);
+  --font-alumni: "Alumni Sans Pinstripe", sans-serif;
 }
 
 /* ============================================= */
@@ -36,6 +39,11 @@
 /* ============================================= */
 
 @layer base {
+  /* Stop scroll when dialog is open */ 
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
+
   h1 {
     @apply text-3xl;
 
@@ -116,6 +124,15 @@
     b {
       @apply text-primary;
     }
+  }
+  .fade-edges {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
   }
 }
 

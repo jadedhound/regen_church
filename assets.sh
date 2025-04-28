@@ -3,7 +3,6 @@
 directories=(
   "build/images"
   "build/sermons"
-  "static/images"
 )
 branch=$(git rev-parse --abbrev-ref HEAD)
 

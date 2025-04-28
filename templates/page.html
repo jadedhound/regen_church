@@ -3,18 +3,26 @@
 
 {% block content %}
   <main>
-    <div class="relative h-[30vh]">
+    <div class="relative">
       <!-- Background layer (moves slower) -->
-      {{ img_macro::parallax(image=title_image | default(value="images/memphis-colorful.webp")) }}
+      {{ img_macro::simple(
+        image=page.extra.header_image | default(value="build/images/memphis-colorful.webp"),
+        alt="header_image",
+        sizes="100vw",
+        class="h-[30vh] lg:h-[50vh] w-full object-cover bg-no-repeat bg-cover bg-center object-top",
+        op="fill"
+      ) }}
   
       <!-- Content layer (moves normally) -->
-      <div class="relative h-full flex items-center justify-center text-black">
+      <div class="absolute inset-0 h-full flex items-center justify-center text-white bg-background/40">
         {% if page.title is defined %}
           {% set title = page.title %}
         {% elif section.title is defined %}
           {% set title = section.title %}
         {% endif %}
-        <div class="text-center uppercase text-4xl sm:text-6xl font-bold p-4"> {{ title }} </div>
+        <div class="text-center uppercase text-7xl font-semibold p-4 font-alumni text-5xl border-x-2 border-flair px-8">
+          {{ title }}
+        </div>
       </div>
     </div>
 

@@ -1,12 +1,17 @@
 +++
-title = "Our Leaders"
+title = "Leaders"
 weight = 1
 [extra]
+header_image="build/images/ps_jared_sworn_in.png"
 icon="leaders"
 desc="Pastors and Ministry Leaders"
 +++
 
-{% pastor_bio(
+# Pastors
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+{% leader_bio(
   name="Stephen Tan",
   number="+61 411 363 234",
   email="pastor@regeneration.org.au"
@@ -36,9 +41,7 @@ Night Church Pastor
 
 {% end %}
 
-<div class="psuedo h-8"></div>
-
-{% pastor_bio(
+{% leader_bio(
   name="Paul McIntosh",
   number="+61 470 463 941",
   email="paul@regeneration.org.au",
@@ -57,3 +60,5 @@ and experience. He enjoys walking with Sharon and their chocolate labradoodle
 named Boaz, and telling Dad jokes to whoever will listen.
 
 {% end %}
+
+</div>
