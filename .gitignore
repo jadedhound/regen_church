@@ -7,6 +7,7 @@ build/images/
 build/sermons/
 rclone.conf
 pb/
-pb_zola_glue/pb_env
-pb_zola_glue/secrets.yml
+glue/pb_env
+glue/secrets.yml
+glue/__pycache__
 

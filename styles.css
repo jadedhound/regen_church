@@ -43,6 +43,13 @@
   body:has(dialog[open]) {
     overflow: hidden;
   }
+  dialog {
+    @apply mx-auto bg-transparent my-auto h-fit w-fit p-4;
+    
+    &::backdrop {
+      @apply bg-black/50;
+    }
+  }
 
   h1 {
     @apply text-3xl;

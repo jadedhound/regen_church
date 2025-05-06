@@ -3,7 +3,6 @@
 {% set name_slug = name | capitalize | replace(from=" ", to="") %}
 {% set bio_id = name_slug ~ 'BioDialog' %}
 
-
 <div class="flex flex-col gap-6">
   <div class="p-2 border-2 border-flair rounded-full">
     {{ img_macro::simple(

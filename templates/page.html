@@ -3,28 +3,16 @@
 
 {% block content %}
   <main>
-    <div class="relative">
-      <!-- Background layer (moves slower) -->
-      {{ img_macro::simple(
-        image=page.extra.header_image | default(value="build/images/memphis-colorful.webp"),
-        alt="header_image",
-        sizes="100vw",
-        class="h-[30vh] lg:h-[50vh] w-full object-cover bg-no-repeat bg-cover bg-center object-top",
-        op="fill"
-      ) }}
-  
-      <!-- Content layer (moves normally) -->
-      <div class="absolute inset-0 h-full flex items-center justify-center text-white bg-background/40">
-        {% if page.title is defined %}
-          {% set title = page.title %}
-        {% elif section.title is defined %}
-          {% set title = section.title %}
-        {% endif %}
-        <div class="text-center uppercase text-7xl font-semibold p-4 font-alumni text-5xl border-x-2 border-flair px-8">
-          {{ title }}
-        </div>
-      </div>
-    </div>
+    {% if page.title is defined %}
+      {% set title = page.title %}
+    {% elif section.title is defined %}
+      {% set title = section.title %}
+    {% endif %}
+    {{ img_macro::with_heading(
+      image=page.extra.header_image | default(value="build/images/memphis-colorful.webp"),
+      alt="header_image",
+      title=title,
+    )}}
 
     <article class="p-4 mt-8 max-w-3xl mx-auto w-full">
       {% if page.content is defined %}
