@@ -9,6 +9,8 @@ jobs:
   build:
     name: Build Website
 
+    # No caching is used because the CMS is run on the same machine as
+    # the self-hosted runner.
     runs-on: self-hosted
     steps:
     - name: Checkout main
@@ -18,17 +20,6 @@ jobs:
       uses: taiki-e/install-action@v2
       with:
         tool: zola@0.20.0
-
-    - name: Restore cached assets (images and binaries)
-      id: cache-assets-restore
-      uses: actions/cache/restore@v4
-      with:
-        path: |
-          pb/
-          glue/venv
-        key: assets-${{ steps.assets-hash.outputs.hash }}
-        restore-keys: |
-          assets-
 
     - name: Set up python
       uses: actions/setup-python@v4
@@ -46,15 +37,6 @@ jobs:
         python main.py $GPG_PASSPHRASE
         deactivate
         popd
-
-    - name: Save assets
-      id: cache-assets-save
-      uses: actions/cache/save@v4
-      with:
-        path: |
-          pb/
-          glue/venv/
-        key: assets-${{ steps.assets-hash.outputs.hash }}
 
     - name: Setup bun
       uses: oven-sh/setup-bun@v2
