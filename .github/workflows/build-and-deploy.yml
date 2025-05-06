@@ -14,18 +14,17 @@ jobs:
     - name: Checkout main
       uses: actions/checkout@v4
 
-    - name: Download zola and rclone
+    - name: Download zola
       uses: taiki-e/install-action@v2
       with:
-        tool: zola@0.20.0,rclone@1.69.1
+        tool: zola@0.20.0
 
     - name: Restore cached assets (images and binaries)
       id: cache-assets-restore
       uses: actions/cache/restore@v4
       with:
         path: |
-          build/images
-          build/sermons
+          pb/
         key: assets-${{ steps.assets-hash.outputs.hash }}
         restore-keys: |
           assets-
@@ -36,11 +35,19 @@ jobs:
         python-version: "3.10"
 
     - name: Install python dependencies
-      run: |
-        pip install -r glue/requirements.txt 
 
-    - name: Run script
-      run: python glue/main.py ${{ secrets.REGEN_PASSPHRASE }}
+    - name: Grab assets from Pocketbase
+      env:
+        GPG_PASSPHRASE: ${{ secrets.REGEN_PASSPHRASE }}
+      run: 
+      run: |
+        pushd glue
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt 
+        python main.py $GPG_PASSPHRASE
+        deactivate
+        popd
 
     - name: Save assets
       id: cache-assets-save
