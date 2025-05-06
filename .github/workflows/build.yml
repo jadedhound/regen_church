@@ -1,4 +1,4 @@
-name: Build and Deploy Website
+name: Build
 
 on: 
  push:
@@ -25,6 +25,7 @@ jobs:
       with:
         path: |
           pb/
+          glue/venv
         key: assets-${{ steps.assets-hash.outputs.hash }}
         restore-keys: |
           assets-
@@ -52,6 +53,7 @@ jobs:
       with:
         path: |
           pb/
+          glue/venv/
         key: assets-${{ steps.assets-hash.outputs.hash }}
 
     - name: Setup bun
@@ -67,25 +69,3 @@ jobs:
       uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
       with:
         path: dist/
-
-  deploy:
-    name: Deploy the artifact created
-    needs: build
-
-    permissions:
-      pages: write
-      id-token: write
-
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: self-hosted
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-
-    - name: Deploy to github pages
-      id: deployment
-      uses: actions/deploy-pages@v4
