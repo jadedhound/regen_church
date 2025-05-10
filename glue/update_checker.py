@@ -2,13 +2,14 @@ import os
 import hashlib
 import requests
 
-from constants import DB_SHA, OUTPUT_DIR, Remote
+from constants import DB_SHA, OUTPUT_DIR
+from pocketbase import PocketBase
 
 
-def should_update(remote: Remote) -> bool:
+def should_update(client: PocketBase) -> bool:
     local_path = os.path.join(OUTPUT_DIR, DB_SHA)
 
-    response = requests.get(f"{remote.url}/{DB_SHA}")
+    response = requests.get(f"{client.base_url}/{DB_SHA}")
     response.raise_for_status()
     new_hash = hashlib.sha256(response.content).hexdigest()
 

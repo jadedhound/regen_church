@@ -1,17 +1,17 @@
-name: Build
+name: Build and Deploy
 
-on: 
- push:
-  branches:
-   - stable
+# on: 
+#  push:
+#   branches:
+#    - stable
 
 jobs:
   build:
-    name: Build Website
-
     # No caching is used because the CMS is run on the same machine as
     # the self-hosted runner.
+    name: Build Website
     runs-on: self-hosted
+
     steps:
     - name: Checkout main
       uses: actions/checkout@v4
@@ -48,6 +48,25 @@ jobs:
 
     - name: Upload static files as artifact
       id: deployment
-      uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
+      uses: actions/upload-pages-artifact@v3
       with:
         path: dist/
+
+  deploy:
+    name: Deploy the artifact created
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: self-hosted
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+
+    - name: Deploy to github pages
+      id: deployment
+      uses: actions/deploy-pages@v4

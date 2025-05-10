@@ -1,24 +1,23 @@
 import os
 import gnupg
-import requests
 import yaml
-from urllib.parse import urljoin
-from constants import SECRETS_FILE, Remote
+from constants import SECRETS_FILE 
+from pocketbase import PocketBase
 
 
-def get_remote(passphrase):
+def get_client(passphrase):
     if (secrets := _decrypt_secrets(passphrase)) is not None:
         url, email, password = secrets
     else:
         print("Failed to decrypt secrets or secrets are empty.")
         return None
-
-    token = _authenticate(url, email, password)
-    if not token:
+    client = PocketBase(url)
+    admin = client.admins.auth_with_password(email, password)
+    if not admin.is_valid:
         print("Authentication failed.")
         return None
 
-    return Remote(url, token)
+    return client
 
 
 def _decrypt_secrets(passphrase):
@@ -45,19 +44,3 @@ def _decrypt_secrets(passphrase):
         return None
 
     return url, email, password
-
-
-def _authenticate(url, email, password):
-    """
-    Authenticate with PocketBase and return the auth token.
-    """
-    auth_url = urljoin(url, "/api/collections/users/auth-with-password")
-    try:
-        response = requests.post(
-            auth_url, json={"identity": email, "password": password}
-        )
-        response.raise_for_status()
-        return response.json().get("token")
-    except requests.exceptions.RequestException as e:
-        print(f"Authentication error: {str(e)}")
-        return None

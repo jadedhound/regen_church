@@ -1,105 +1,58 @@
 import os
 import requests
 import json
-from constants import Remote
+
+from pathlib import Path
+from pocketbase import PocketBase
+from pocketbase.models.record import Record
+from constants import OUTPUT_DIR
 
 
-def get_collection(remote: Remote, collection, dir):
+def get_collection(client: PocketBase, collection):
     print("--------------------------------")
-    print(f"Collection: '{collection}'")
-    records = _get_collection_records(remote, collection)
+    print(f"Collection '{collection}'...", end=" ")
+    records = client.collection(collection).get_full_list()
+    if len(records) < 1:
+        print("is Empty!")
+    else:
+        print(f"has {len(records)} records")
 
-    print(f"Found {len(records)} records")
+    dir = Path(f"{OUTPUT_DIR}/{collection}")
+    dir.mkdir(exist_ok=True)
+    image_dir = Path(f"{dir}/images")
+    image_dir.mkdir(exist_ok=True)
 
-    for i, record in enumerate(records, 1):
-        # Save record as JSON
-        record_id = record.get("id", f"record_{i}")
-        json_path = os.path.join(dir, f"{record_id}.json")
+    for record in records:
+        json_path = os.path.join(dir, f"{record.id}.json")
+        with open(json_path) as f:
+            json.dump(record.__str__(), f)
+            print(f"Fetched record: {record.id}")
 
-        with open(json_path, "w") as f:
-            json.dump(record, f, indent=2)
+        _download_any_images(client, image_dir, record)
 
-        # Find and download images
-        image_urls = _extract_image_urls(record)
-        img_dir = os.path.join(dir, "images")
+    if not any(image_dir.iterdir()):
+        image_dir.rmdir()
+    
 
-        if len(image_urls) > 0:
-            os.makedirs(img_dir, exist_ok=True)
-
-        for img_url in image_urls:
-            img_url = f"{remote.url}/api/files/{collection}/{record_id}/{img_url}"
-
-            # Get filename from URL
-            filename = os.path.basename(img_url.split("?")[0])  # Remove query params
-            img_path = os.path.join(img_dir, filename)
-
-            print(f"Downloading image {img_path}")
-            if not _download_file(img_url, img_path, remote.token):
-                print("Download failed")
-
-
-def _get_collection_records(remote: Remote, collection):
+def _download_any_images(client: PocketBase, image_dir: Path, record: Record):
     """
-    Fetch all records from the given collection.
+    Download all image URLs (jpg/png) from a record
     """
 
-    records = []
-    page = 1
-    per_page = 100
-    headers = {"Authorization": remote.token}
+    for _, value in record.expand:
+        if isinstance(value, str) and value.lower().endswith((".jpg", ".jpeg", ".png")):
+            print(f"   > Downloading record's image: {value}...", end=" ")
+            url = f"{client.base_url}/api/files/{record.collection_id}/{record.id}/{value}"
+            try:
+                response = requests.get(url, stream=True)
+                response.raise_for_status()
 
-    while True:
-        url = f"{remote.url}/api/collections/{collection}/records?page={page}&perPage={per_page}"
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-
-        data = response.json()
-        records.extend(data.get("items", []))
-
-        if len(data.get("items", [])) < per_page:
-            break
-
-        page += 1
-
-    return records
-
-
-def _download_file(url, destination, token):
-    """
-    Download a file from a URL to a destination path
-    """
-    try:
-        headers = {"Authorization": token}
-        response = requests.get(url, headers=headers, stream=True)
-        response.raise_for_status()
-
-        with open(destination, "wb") as f:
-            for chunk in response.iter_content(chunk_size=8192):
-                f.write(chunk)
-        return True
-    except Exception as e:
-        print(f"Failed to download {url}: {e}")
-        return False
-
-
-def _extract_image_urls(record):
-    """
-    Extract all image URLs (jpg/png) from a record
-    """
-    image_urls = []
-
-    def scan_value(value):
-        if isinstance(value, str):
-            if value.lower().endswith((".jpg", ".jpeg", ".png")):
-                image_urls.append(value)
-        elif isinstance(value, dict):
-            for v in value.values():
-                scan_value(v)
-        elif isinstance(value, list):
-            for item in value:
-                scan_value(item)
-
-    for value in record.values():
-        scan_value(value)
-
-    return image_urls
+                img_path = os.path.join(image_dir, value)
+                with open(img_path, "wb") as f:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        f.write(chunk)
+                        print("Success!")
+            except Exception as e:
+                print("Failed!")
+                print(f"Unable to download {url}: {e}")
+                return None
