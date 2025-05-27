@@ -1,17 +1,15 @@
 import os
 import json
+from pathlib import Path
 
 
-def write_filenames(path, filename="filenames.json"):
-    entries = os.listdir(path)
+def write_filenames(dir: Path, filename="filenames.json"):
+    files: list[str] = []
+    for entry in dir.iterdir():
+        if entry.is_file() and entry.name != filename:
+            files.append(entry.relative_to('../').__str__())
 
-    files = [entry for entry in entries if os.path.isfile(os.path.join(path, entry))]
-    if filename in files:
-        files.remove(filename)
-
-    output_path = os.path.join(path, filename)
+    output_path = Path(f"{dir}/{filename}")
 
     with open(output_path, "w") as json_file:
-        json.dump(files, json_file, indent=4)
-
-    return
+        json.dump(files, json_file)

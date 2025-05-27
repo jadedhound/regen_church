@@ -22,12 +22,12 @@ def main():
 
         os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-        if not should_update(client):
-            print("No changes in remote.")
-            return
+        # if not should_update(client):
+        #     print("No changes in remote.")
+        #     return
 
         for collection in COLLECTIONS:
-            get_collection(client, collection)
+            dir = get_collection(client, collection)
             write_filenames(dir)
 
     except Exception as e:
