@@ -1,4 +1,1 @@
-+++
-template = "homepage.html"
-sort_by = "weight"
-+++
++++ template = "homepage.html" sort_by = "weight" +++

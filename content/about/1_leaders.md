@@ -1,26 +1,14 @@
-+++
-title = "Leaders"
-weight = 1
-template = "leaders.html"
-[extra]
-header_image="build/images/ps_jared_sworn_in.png"
-icon="leaders"
-desc="Pastors and Ministry Leaders"
-+++
++++ title = "Leaders" weight = 1 template = "leaders.html" [extra]
+header_image="build/images/ps_jared_sworn_in.png" icon="leaders" desc="Pastors
+and Ministry Leaders" +++
 
 # Pastors
 
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
 
-{% leader_bio(
-  name="Stephen Tan",
-  number="+61 411 363 234",
-  email="pastor@regeneration.org.au"
-  role="Senior Pastor & Morning Church Pastor",
-  day_off="Thursday",
-  image="build/images/stephen_tan.jpg"
-) %}
-
+{% leader_bio( name="Stephen Tan", number="+61 411 363 234",
+email="pastor@regeneration.org.au" role="Senior Pastor & Morning Church Pastor",
+day_off="Thursday", image="build/images/stephen_tan.jpg" ) %}
 
 Stephen is the Senior Pastor of Regeneration Church Monash. He has a heart to
 see the regeneration of Monash and seeks to make disciples in Monash, Melbourne,
@@ -42,14 +30,9 @@ Night Church Pastor
 
 {% end %}
 
-{% leader_bio(
-  name="Paul McIntosh",
-  number="+61 470 463 941",
-  email="paul@regeneration.org.au",
-  role="Night Church Pastor",
-  day_off="Wednesday",
-  image="build/images/paul_mcintosh.jpg"
-) %}
+{% leader_bio( name="Paul McIntosh", number="+61 470 463 941",
+email="paul@regeneration.org.au", role="Night Church Pastor",
+day_off="Wednesday", image="build/images/paul_mcintosh.jpg" ) %}
 
 Paul serves as the Pastor of Regeneration Monash’s Night Church. Paul is married
 to Sharon and they have an adult daughter. Paul completed his Master of Biblical

@@ -11,3 +11,6 @@ glue/pb_env
 glue/secrets.yml
 glue/__pycache__
 
+# POCKETBASE
+secrets.json
+

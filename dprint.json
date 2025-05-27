@@ -6,7 +6,13 @@
   "markdown": {
     "textWrap": "always"
   },
+  "typescript": {
+    "lineWidth": 100,
+    "memberExpression.linePerExpression": true,
+    "binaryExpression.linePerExpression": true
+  },
   "plugins": [
-    "https://plugins.dprint.dev/markdown-0.17.2.wasm"
+    "https://plugins.dprint.dev/markdown-0.17.2.wasm",
+    "https://plugins.dprint.dev/typescript-0.95.4.wasm"
   ]
 }

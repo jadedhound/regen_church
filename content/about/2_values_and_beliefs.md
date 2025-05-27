@@ -1,10 +1,5 @@
-+++
-title = "Values and Beliefs"
-weight = 2
-[extra]
-icon="bible"
-desc="Our purpose and mission"
-+++
++++ title = "Values and Beliefs" weight = 2 [extra] icon="bible" desc="Our
+purpose and mission" +++
 
 # Purpose & Mission
 
@@ -31,11 +26,11 @@ A-Z of the Christian life. The gospel is important not just for our
 justification at the moment of conversion, but also for sanctification, becoming
 more and more like Jesus until the day we die and go to be with Jesus in glory.
 
-**That means that we never “graduate” from the gospel. It is always central to the
-Christian life.**
+**That means that we never “graduate” from the gospel. It is always central to
+the Christian life.**
 
-The gospel is the fountain from which all doctrine and Christian
-practice spring. We aim to keep the gospel the main thing.
+The gospel is the fountain from which all doctrine and Christian practice
+spring. We aim to keep the gospel the main thing.
 
 ## A Transcultural Community
 
@@ -47,13 +42,13 @@ language is preserved in the midst of a mosaic of heavenly culture.
 
 **We see unity in diversity.**
 
-We believe that the local church should be a foretaste of heaven.
-If the ultimate church in heaven is a movie, then the local church should be a
-trailer. To this end, we want to pursue a transcultural community. A community
-that reflects and embraces the diversity of its context, but the power of the
-gospel transcends it and creates one new community in Christ. This is
-particularly relevant in our context which SBS names the most ethnically diverse
-suburb in all of Australia.
+We believe that the local church should be a foretaste of heaven. If the
+ultimate church in heaven is a movie, then the local church should be a trailer.
+To this end, we want to pursue a transcultural community. A community that
+reflects and embraces the diversity of its context, but the power of the gospel
+transcends it and creates one new community in Christ. This is particularly
+relevant in our context which SBS names the most ethnically diverse suburb in
+all of Australia.
 
 ## Missional
 
@@ -65,9 +60,8 @@ nations.
 
 **Every disciple of Christ should be a disciple maker.**
 
-It is our hope
-that as we proclaim this gospel in the city of Monash that many would repent and
-put their faith in Jesus and be reconciled to God.
+It is our hope that as we proclaim this gospel in the city of Monash that many
+would repent and put their faith in Jesus and be reconciled to God.
 
 # Beliefs
 
