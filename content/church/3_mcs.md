@@ -1,4 +1,9 @@
-+++ title = "Missional Communities" template = "page.html" weight = 3 [extra]
-icon="group" desc="Find a small group" +++
++++
+title = "Missional Communities"
+template = "mcs.html"
+weight = 3
 
-{{ mc_locations() }}
+[extra]
+icon="group"
+desc="Find a small group"
++++

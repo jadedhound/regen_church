@@ -1,5 +1,11 @@
-+++ title = "Values and Beliefs" weight = 2 [extra] icon="bible" desc="Our
-purpose and mission" +++
++++
+title = "Values and Beliefs"
+weight = 2
+
+[extra]
+icon="bible"
+desc="Our purpose and mission"
++++
 
 # Purpose & Mission
 

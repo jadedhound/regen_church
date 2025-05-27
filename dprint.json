@@ -1,6 +1,7 @@
 {
   "excludes": [
     "**/node_modules",
+    "content/**/*.md",
     "**/*-lock.json"
   ],
   "markdown": {
