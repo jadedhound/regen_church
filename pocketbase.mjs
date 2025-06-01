@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 
 import { spawnSync } from "child_process";
-import { promises as fs } from "fs";
+import { promises as fs } from "node:fs";
 import path from "path";
 import PocketBase from "pocketbase";
 import { argv, exit } from "process";
@@ -34,34 +34,52 @@ function decryptSecrets(passphrase) {
 }
 
 /**
- * Downloads images from a record.
+ * Downloads images from a record, if they exist.
+ * @param {str} basePath
+ */
+async function createFilenamesJson(basePath) {
+  const outputName = "filenames.json";
+  const outputPath = path.join(basePath, outputName);
+  const files = await fs.readdir(basePath, { withFileTypes: true });
+  const filenames = files
+    .filter(dirent => dirent.isFile())
+    .map(dirent => dirent.name)
+    .filter(name => name != outputName);
+  await Bun.write(outputPath, JSON.stringify(filenames));
+}
+
+/**
+ * Downloads images from a record, if they exist.
  * @param {str} imagePath
  * @param {import("pocketbase").RecordModel} record
  */
 async function getImages(imagePath, record) {
   for (const [_, value] of Object.entries(record)) {
     if (/\.(jpg|jpeg|png)$/i.test(value)) {
-      const result = await fetch(`${url}/api/files/${record.collectionId}/${record.id}/${value}`);
-      const path = `${imagePath}/${value}`;
-      await Bun.write(path, result);
+      const response = await fetch(`${url}/api/files/${record.collectionId}/${record.id}/${value}`);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+      const outputPath = path.join(imagePath, value);
+      await Bun.write(outputPath, await response.bytes());
+      console.log(`Downloaded: ${value}`);
     }
   }
 }
 
 /**
  * Downloads a given collection.
- * @param {PocketBase} pb
  * @param {import("pocketbase").CollectionModel} collection
+ * @param {str} basePath
+ * @param {str} imagePath
  */
-async function getCollection(collection) {
-  const basePath = path.join(outputDir, collection.name);
-  const imagePath = path.join(basePath, "images");
-  await fs.mkdir(imagePath, { recursive: true });
+async function getCollection(collection, basePath, imagePath) {
   const records = await pb.collection(collection.name).getFullList();
   console.log(`${collection.name}: ${records.length} records.`);
   for (const record of records) {
-    await fs.writeFile(path.join(basePath, `${record.id}.json`), JSON.stringify(record));
-    getImages(imagePath, record);
+    const outputPath = path.join(basePath, `${record.id}.json`);
+    await Bun.write(outputPath, JSON.stringify(record));
+    await getImages(imagePath, record);
   }
 }
 
@@ -79,14 +97,19 @@ async function main() {
     if (!pb.authStore.isSuperuser && !pb.authStore.isValid) {
       throw ("Unable to authenticate");
     }
-
-    (await pb.collections.getFullList())
+    const collections = (await pb.collections.getFullList())
       .filter(
         (collection) => !collection.name.startsWith("_") && collection.name != "users",
-      )
-      .forEach(getCollection);
-  } catch (e) {
-    console.error(`Pocketbase fetching failed: ${e}`);
+      );
+    for (const collection of collections) {
+      const basePath = path.join(outputDir, collection.name);
+      const imagePath = path.join(basePath, "images");
+      await fs.mkdir(imagePath, { recursive: true });
+      await getCollection(collection, basePath, imagePath);
+      await createFilenamesJson(basePath);
+    }
+  } catch (error) {
+    console.error(error.stack);
     exit(1);
   }
 }
