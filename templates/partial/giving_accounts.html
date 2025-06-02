@@ -1,4 +1,38 @@
-{% set data = load_data(path="build/giving.yml", format="yaml") %}
+{% set data = load_data(literal=`
+- title: "morning"
+  name: "regeneration church monash incorporated"
+  bsb: "033-385"
+  bank: "westpac"
+  account: "191311"
+  reference_format: '"[name/anon] – pledge" OR "[name/anon] – offering"'
+  example: "Vinh – Offering"
+
+- title: "mandarin"
+  name: "regeneration church monash incorporated"
+  bsb: "033-385"
+  bank: "westpac"
+  account: "243556"
+  reference_format: '"[name/anon] – pledge" OR "[name/anon] – offering"'
+  example: "Vinh – Offering"
+
+
+- title: "night"
+  name: "regeneration church monash incorporated"
+  bsb: "033-385"
+  bank: "westpac"
+  account: "192891"
+  reference_format: '"[name/anon] – pledge" OR "[name/anon] – offering"'
+  example: "Vinh – Offering"
+
+- title: "other"
+  name: "regeneration church monash incorporated"
+  bsb: "033-385"
+  bank: "westpac"
+  account: "192904"
+  reference_format: "[name/anon] – [description]"
+  example: "Anon – Meal; Vinh – For Nara"
+`, format="yaml") %}
+
 
 <!-- Radio buttons -->
 <div class="grid grid-cols-2 gap-4 mt-8 max-w-md mx-auto">

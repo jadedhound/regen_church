@@ -3,7 +3,7 @@
 {% macro image_with_caption(image="build/images/placeholder_vertical.png", title, body="") %}
   
   <div class="flex-shrink-0 relative">
-    {{ img_macro::simple(
+    {{ img_macro::standalone(
         image=image,
         sizes="18rem",
         alt="service-preview",

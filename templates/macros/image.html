@@ -29,11 +29,24 @@
   >
 {% endmacro simple %}
 
+{% macro standalone(image="placeholder", sizes, alt, class="", op="fit_width") %}
+    {% set image_json = load_data(path="pb/Images/" ~ image ~ ".json", format="json") %}
+    {% set image_path = "pb/Images/images/" ~ image_json.image %}
 
-{% macro with_heading(image, alt, title) %}
-  <div class="relative">
     {{ img_macro::simple(
-      image=image | default(value="build/images/memphis-colorful.webp"),
+      image=image_path,
+      alt=alt,
+      sizes=sizes,
+      class=class,
+      op=op
+    ) }}
+{% endmacro simple %}
+
+
+{% macro with_heading(image="placeholder", alt, title) %}
+  <div class="relative">
+    {{ img_macro::standalone(
+      image=image,
       alt=alt,
       sizes="100vw",
       class="h-[30vh] lg:h-[50vh] w-full object-cover bg-no-repeat bg-cover bg-center object-top",

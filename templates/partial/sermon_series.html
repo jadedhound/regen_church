@@ -1,15 +1,16 @@
 {% import "macros/image.html" as img_macro %}
-{% set data = load_data(path="build/sermon_series.yml", format="yaml") %}
+{% set files = load_data(path="pb/Sermons/filenames.json", format="json") %}
 
 <div class="grid md:grid-cols-4 grid-cols-2 gap-2 group max-w-2xl mx-auto">
 
-  {% for series in data %}
+  {% for series_file in files %}
+    {% set series = load_data(path="pb/Sermons/" ~ series_file, format="json") %}
     <a
       href={{ series.link }} target="_blank"
       class="opacity-100 nth-[n+4]:group-has-checked:hidden"
     >
       {{ img_macro::simple(
-          image="build/sermons/" ~ series.image ~ ".png",
+          image="pb/Sermons/images/" ~ series.image,
           sizes="(min-width: 780px) calc(25vw - 14px), calc(50vw - 20px)",
           alt="sermon series thumbnail",
           class="rounded-md",

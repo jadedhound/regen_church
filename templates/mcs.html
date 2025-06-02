@@ -8,7 +8,8 @@
 {% set files = load_data(path="pb/MC/filenames.json", format="json") %}
 
 <div class="grid sm:grid-cols-3 gap-4 md:mx-auto">
-  {% for mc in data %}
+  {% for mc_file in files %}
+    {% set mc = load_data(path="pb/MC/" ~ mc_file, format="json") %}
     <div class="flex flex-col gap-2 px-4 bg-surface rounded-md">
       <h3>{{ mc.name }}</h3>
       <div class="flex gap-2 capitalize">

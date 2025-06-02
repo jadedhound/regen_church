@@ -6,8 +6,8 @@
 <main class="flex flex-col gap-8 px-4">
 
    <div class="relative -mx-4">
-      {{ img_macro::simple(
-          image="build/images/cover.png",
+      {{ img_macro::standalone(
+          image="frontcover",
           sizes="100vw",
           alt="cover image",
           class="h-[calc(95vh-4rem)] w-full object-cover bg-no-repeat bg-cover bg-center",
@@ -31,17 +31,17 @@
 
   <div class="flex gap-4 overflow-x-auto md:mx-auto">
     {{ card_macro::image_with_caption(
-      image="build/images/morning_kids_program.png",
+      image="morning_service",
       title="10AM Morning Service",
       body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
     ) }}
     {{ card_macro::image_with_caption(
-      image="build/images/mandarin_service.png",
+      image="mandarin_service",
       title="2PM Mandarin Service",
       body="A welcoming service in Mandarin, tailored for the Chinese-speaking community."
     ) }}
     {{ card_macro::image_with_caption(
-      image="build/images/night_dinner.png",
+      image="night_service",
       title="5PM Night Service",
       body="A dynamic space for students and young adults to connect through worship and a meal together."
     ) }}

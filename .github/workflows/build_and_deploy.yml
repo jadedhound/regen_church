@@ -1,10 +1,9 @@
 name: Build and Deploy
 
 on: 
-  push: false
-#  push:
-#   branches:
-#    - stable
+  push:
+   branches:
+    - stable
 
 jobs:
   build:
