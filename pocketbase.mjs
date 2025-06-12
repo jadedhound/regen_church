@@ -55,12 +55,23 @@ async function createFilenamesJson(basePath) {
  */
 async function getImages(imagePath, record) {
   for (const [_, value] of Object.entries(record)) {
-    if (/\.(jpg|jpeg|png)$/i.test(value)) {
-      const response = await fetch(`${url}/api/files/${record.collectionId}/${record.id}/${value}`);
+    if (/\.(jpg|jpeg|png|webp)$/i.test(value)) {
+      const imageURL = `${url}/api/files/${record.collectionId}/${record.id}/${value}`
+      const outputPath = path.join(imagePath, value);
+
+      if (await fs.exists(outputPath)) {
+        const response = await fetch(imageURL, { method: 'HEAD' });
+        const urlSize = response.headers.get('content-length');
+        const cachedSize = (await fs.stat(outputPath)).size;
+        if (urlSize == cachedSize) {
+          continue
+        }
+      }
+
+      const response = await fetch(imageURL);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
-      const outputPath = path.join(imagePath, value);
       await Bun.write(outputPath, await response.bytes());
       console.log(`Downloaded: ${value}`);
     }
