@@ -44,7 +44,7 @@
     overflow: hidden;
   }
   dialog {
-    @apply mx-auto bg-transparent my-auto h-fit w-fit p-4;
+    @apply m-auto bg-transparent;
     
     &::backdrop {
       @apply bg-black/50;

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% import "macros/image.html" as img_macro %}
+
+{% block content %}
+
+{{ img_macro::with_heading(
+  image="announcements",
+  alt="header_image",
+  title="Announcements",
+  title_class="!text-5xl"
+)}}
+
+<div class="grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 max-w-2xl p-8">
+
+  {% set files = load_data(path="pb/Announcements/filenames.json", format="json") %}
+  {% for announcement_file in files %}
+    {% set data = load_data(path="pb/Announcements/" ~ announcement_file, format="json") %}
+    {% set image = 'pb/Announcements/images/' ~ data.image %}
+
+    <div class="">
+      <h3> {{ data.title }} </h3>
+      <p class="italic"> {{ data.description }} </p>
+      {{ img_macro::simple(
+          image=image,
+          sizes="100vw",
+          alt="{{ data.title ~ ' portrait' }}",
+          class="rounded-md",
+      ) }}
+    </div>
+    
+  {% endfor %}
+
+</div>
+
+{% endblock content %}

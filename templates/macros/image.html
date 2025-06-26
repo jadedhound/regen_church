@@ -43,7 +43,7 @@
 {% endmacro simple %}
 
 
-{% macro with_heading(image="placeholder", alt, title) %}
+{% macro with_heading(image="placeholder", alt, title, title_class="") %}
   <div class="relative">
     {{ img_macro::standalone(
       image=image,
@@ -53,8 +53,8 @@
       op="fill"
     ) }}
 
-    <div class="absolute inset-0 h-full flex items-center justify-center text-white bg-background/40">
-      <div class="text-center uppercase text-7xl font-semibold p-4 font-alumni text-5xl border-x-2 border-flair px-8">
+    <div class="absolute inset-0 h-full flex items-center justify-center text-white bg-black/60">
+      <div class="text-center uppercase font-semibold p-4 font-alumni text-7xl border-x-2 border-flair px-8 {{ title_class }}">
         {{ title }}
       </div>
     </div>

@@ -10,7 +10,7 @@
   title="Leaders",
 )}}
 
-<div class="grid grid-cols-2 md:grid-cols-4 mx-auto gap-4 max-w-2xl px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 mx-auto gap-4 max-w-2xl p-8">
 
   {% set files = load_data(path="pb/Leaders/filenames.json", format="json") %}
   {% for leader_file in files %}
@@ -39,10 +39,25 @@
       <div class="bg-surface text-onBackground rounded-md flex shadow-xs shadow-black">
         <div class="grow flex flex-col gap-4 max-w-2xl p-4 lg:h-auto">
           <div class="overflow-y-auto max-h-[60vh] grow">
-            <h4 class="font-bold uppercase mb-2">{{ leader.name }}</h4>
-            {{ leader.bio | markdown | safe }}
+            <div class="pb-4 lg:hidden">
+              <div class="p-2 border-2 border-flair rounded-full mx-auto w-fit">
+                {{ img_macro::simple(
+                    image=image,
+                    sizes="100vw",
+                    alt="{{ leader.name ~ ' portrait' }}",
+                    class="aspect-square object-cover rounded-full h-[20vh] w-fit",
+                ) }}
+              </div>
+            </div>
+            <h4 class="font-bold text-center lg:text-left uppercase grow">{{ leader.name }}</h4>
+            <div class="py-4">
+              {{ leader.bio | markdown | safe }}
+            </div>
+            <button class="regen-button" onclick="close_dialog('{{ leader.id }}')">
+              CLOSE
+            </button>
           </div>
-        </div>
+        </div> 
         {{ img_macro::simple(
             image=image,
             sizes="30vw",
@@ -69,6 +84,14 @@
     dialog = document.getElementById(id);
     dialog.showModal();
     dialog.addEventListener('click', handleBackdropClick);
+      const scrollable = dialog.querySelector('[class*="overflow-y-auto"]');
+      if (scrollable) scrollable.scrollTop = 0;
+  }
+
+  function close_dialog(id) {
+    dialog = document.getElementById(id);
+    dialog.close();
+    dialog.removeEventListener('click', handleBackdropClick);
   }
 </script>
 
