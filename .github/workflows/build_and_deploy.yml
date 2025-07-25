@@ -32,27 +32,10 @@ jobs:
         bun pocketbase.mjs $GPG_PASSPHRASE
         bun run prod
 
-    - name: Upload static files as artifact
-      id: deployment
-      uses: actions/upload-pages-artifact@v3
+    - name: Deploy
+      uses: cloudflare/wrangler-action@v3
       with:
-        path: dist/
-
-  deploy:
-    name: Deploy the artifact created
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-
-    - name: Deploy to github pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        command: pages deploy ./dist --project-name=regen-website
+        gitHubToken: ${{ secrets.GITHUB_TOKEN }}
