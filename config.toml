@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://wilymonkey.github.io/regen_church/"
+base_url = "https://regenchurch.github.io/website/"
 #base_url = "http://192.168.1.20:1111/"
 
 # Whether to automatically compile all Sass files in the sass directory
