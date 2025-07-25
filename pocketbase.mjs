@@ -56,15 +56,15 @@ async function createFilenamesJson(basePath) {
 async function getImages(imagePath, record) {
   for (const [_, value] of Object.entries(record)) {
     if (/\.(jpg|jpeg|png|webp)$/i.test(value)) {
-      const imageURL = `${url}/api/files/${record.collectionId}/${record.id}/${value}`
+      const imageURL = `${url}/api/files/${record.collectionId}/${record.id}/${value}`;
       const outputPath = path.join(imagePath, value);
 
       if (await fs.exists(outputPath)) {
-        const response = await fetch(imageURL, { method: 'HEAD' });
-        const urlSize = response.headers.get('content-length');
+        const response = await fetch(imageURL, { method: "HEAD" });
+        const urlSize = response.headers.get("content-length");
         const cachedSize = (await fs.stat(outputPath)).size;
         if (urlSize == cachedSize) {
-          continue
+          continue;
         }
       }
 
@@ -94,6 +94,28 @@ async function getCollection(collection, basePath, imagePath) {
   }
 }
 
+async function createRedirectFiles() {
+  const inDir = "./pb/Links";
+  const linkDir = "./content/link";
+
+  const files = (await fs.readdir(inDir))
+    .filter((f) => f.endsWith(".json") && !f.startsWith("filenames"));
+
+  for (const f of files) {
+    const inPath = path.join(inDir, f);
+    const content = await Bun.file(inPath).json();
+
+    const { id, url } = content;
+    const markdownContent = `+++\ntitle = "${id}"\nredirect_to = "${url}"\n+++\n`;
+    const outDir = path.join(linkDir, id);
+    await fs.mkdir(outDir, { recursive: true });
+    const outPath = path.join(outDir, `_index.md`);
+
+    await Bun.write(outPath, markdownContent);
+    console.log(`Created link ${id}`);
+  }
+}
+
 async function main() {
   try {
     if (argv.length < 3) {
@@ -109,9 +131,7 @@ async function main() {
       throw ("Unable to authenticate");
     }
     const collections = (await pb.collections.getFullList())
-      .filter(
-        (collection) => !collection.name.startsWith("_") && collection.name != "users",
-      );
+      .filter((c) => !c.name.startsWith("_") && c.name != "users");
     for (const collection of collections) {
       const basePath = path.join(outputDir, collection.name);
       const imagePath = path.join(basePath, "images");
@@ -119,6 +139,7 @@ async function main() {
       await getCollection(collection, basePath, imagePath);
       await createFilenamesJson(basePath);
     }
+    createRedirectFiles();
   } catch (error) {
     console.error(error.stack);
     exit(1);

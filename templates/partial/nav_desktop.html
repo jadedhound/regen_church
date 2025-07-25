@@ -1,8 +1,7 @@
 <nav class="hidden lg:flex gap-4 whitespace-nowrap items-center">
-  {% set section = get_section(path="_index.md") %}
-  {% for subpath in section.subsections %}
+  {% for nav_item in config.extra.nav_menu %}
     <div class="relative group">
-      {% set subsection = get_section(path=subpath) %}
+      {% set subsection = get_section(path= nav_item ~ "/_index.md") %}
       {% if subsection.pages %}
         <div data-desktop-nav data-target="navdrop-{{ subsection.title }}" class="flex gap-1 items-center">
           {{ subsection.title }}

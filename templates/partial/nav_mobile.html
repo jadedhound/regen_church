@@ -7,13 +7,14 @@
   <div class="flex z-10 absolute top-0 left-0 h-full w-full">
     <button onclick="closeNavModal()" class="flex-grow"></button>
     <div class="flex flex-col gap-4 bg-background shadow-sm shadow-black min-w-56 rounded-l-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="nav-modal-drawer">
+
       <div class="bg-primary flex flex-row-reverse gap-4 items-center rounded-tl-xl h-32 px-8">
         <h3 class="text-white w-min text-right font-bold">REGENERATION CHURCH</h3>
       </div>
-      {% set section = get_section(path="_index.md") %}
+
       <div class="text-right px-8">
-        {% for subpath in section.subsections %}
-          {% set subsection = get_section(path=subpath) %}
+        {% for nav_item in config.extra.nav_menu %}
+          {% set subsection = get_section(path= nav_item ~ "/_index.md") %}
           <p class="font-bold uppercase">{{ subsection.title }}</p>
           {% if subsection.pages %}
             <ul class="flex flex-col gap-2 py-4 text-onBackground/90">
@@ -33,6 +34,7 @@
           {% endif %}
         {% endfor %}
       </div>
+
     </div>
   </div>
 </div>
