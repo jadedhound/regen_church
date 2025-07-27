@@ -1,14 +1,8 @@
-{% extends "base.html" %}
+{% extends "page.html" %}
 
 {% import "macros/image.html" as img_macro %}
 
-{% block content %}
-
-{{ img_macro::with_heading(
-  image="leaders",
-  alt="header_image",
-  title="Leaders",
-)}}
+{% block article %}
 
 <div class="grid grid-cols-2 md:grid-cols-4 mx-auto gap-4 max-w-2xl p-8">
 
@@ -95,4 +89,4 @@
   }
 </script>
 
-{% endblock content %}
+{% endblock %}

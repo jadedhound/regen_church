@@ -1,36 +1,18 @@
-{% extends "base.html" %}
-{% import "macros/image.html" as img_macro %}
+{% extends "page.html" %}
 
-{% block content %}
-  <main>
-    {% if page.title is defined %}
-      {% set title = page.title %}
-    {% elif section.title is defined %}
-      {% set title = section.title %}
-    {% endif %}
+{% block article %}
 
-    {{ img_macro::with_heading(
-      image="connect",
-      alt="header_image",
-      title=title,
-    )}}
+<p>
+  The work of the church is made possible by the generous giving of God’s people.
+  If you are a member or regular attendee who would like to give to the work of
+  the church, you can give electronically by depositing funds into one of the
+  following accounts:
 
-    <div class="p-4 mt-8 max-w-3xl mx-auto w-full">
+  {% include "partial/giving_accounts.html" %}
 
+  As a new church plant, we also appreciate the support of external donors. If you
+  are not a member or attendee of the church, but would like to give, please
+  contact Kien.
+</p>
 
-    <p>
-      The work of the church is made possible by the generous giving of God’s people.
-      If you are a member or regular attendee who would like to give to the work of
-      the church, you can give electronically by depositing funds into one of the
-      following accounts:
-
-      {% include "partial/giving_accounts.html" %}
-
-      As a new church plant, we also appreciate the support of external donors. If you
-      are not a member or attendee of the church, but would like to give, please
-      contact Kien.
-    </p>
-
-    </div>
-  </main>
-{% endblock content %}
+{% endblock article%}

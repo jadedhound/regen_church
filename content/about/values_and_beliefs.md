@@ -3,9 +3,10 @@ title = "Values and Beliefs"
 weight = 2
 
 [extra]
-header_image="values_and_beliefs"
 icon="bible"
 desc="Our purpose and mission"
+header_image="values_and_beliefs"
+subtitle="Our purpose and mission"
 +++
 
 # Purpose & Mission

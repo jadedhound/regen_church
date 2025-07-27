@@ -3,24 +3,15 @@
 
 {% block content %}
   <main>
-    {% if page.title is defined %}
-      {% set title = page.title %}
-    {% elif section.title is defined %}
-      {% set title = section.title %}
-    {% endif %}
     {{ img_macro::with_heading(
-      image=page.extra.header_image,
+      image=page.extra.header_image | default(value=section.extra.header_image),
       alt="header_image",
-      title=title,
+      title=page.title | default(value=section.title),
+      subtitle=page.extra.subtitle | default(value=section.extra.subtitle),
     )}}
 
     <article class="p-4 mt-8 max-w-3xl mx-auto w-full">
-      {% if page.content is defined %}
-        {% set content = page.content %}
-      {% elif section.content is defined %}
-        {% set content = section.content %}
-      {% endif %}
-      {{ content | safe }}
+      {% block article %} {% endblock %}
     </article>
 
   </main>

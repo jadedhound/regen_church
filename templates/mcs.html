@@ -1,8 +1,6 @@
-{% extends "base.html" %}
+{% extends "article.html" %}
 
-{% import "macros/image.html" as img_macro %}
-
-{% block content %}
+{% block article %}
 
 {% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
 {% set files = load_data(path="pb/MC/filenames.json", format="json") %}
@@ -30,4 +28,4 @@
   {% endfor %}
 </div>
 
-{% endblock content %}
+{% endblock %}
