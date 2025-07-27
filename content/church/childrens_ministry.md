@@ -3,6 +3,7 @@ title = "Children's Ministry"
 weight = 4
 
 [extra]
+header_image="childrens_ministry"
 icon="baby"
 desc="Faith like a mustard seed"
 +++

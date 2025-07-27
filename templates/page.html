@@ -9,7 +9,7 @@
       {% set title = section.title %}
     {% endif %}
     {{ img_macro::with_heading(
-      image=page.extra.header_image | default(value="placeholder"),
+      image=page.extra.header_image,
       alt="header_image",
       title=title,
     )}}

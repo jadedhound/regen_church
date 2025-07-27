@@ -29,7 +29,7 @@
   >
 {% endmacro simple %}
 
-{% macro standalone(image="placeholder", sizes, alt, class="", op="fit_width") %}
+{% macro standalone(image, sizes, alt, class="", op="fit_width") %}
     {% set image_json = load_data(path="pb/Images/" ~ image ~ ".json", format="json") %}
     {% set image_path = "pb/Images/images/" ~ image_json.image %}
 
@@ -43,7 +43,7 @@
 {% endmacro simple %}
 
 
-{% macro with_heading(image="placeholder", alt, title, title_class="") %}
+{% macro with_heading(image, alt, title, title_class="") %}
   <div class="relative">
     {{ img_macro::standalone(
       image=image,
