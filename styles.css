@@ -117,12 +117,14 @@
     @apply flex justify-center items-center p-3 gap-4 w-full max-w-xs mx-auto;
     @apply font-semibold;
     @apply overflow-x-auto;
+    @apply cursor-pointer;
   }
   .regen-button-important {
     @apply rounded-md bg-primary;
     @apply flex justify-center items-center p-4 gap-4 w-full max-w-xs mx-auto;
     @apply font-semibold text-white;
     @apply overflow-x-auto;
+    @apply cursor-pointer;
   }
 
   .regen-title {
