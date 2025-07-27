@@ -3,17 +3,27 @@
     <div class="relative group">
       {% set subsection = get_section(path= nav_item ~ "/_index.md") %}
       {% if subsection.pages %}
-        <div data-desktop-nav data-target="navdrop-{{ subsection.title }}" class="flex gap-1 items-center">
-          {{ subsection.title }}
-          <svg class="text-onBackground size-4 mb-1 ml-1"><use href="{{ sprites }}#chevron-down"></use></svg>
+
+        <div
+          data-desktop-nav
+          data-target="navdrop-{{ subsection.title }}"
+          class="flex gap-1 items-center cursor-pointer p-2 rounded-md"
+        >
+            {{ subsection.title }}
+          <svg class="text-onBackground size-4 mb-1 ml-1 group-hover:text-flair">
+            <use href="{{ sprites }}#chevron-down"></use>
+          </svg>
         </div>
+
         <div id="navdrop-{{ subsection.title }}" class="hidden group-hover:block absolute right-0">
-          <ul class="list-none flex flex-col px-4 py-2 mt-6 rounded-md bg-background shadow-sm shadow-black">
+          <ul class="list-none flex flex-col px-4 py-2 mt-4 rounded-md bg-background shadow-sm shadow-black">
             {% for page in subsection.pages %}
             <a href="{{ page.permalink | safe }}">
-              <li class="py-2 grid grid-cols-[4rem_auto] items-center">
-                <div class="row-span-2 p-2 border-2 border-onBackground/80 rounded-md aspect-square mr-2 w-fit">
-                  <svg><use href="{{ sprites }}#{{ page.extra.icon }}"></use></svg>
+              <li class="py-2 grid grid-cols-[4rem_auto] items-center group/item">
+                <div class="row-span-2 p-2 border-2 border-onBackground/80 group-hover/item:border-flair rounded-md aspect-square mr-2 w-fit">
+                  <svg class="group-hover/item:text-flair">
+                    <use href="{{ sprites }}#{{ page.extra.icon }}"></use>
+                  </svg>
                 </div>
                 <div class="">{{ page.title }}</div>
                 <div class="text-onBackground/80 text-sm">{{ page.extra.desc }}</div>
@@ -22,10 +32,13 @@
             {% endfor %}
           </ul>
         </div>
+
       {% else %}
+
         <a href="{{ subsection.permalink }}">
           {{ subsection.title }}
         </a>
+
       {% endif %}
     </div>
   {% endfor %}

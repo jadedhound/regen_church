@@ -1,16 +1,24 @@
-{% set link_css = 'flex items-center gap-2' %}
+{% set link_css = 'flex items-center gap-2 [&>svg]:mb-1' %}
 
-<div class="grid gap-4 mx-auto w-fit">
+<div class="grid gap-4 grid-cols-2 mx-auto w-fit text-onBackground/80">
   <a href="https://www.facebook.com/regenerationchurchmonash" target="_blank" class="{{ link_css }}">
-    <svg class="text-blue-600"><use href="{{ sprites }}#facebook"></use></svg>
+    <svg><use href="{{ sprites }}#facebook"></use></svg>
     Facebook
   </a>
   <a href="https://regenerationchurchmonash.elvanto.com.au/login" target="_blank" class="{{ link_css }}">
-    <svg class="size-5 text-green-600"><use href="{{ sprites }}#elvanto"></use></svg>
-    <span class="ml-1">Elvanto</span>
+    <svg class="size-5"><use href="{{ sprites }}#elvanto"></use></svg>
+    Elvanto
   </a>
-  <a href="https://github.com/jadedhound/regen_church" target="_blank" class="{{ link_css }} whitespace-nowrap">
-    <svg><use href="{{ sprites }}#github"></use></svg>
-    v{{- now() | date(format="%d.%m.%y") -}}
+  <a href="https://open.spotify.com/show/0ZbfZIdsfwtTLQDuUV7J3D?si=b97a4dbd9e02411f" target="_blank" class="{{ link_css }}">
+    <svg><use href="{{ sprites }}#spotify"></use></svg>
+    Spotify
+  </a>
+  <a href="https://www.youtube.com/@RegenerationMonash" target="_blank" class="{{ link_css }}">
+    <svg><use href="{{ sprites }}#youtube"></use></svg>
+    Youtube
+  </a>
+  <a href="https://regenerationchurchmonash.safeministrycheck.com.au/statement.php" target="_blank" class="{{ link_css }} col-span-2">
+    <svg><use href="{{ sprites }}#safe-ministry"></use></svg>
+    Safe Ministry Check
   </a>
 </div>
