@@ -13,10 +13,10 @@
 
 <div class="grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 max-w-2xl p-8">
 
-  {% set files = load_data(path="pb/Announcements/filenames.json", format="json") %}
+  {% set files = load_data(path="pocketbase/Announcements/filenames.json", format="json") %}
   {% for announcement_file in files %}
-    {% set data = load_data(path="pb/Announcements/" ~ announcement_file, format="json") %}
-    {% set image = 'pb/Announcements/images/' ~ data.image %}
+    {% set data = load_data(path="pocketbase/Announcements/" ~ announcement_file, format="json") %}
+    {% set image = 'pocketbase/Announcements/images/' ~ data.image %}
 
     <div class="">
       <h3> {{ data.title }} </h3>

@@ -19,7 +19,39 @@ external_links_target_blank = true
 
 [extra]
 
-nav_menu = [
-  "about",
-  "church"
-]
+[[extra.nav_menu]]
+title = "About"
+
+    [[extra.nav_menu.menu]]
+    path = "about/leaders.md"
+    icon = "leaders"
+    desc = "Pastors and Ministry Leaders"
+
+    [[extra.nav_menu.menu]]
+    path = "about/values_and_beliefs.md"
+    icon = "bible"
+    desc = "Our purpose and mission"
+
+[[extra.nav_menu]]
+title = "For Our Church"
+
+    [[extra.nav_menu.menu]]
+    path = "church/announcements.md"
+    icon = "trumpet"
+    desc = "What's Happening"
+
+    [[extra.nav_menu.menu]]
+    path = "church/mcs.md"
+    icon = "group"
+    desc = "Find a Small Group"
+
+    [[extra.nav_menu.menu]]
+    path = "church/childrens_ministry.md"
+    icon = "baby"
+    desc = "Faith like a Mustard Seed"
+
+    [[extra.nav_menu.menu]]
+    path = "connect/_index.md"
+    icon = "charity"
+    desc = "Connect with Us"
+    is_section = true

@@ -6,10 +6,10 @@
 
 <div class="grid grid-cols-2 md:grid-cols-4 mx-auto gap-4">
 
-  {% set files = load_data(path="pb/Leaders/filenames.json", format="json") %}
+  {% set files = load_data(path="pocketbase/Leaders/filenames.json", format="json") %}
   {% for leader_file in files %}
-    {% set leader = load_data(path="pb/Leaders/" ~ leader_file, format="json") %}
-    {% set image = 'pb/Leaders/images/' ~ leader.portrait %}
+    {% set leader = load_data(path="pocketbase/Leaders/" ~ leader_file, format="json") %}
+    {% set image = 'pocketbase/Leaders/images/' ~ leader.portrait %}
 
     <div class="flex flex-col gap-6">
       <div class="relative">

@@ -7,7 +7,7 @@ import PocketBase from "pocketbase";
 import { argv, exit } from "process";
 
 const secretsFile = "secrets.json.gpg";
-const outputDir = "pb/";
+const outputDir = "pocketbase/";
 /** @type {str} */
 let url;
 /** @type {PocketBase} */
@@ -95,7 +95,7 @@ async function getCollection(collection, basePath, imagePath) {
 }
 
 async function createRedirectFiles() {
-  const inDir = "./pb/Links";
+  const inDir = path.join(outputDir, "Links");
   const linkDir = "./content/link";
 
   const files = (await fs.readdir(inDir))

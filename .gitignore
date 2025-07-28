@@ -1,17 +1,13 @@
+# Bun, Zola, Tailwind
 node_modules/
 dist/
 static/styles.css
 static/processed_images/
-static/images/
-build/images/
-build/sermons/
-rclone.conf
-pb/
-glue/pb_env
-glue/secrets.yml
-glue/__pycache__
-content/link/*/
 
 # POCKETBASE
 secrets.json
+pocketbase/
+
+# Site Specific
+content/link/*/
 

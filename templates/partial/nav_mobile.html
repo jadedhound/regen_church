@@ -14,24 +14,26 @@
 
       <div class="text-right px-8">
         {% for nav_item in config.extra.nav_menu %}
-          {% set subsection = get_section(path= nav_item ~ "/_index.md") %}
-          <p class="font-bold uppercase">{{ subsection.title }}</p>
-          {% if subsection.pages %}
+          <p class="font-bold uppercase">{{ nav_item.title }}</p>
             <ul class="flex flex-col gap-2 py-4 text-onBackground/90">
-              {% for page in subsection.pages %}
+              {% for sub_item in nav_item.menu %}
+
+              {% if sub_item.is_section %}
+                  {% set page = get_section(path=sub_item.path) %}
+              {% else %}
+                  {% set page = get_page(path=sub_item.path) %}
+              {% endif %}
+
               <a href="{{ page.permalink | safe }}">
                 <li class="py-2 flex flex-row-reverse items-center">
                   <div class="row-span-2 p-2 border-2 border-onBackground/80 rounded-md aspect-square ml-2 w-fit">
-                    <svg><use href="{{ sprites }}#{{ page.extra.icon }}"></use></svg>
+                    <svg><use href="{{ sprites }}#{{ sub_item.icon }}"></use></svg>
                   </div>
                   <div class="">{{ page.title }}</div>
                 </li>
               </a>
               {% endfor %}
             </ul>
-          {% else %}
-            <div class="psuedo h-4"></div>
-          {% endif %}
         {% endfor %}
       </div>
 

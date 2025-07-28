@@ -30,8 +30,8 @@
 {% endmacro simple %}
 
 {% macro standalone(image, sizes, alt, class="", op="fit_width") %}
-    {% set image_json = load_data(path="pb/Images/" ~ image ~ ".json", format="json") %}
-    {% set image_path = "pb/Images/images/" ~ image_json.image %}
+    {% set image_json = load_data(path="pocketbase/Images/" ~ image ~ ".json", format="json") %}
+    {% set image_path = "pocketbase/Images/images/" ~ image_json.image %}
 
     {{ img_macro::simple(
       image=image_path,
