@@ -1,3 +1,3 @@
 +++
-page_template = "page.html"
+page_template = "article.html"
 +++
