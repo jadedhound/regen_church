@@ -30,6 +30,7 @@ jobs:
       run: |
         bun install
         bun pocketbase.mjs $GPG_PASSPHRASE
+        bun gen-sprites.mjs
         bun run prod
 
     - name: Deploy
