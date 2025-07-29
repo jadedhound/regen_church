@@ -2,6 +2,7 @@
 node_modules/
 dist/
 static/styles.css
+static/sprites.svg
 static/processed_images/
 
 # POCKETBASE
@@ -10,4 +11,3 @@ pocketbase/
 
 # Site Specific
 content/link/*/
-

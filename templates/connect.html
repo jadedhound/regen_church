@@ -1,6 +1,10 @@
 {% extends "page.html" %}
 
+{% import "macros/card.html" as card_macro %}
+
 {% block article %}
+
+{{ img_macro::connect_form(image="") }}
 
 <p>
   The work of the church is made possible by the generous giving of God’s people.
@@ -15,4 +19,4 @@
   contact Kien.
 </p>
 
-{% endblock article%}
+{% endblock %}

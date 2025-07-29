@@ -1,6 +1,6 @@
 {% import "macros/image.html" as img_macro %}
 
-{% macro image_with_caption(image="build/images/placeholder_vertical.png", title, body="") %}
+{% macro image_with_caption(image, title, body="") %}
   
   <div class="flex-shrink-0 relative">
     {{ img_macro::standalone(
@@ -19,7 +19,7 @@
 
 {% endmacro image_with_caption %}
 
-{% macro icon_with_caption(icon="placeholder", iconColor="text-onBackground", background="bg-orange-500", title, body="") %}
+{% macro icon_with_caption(icon, iconColor="text-onBackground", background="bg-orange-500", title, body="") %}
 
   {% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
   
@@ -34,5 +34,22 @@
       {% endif %}
     </div>
   </div>
+
+{% endmacro %}
+
+{% macro connect_form(image, title, subtitle) %}
+
+<div class="flex rounded-md">
+  {{ img_macro::standalone(
+      image=image,
+      sizes="18rem",
+      alt="connect form image",
+      class="rounded-md object-cover",
+  ) }}
+  <div class="">
+    <h3 class="text-center w-full">{{ title }}</h3>
+    <p> {{ subtitle }} </p>
+  </div>
+</div>
 
 {% endmacro %}
