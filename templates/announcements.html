@@ -1,17 +1,10 @@
-{% extends "base.html" %}
+{% extends "page.html" %}
 
 {% import "macros/image.html" as img_macro %}
 
-{% block content %}
+{% block main %}
 
-{{ img_macro::with_heading(
-  image="announcements",
-  alt="header_image",
-  title="Announcements",
-  subtitle="Find out what's happening at Regen today.",
-)}}
-
-<div class="grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 max-w-2xl p-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
   {% set files = load_data(path="pocketbase/Announcements/filenames.json", format="json") %}
   {% for announcement_file in files %}
@@ -33,4 +26,4 @@
 
 </div>
 
-{% endblock content %}
+{% endblock %}

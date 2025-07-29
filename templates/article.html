@@ -1,12 +1,15 @@
 {% extends "page.html" %}
 
-{% block article %}
+{% block main %}
 
 {% if page.content is defined %}
   {% set content = page.content %}
 {% elif section.content is defined %}
   {% set content = section.content %}
 {% endif %}
+
+<article>
 {{ content | safe }}
+</article>
 
 {% endblock %}

@@ -2,21 +2,110 @@
 
 {% import "macros/card.html" as card_macro %}
 
-{% block article %}
+{% block main %}
 
-{{ img_macro::connect_form(image="") }}
+<div class="grid gap-4 md:grid-cols-[68%_30%]">
 
-<p>
-  The work of the church is made possible by the generous giving of God’s people.
-  If you are a member or regular attendee who would like to give to the work of
-  the church, you can give electronically by depositing funds into one of the
-  following accounts:
+  <div class="flex flex-col [&>label>div]:mb-4 md:order-2">
 
-  {% include "partial/giving_accounts.html" %}
+  {{ card_macro::connect_form(
+    id="0001",
+    icon="3-hands-up",
+    title="Serve at Regen",
+    subtitle="Interested in serving Regen? Let us know how you want to serve.",
+  ) }}
+  {{ card_macro::connect_form(
+    id="0002",
+    icon="bird-water",
+    title="Get Baptised",
+    subtitle="Ready to show your faith through baptism?",
+  ) }}
+  {{ card_macro::connect_form(
+    id="0003",
+    icon="membership",
+    title="Become a Member",
+    subtitle="Want to belong, grow, and actively shape the church?",
+  ) }}
+  {{ card_macro::connect_form(
+    id="0004",
+    icon="charity",
+    title="Give to the Church",
+    subtitle="Support the mission and fuel life-changing ministry.",
+  ) }}
 
-  As a new church plant, we also appreciate the support of external donors. If you
-  are not a member or attendee of the church, but would like to give, please
-  contact Kien.
-</p>
+  </div>
 
+  <div>
+    <div id="placeholder" class="hidden md:flex text-center flex-col justify-center h-full">
+      <div class="text-2xl mb-2">How can we help you today?</div>
+      <div class="text-onBackground/80">Select a form on the right to get started.</div>
+    </div>
+    <div id="form-0001" class="hidden">
+      <iframe id="iframe-form-0001" src="/form/serve" class="w-full h-full"></iframe>
+    </div>
+    <div id="form-0002" class="hidden">
+      <iframe id="iframe-form-0002" src="/form/baptism" class="w-full h-full"></iframe>
+    </div>
+    <div id="form-0003" class="hidden">
+      <iframe id="iframe-form-0003" src="/form/membership" class="w-full h-full"></iframe>
+    </div>
+    <div id="form-0004" class="hidden">
+      The work of the church is made possible by the generous giving of God’s people.
+      If you are a member or regular attendee who would like to give to the work of
+      the church, you can give electronically by depositing funds into one of the
+      following accounts:
+
+      {% include "partial/giving_accounts.html" %}
+
+      As a new church plant, we also appreciate the support of external donors. If you
+      are not a member or attendee of the church, but would like to give, please
+      contact Kien.
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('input[name="connect-form"]');
+  buttons.forEach(btn => {
+      btn.addEventListener('change', function() {
+          if (this.checked) {
+            Array.from(buttons).filter(btn => btn.value != this.value)
+              .forEach(btn => {
+                const parentLabel = btn.closest('label')
+                const targetDiv = parentLabel.querySelector('div');
+                targetDiv.classList.add('hidden');
+              });
+
+            // Show the correct form; hide all others.
+            document.getElementById('placeholder')?.classList.remove('md:flex');
+            document.querySelectorAll('[id^="elvanto-form-"]').forEach(div => {
+                div.classList.add('hidden');
+            });
+            const contentId = `form-${this.value}`;
+            document.getElementById(contentId)?.classList.remove('hidden');
+
+            // Style the IFrame
+            const iframe = document.getElementById(`iframe-form-${this.value}`);
+            if (iframe) {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 20 + 'px';
+              const theme = document.documentElement.getAttribute('data-theme');
+              iframe.contentWindow.document.documentElement.setAttribute('data-theme', theme);
+            }
+          } else {
+              // Show all buttons again.
+              buttons.forEach(btn => {
+                const parentLabel = btn.closest('label')
+                const targetDiv = parentLabel.querySelector('div');
+                targetDiv.classList.remove('hidden');
+              });
+              
+              document.getElementById('placeholder')?.classList.add('md:flex');
+              document.querySelectorAll('[id^="form-"]')
+                .forEach(div => div.classList.add('hidden'));
+          }
+      });
+  });
+</script>
 {% endblock %}

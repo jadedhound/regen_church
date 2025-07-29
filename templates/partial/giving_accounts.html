@@ -95,8 +95,8 @@
 </div>
 
 <script>
-  const buttons = document.querySelectorAll('input[name="giving_account"]');
-  buttons.forEach(radio => {
+  const buttonsTmp = document.querySelectorAll('input[name="giving_account"]');
+  buttonsTmp.forEach(radio => {
       radio.addEventListener('change', function() {
           // Hide all content divs
           document.querySelectorAll('[id$="-content"]').forEach(div => {
@@ -110,6 +110,6 @@
   });
 
   // Select the first button as a default.
-  buttons[0].click();
+  buttonsTmp[0].click();
 </script>
 

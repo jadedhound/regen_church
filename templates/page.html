@@ -2,7 +2,7 @@
 {% import "macros/image.html" as img_macro %}
 
 {% block content %}
-  <main>
+  <div>
     {{ img_macro::with_heading(
       image=page.extra.header_image | default(value=section.extra.header_image),
       alt="header_image",
@@ -10,9 +10,9 @@
       subtitle=page.extra.subtitle | default(value=section.extra.subtitle),
     )}}
 
-    <article class="p-4 mt-8 max-w-3xl mx-auto w-full">
-      {% block article %} {% endblock %}
-    </article>
+    <main class="p-4 mt-8 max-w-5xl mx-auto w-full">
+      {% block main %} {% endblock %}
+    </main>
 
-  </main>
+  </div>
 {% endblock content %}

@@ -7,10 +7,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Come join us, a gospel-centred, community on mission for Jesus in Clayton, City of Monash. We meet every Sunday 10AM, 2PM and 5PM.">
+    {% block head %} {% endblock %}
     <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}" />
     <link rel="icon" type="image/svg" href="{{ get_url(path='favicon.svg') | safe }}">
     <title>Regneration Church Monash</title>
-    {% block head %} {% endblock %}
 
     <script>
       function applyTheme(theme) {

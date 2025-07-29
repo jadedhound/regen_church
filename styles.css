@@ -143,6 +143,14 @@
       transparent 100%
     );
   }
+  .elvanto-submit {
+    @apply !bg-primary !border-none;
+    @apply !flex justify-center items-center p-4 gap-4 w-full max-w-xs mx-auto;
+    @apply !font-semibold !text-white !uppercase;
+  }
+  .elvanto-form-required {
+    @apply !text-flair font-bold;
+  }
 }
 
 .regen-service-cards {

@@ -52,6 +52,6 @@ title = "For Our Church"
 
     [[extra.nav_menu.menu]]
     path = "connect/_index.md"
-    icon = "charity"
+    icon = "handshake"
     desc = "Connect with Us"
     is_section = true
