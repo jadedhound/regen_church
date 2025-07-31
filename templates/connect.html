@@ -1,6 +1,8 @@
 {% extends "page.html" %}
 
 {% import "macros/card.html" as card_macro %}
+{% import "macros/connect.html" as connect_macro %}
+
 
 {% block main %}
 
@@ -40,15 +42,9 @@
       <div class="text-2xl mb-2">How can we help you today?</div>
       <div class="text-onBackground/80">Select a form on the right to get started.</div>
     </div>
-    <div id="form-0001" class="hidden">
-      <iframe id="iframe-form-0001" src="/form/serve" class="w-full h-full"></iframe>
-    </div>
-    <div id="form-0002" class="hidden">
-      <iframe id="iframe-form-0002" src="/form/baptism" class="w-full h-full"></iframe>
-    </div>
-    <div id="form-0003" class="hidden">
-      <iframe id="iframe-form-0003" src="/form/membership" class="w-full h-full"></iframe>
-    </div>
+    {{ connect_macro::form(id="0001", src="/form/serve") }}
+    {{ connect_macro::form(id="0002", src="/form/baptism") }}
+    {{ connect_macro::form(id="0003", src="/form/membership") }}
     <div id="form-0004" class="hidden">
       The work of the church is made possible by the generous giving of God’s people.
       If you are a member or regular attendee who would like to give to the work of
@@ -89,9 +85,16 @@
             // Style the IFrame
             const iframe = document.getElementById(`iframe-form-${this.value}`);
             if (iframe) {
-              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 20 + 'px';
-              const theme = document.documentElement.getAttribute('data-theme');
-              iframe.contentWindow.document.documentElement.setAttribute('data-theme', theme);
+              if (iframe.getAttribute("src") === null) {
+                iframe.src = iframe.dataset.src;
+                iframe.addEventListener("load", () => {
+                  beautifyIframe(iframe)
+                  const cover = document.getElementById(`cover-form-${this.value}`);
+                  cover.classList.add('hidden');
+                });
+              } else {
+                beautifyIframe(iframe)
+              }
             }
           } else {
               // Show all buttons again.
@@ -107,5 +110,10 @@
           }
       });
   });
+  function beautifyIframe(iframe) {
+    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 20 + 'px';
+    const theme = document.documentElement.getAttribute('data-theme');
+    iframe.contentWindow.document.documentElement.setAttribute('data-theme', theme);
+  }
 </script>
 {% endblock %}

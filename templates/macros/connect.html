@@ -1,0 +1,9 @@
+{% macro form(id, src) %}
+
+<div id="form-{{ id }}" class="hidden relative">
+  <div id="cover-form-{{ id }}" class="absolute z-1 w-full h-full bg-background"></div>
+  <iframe id="iframe-form-{{ id }}" data-src="{{ src }}" class="w-full h-full"></iframe>
+</div>
+
+{% endmacro %}
+

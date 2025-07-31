@@ -10,7 +10,7 @@
   --regen-primary: var(--color-red-600);
   --regen-onPrimary: var(--color-white);
   --regen-primary-variant: var(--color-red-800);
-  --regen-flair: var(--color-yellow-600);
+  --regen-flair: var(--color-yellow-700);
 }
 
 [data-theme="dark"] {
@@ -81,21 +81,32 @@
   }
 
   article {
-    h1, h2, h3, h4, ul {
-      @apply my-4;
+    h1, h2, h3, h4 {
+      @apply my-4 text-flair font-serif;
+    }
+    h1 {
+      @apply text-4xl;
     }
     h2 {
-      @apply border-b-2;
+      @apply text-3xl border-b-1 border-flair;
     }
+    h3 {
+      @apply text-2xl uppercase;
+    }
+    h4 {
+      @apply text-xl;
+    }
+
     p {
       @apply mb-2;
     }
+
     ul {
-      --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='4.5' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
-      @apply list-none;
+      --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
+      @apply list-none my-4;
 
       li {
-        @apply relative pl-8 mb-2; /* Increased padding to accommodate the icon */
+        @apply relative pl-7 mb-2; /* Increased padding to accommodate the icon */
 
         &::before {
           @apply text-primary absolute left-0 size-5 bg-no-repeat bg-contain;

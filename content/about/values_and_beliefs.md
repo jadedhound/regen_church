@@ -70,7 +70,9 @@ would repent and put their faith in Jesus and be reconciled to God.
 
 # Beliefs
 
-### We are a Christian church in the Baptist tradition. Our beliefs are summarised in the Baptist doctrinal basis. We believe in:
+**We are a Christian church in the Baptist tradition. Our beliefs are summarised in the Baptist doctrinal basis.**
+
+We believe in:
 
 - The divine inspiration and supreme authority of the Scriptures of the Old and
   New Testaments.
