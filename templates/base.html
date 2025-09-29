@@ -3,61 +3,63 @@
 <!DOCTYPE html>
 <html lang="en" data-theme='light'>
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Come join us, a gospel-centred, community on mission for Jesus in Clayton, City of Monash. We meet every Sunday 10AM, 2PM and 5PM.">
-    {% block head %} {% endblock %}
-    <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}" />
-    <link rel="icon" type="image/svg" href="{{ get_url(path='favicon.svg') | safe }}">
-    <title>Regneration Church Monash</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Come join us, a gospel-centred, community on mission for Jesus in Clayton, City of Monash. We meet every Sunday 10AM, 2PM and 5PM.">
+  {% block head %} {% endblock %}
+  <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}" />
+  <link rel="icon" type="image/svg" href="{{ get_url(path='favicon.svg') | safe }}">
+  <title>Regneration Church Monash</title>
 
-    <script>
-      function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
+  <script>
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        applyTheme(savedTheme);
+      } else {
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(systemPrefersDark ? 'dark' : 'light');
       }
+    }
 
-      function initTheme() {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light' || savedTheme === 'dark') {
-          applyTheme(savedTheme);
-        } else {
-          const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          applyTheme(systemPrefersDark ? 'dark' : 'light');
-        }
-      }
+    initTheme();
+  </script>
+</head>
 
-      initTheme();
-    </script>
-  </head>
-
-  <body class="bg-background text-onBackground">
-    <div class="w-full h-16 flex bg-background gap-4 items-center justify-between px-4 md:px-8 fixed top-0 z-10 shadow-xs shadow-black">
+<body class="bg-background text-onBackground">
+  <div class="fixed top-0 z-10 w-full md:mt-4 md:px-8">
+    <div class="w-full h-16 flex bg-background gap-4 items-center justify-between px-4 md:px-8 md:rounded-md">
       <a href="{{ get_url(path='@/_index.md') }}" class="mt-8" aria-label="Go back to homepage">
-        <svg class="size-[unset] w-16 text-primary"><use href="{{ sprites }}#chiro-banner"></use></svg>
-      </a>
-      <a href="{{ get_url(path='@/_index.md') }}" class="hidden lg:block text-3xl font-bold mt-2" aria-label="Go back to homepage">
-        REGENERATION CHURCH MONASH
+        <svg class="size-[unset] hidden md:block w-44 mb-1">
+          <use href="{{ sprites }}#chiro-banner-desktop"></use>
+        </svg>
+        <svg class="size-[unset] md:hidden w-32 mt-3.5">
+          <use href="{{ sprites }}#chiro-banner-mobile"></use>
+        </svg>
       </a>
       <div class="flex-grow"></div>
- 
+
       {% include "partial/nav_desktop.html" %}
 
       <a href="{{ get_url(path='@/_index.md') }}#get-in-touch">
         <div class="regen-button-important py-2 px-8">
-            VISIT
+          VISIT
         </div>
       </a>
 
       {% include "partial/nav_mobile.html" %}
     </div>
+  </div>
 
-    <div class="h-16"></div>
+  {% block content %} {% endblock %}
 
-    {% block content %} {% endblock %}
-
-    {% include "partial/footer.html" %}
-  </body>
+  {% include "partial/footer.html" %}
+</body>
 
 </html>
-

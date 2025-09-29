@@ -2,17 +2,18 @@
 {% import "macros/image.html" as img_macro %}
 
 {% block content %}
-  <div>
-    {{ img_macro::with_heading(
-      image=page.extra.header_image | default(value=section.extra.header_image),
-      alt="header_image",
-      title=page.title | default(value=section.title),
-      subtitle=page.extra.subtitle | default(value=section.extra.subtitle),
-    )}}
+<div class="h-16"></div>
+<div>
+  {{ img_macro::with_heading(
+  image=page.extra.header_image | default(value=section.extra.header_image),
+  alt="header_image",
+  title=page.title | default(value=section.title),
+  subtitle=page.extra.subtitle | default(value=section.extra.subtitle),
+  )}}
 
-    <main class="p-4 mt-8 max-w-5xl mx-auto w-full">
-      {% block main %} {% endblock %}
-    </main>
+  <main class="p-4 mt-8 max-w-5xl mx-auto w-full">
+    {% block main %} {% endblock %}
+  </main>
 
-  </div>
+</div>
 {% endblock content %}
