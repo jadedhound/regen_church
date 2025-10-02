@@ -3,35 +3,15 @@
 @import 'tailwindcss';
 @config './tailwind.config.js';
 
-:root {
-  --regen-background: var(--color-white);
-  --regen-onBackground: var(--color-black);
-  --regen-surface: var(--color-zinc-100);
-  --regen-primary: var(--color-red-600);
-  --regen-onPrimary: var(--color-white);
-  --regen-primary-variant: var(--color-red-800);
-  --regen-flair: var(--color-yellow-700);
-}
-
-[data-theme="dark"] {
-  --regen-background: var(--color-zinc-900);
-  --regen-onBackground: var(--color-zinc-200);
-  --regen-surface: var(--color-zinc-800);
-  --regen-primary: var(--color-red-600);
-  --regen-onPrimary: var(--color-zinc-200);
-  --regen-primary-variant: var(--color-red-800);
-  --regen-flair: var(--color-yellow-500);
-}
-
 @theme {
-  --color-background: var(--regen-background);
-  --color-onBackground: var(--regen-onBackground);
-  --color-surface: var(--regen-surface);
-  --color-primary: var(--regen-primary);
-  --color-onPrimary: var(--regen-onPrimary);
-  --color-primary-variant: var(--regen-primary-variant);
-  --color-flair: var(--regen-flair);
-  --font-alumni: "Alumni Sans Pinstripe", sans-serif;
+    --color-background: var(--color-white);
+    --color-onBackground: var(--color-black);
+    --color-surface: var(--color-zinc-100);
+    --color-primary: var(--color-red-600);
+    --color-onPrimary: var(--color-white);
+    --color-primary-variant: var(--color-red-800);
+    --color-flair: var(--color-yellow-700);
+    --font-alumni: "Alumni Sans Pinstripe", sans-serif;
 }
 
 /* ============================================= */
@@ -39,83 +19,94 @@
 /* ============================================= */
 
 @layer base {
-  /* Stop scroll when dialog is open */ 
-  body:has(dialog[open]) {
-    overflow: hidden;
-  }
-  dialog {
-    @apply m-auto bg-transparent;
-    
-    &::backdrop {
-      @apply bg-black/50;
-    }
-  }
 
-  h1 {
-    @apply text-3xl;
-
-    /* Scroll down lower than the navbar when navigating with anchor links. */
-    &:target {
-      @apply scroll-mt-28;
-    }
-  }
-
-  h2 {
-    @apply text-2xl;
-  }
-
-  h3 {
-    @apply text-xl;
-  }
-
-  h4 {
-    @apply text-lg;
-  }
-
-  hr {
-    @apply my-4;
-  }
-
-  svg {
-    @apply shrink-0 size-6;
-  }
-
-  article {
-    h1, h2, h3, h4 {
-      @apply my-4 text-flair font-serif;
-    }
-    h1 {
-      @apply text-4xl;
-    }
-    h2 {
-      @apply text-3xl border-b-1 border-flair;
-    }
-    h3 {
-      @apply text-2xl uppercase;
-    }
-    h4 {
-      @apply text-xl;
+    /* Stop scroll when dialog is open */
+    body:has(dialog[open]) {
+        overflow: hidden;
     }
 
-    p {
-      @apply mb-2;
-    }
+    dialog {
+        @apply m-auto bg-transparent;
 
-    ul {
-      --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
-      @apply list-none my-4;
-
-      li {
-        @apply relative pl-7 mb-2; /* Increased padding to accommodate the icon */
-
-        &::before {
-          @apply text-primary absolute left-0 size-5 bg-no-repeat bg-contain;
-          content: "";
-          background-image: var(--chevron-right);
+        &::backdrop {
+            @apply bg-black/50;
         }
-      }
     }
-  }
+
+    h1 {
+        @apply text-3xl;
+
+        /* Scroll down lower than the navbar when navigating with anchor links. */
+        &:target {
+            @apply scroll-mt-28;
+        }
+    }
+
+    h2 {
+        @apply text-2xl;
+    }
+
+    h3 {
+        @apply text-xl;
+    }
+
+    h4 {
+        @apply text-lg;
+    }
+
+    hr {
+        @apply my-4;
+    }
+
+    svg {
+        @apply shrink-0 size-6;
+    }
+
+    article {
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            @apply my-4 text-flair font-serif;
+        }
+
+        h1 {
+            @apply text-4xl;
+        }
+
+        h2 {
+            @apply text-3xl border-b-1 border-flair;
+        }
+
+        h3 {
+            @apply text-2xl uppercase;
+        }
+
+        h4 {
+            @apply text-xl;
+        }
+
+        p {
+            @apply mb-2;
+        }
+
+        ul {
+            --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
+            @apply list-none my-4;
+
+            li {
+                @apply relative pl-7 mb-2;
+                /* Increased padding to accommodate the icon */
+
+                &::before {
+                    @apply text-primary absolute left-0 size-5 bg-no-repeat bg-contain;
+                    content: "";
+                    background-image: var(--chevron-right);
+                }
+            }
+        }
+    }
 }
 
 /* ============================================= */
@@ -123,47 +114,49 @@
 /* ============================================= */
 
 @layer components {
-  .regen-button {
-    @apply rounded-md border-onBackground border-2;
-    @apply flex justify-center items-center p-3 gap-4 w-full max-w-xs mx-auto;
-    @apply font-semibold;
-    @apply overflow-x-auto;
-    @apply cursor-pointer;
-  }
-  .regen-button-important {
-    @apply rounded-md bg-primary;
-    @apply flex justify-center items-center p-4 gap-4 w-full max-w-xs mx-auto;
-    @apply font-semibold text-white;
-    @apply overflow-x-auto;
-    @apply cursor-pointer;
-  }
-
-  .regen-title {
-    @apply text-center font-bold;
-
-    b {
-      @apply text-primary;
+    .regen-button {
+        @apply rounded-md border-onBackground border-2;
+        @apply flex justify-center items-center p-3 gap-4 w-full max-w-xs mx-auto;
+        @apply font-semibold;
+        @apply overflow-x-auto;
+        @apply cursor-pointer;
     }
-  }
-  .fade-edges {
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 10%,
-      black 90%,
-      transparent 100%
-    );
-  }
-  .elvanto-submit {
-    @apply !bg-primary !border-none;
-    @apply !flex justify-center items-center p-4 gap-4 w-full sm:max-w-xs mx-auto;
-    @apply !font-semibold !text-white !uppercase;
-  }
-  .elvanto-form-required {
-    @apply !text-flair font-bold;
-  }
+
+    .regen-button-important {
+        @apply rounded-md bg-primary;
+        @apply flex justify-center items-center p-4 gap-4 w-full max-w-xs mx-auto;
+        @apply font-semibold text-white;
+        @apply overflow-x-auto;
+        @apply cursor-pointer;
+    }
+
+    .regen-title {
+        @apply text-center font-bold;
+
+        b {
+            @apply text-primary;
+        }
+    }
+
+    .fade-edges {
+        mask-image: linear-gradient(to right,
+                transparent 0%,
+                black 10%,
+                black 90%,
+                transparent 100%);
+    }
+
+    .elvanto-submit {
+        @apply !bg-primary !border-none;
+        @apply !flex justify-center items-center p-4 gap-4 w-full sm:max-w-xs mx-auto;
+        @apply !font-semibold !text-white !uppercase;
+    }
+
+    .elvanto-form-required {
+        @apply !text-flair font-bold;
+    }
 }
 
 .regen-service-cards {
-  @apply flex gap-4 overflow-x-auto mx-4 md:mx-auto;
+    @apply flex gap-4 overflow-x-auto mx-4 md:mx-auto;
 }
