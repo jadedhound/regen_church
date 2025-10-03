@@ -123,9 +123,8 @@
     }
 
     .regen-button-important {
-        @apply rounded-md bg-primary;
-        @apply flex justify-center items-center p-4 gap-4 w-full max-w-xs mx-auto;
-        @apply font-semibold text-white;
+        @apply rounded-md bg-primary text-onPrimary;
+        @apply flex justify-center items-center p-2 gap-4 w-full max-w-xs mx-auto;
         @apply overflow-x-auto;
         @apply cursor-pointer;
     }

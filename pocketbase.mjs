@@ -140,8 +140,11 @@ async function main() {
       await createFilenamesJson(basePath);
     }
     createRedirectFiles();
-  } catch (error) {
-    console.error(error.stack);
+  } catch (err) {
+    console.error(err);
+    if (err.stack) {
+      console.error(err.stack);
+    }
     exit(1);
   }
 }
