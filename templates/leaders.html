@@ -2,6 +2,26 @@
 
 {% import "macros/image.html" as img_macro %}
 
+{% macro portrait(leader, class, sizes="100vw") %}
+  {% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
+  {% if leader.portrait %}
+    {% set image = 'pocketbase/Leaders/images/' ~ leader.portrait %}
+    {{ img_macro::simple(
+        image=image,
+        sizes=sizes,
+        alt=leader.name ~ ' portrait',
+        class=class,
+    ) }}
+  {% else %}
+    <div class="{{ class ~ ' bg-background' }}">
+      <svg class="size-8 m-auto h-full">
+        <use href="{{ sprites }}#user"></use>
+      </svg>
+    </div>
+  {% endif %}
+
+{% endmacro %}
+
 {% block main %}
 
 <div class="grid grid-cols-2 md:grid-cols-4 mx-auto gap-4">
@@ -9,18 +29,12 @@
   {% set files = load_data(path="pocketbase/Leaders/filenames.json", format="json") %}
   {% for leader_file in files %}
     {% set leader = load_data(path="pocketbase/Leaders/" ~ leader_file, format="json") %}
-    {% set image = 'pocketbase/Leaders/images/' ~ leader.portrait %}
 
     <div class="flex flex-col gap-6">
       <div class="relative">
         <div class="bg-flair inset-0 absolute z-0 rounded-md"></div>
         <div class="border-3 border-transparent relative z-1">
-          {{ img_macro::simple(
-              image=image,
-              sizes="100vw",
-              alt="{{ leader.name ~ ' portrait' }}",
-              class="aspect-square object-cover rounded-md",
-          ) }}
+          {{ self::portrait(leader=leader, class="aspect-square object-cover rounded-md") }}
         </div>
       </div>
 
@@ -29,39 +43,27 @@
         <div class="text-center text-onBackground/80">{{ leader.title }}</div>
       </div>
       <button class="regen-button" onclick="show_dialog('{{ leader.id }}')">
-        READ BIO
+        Read Bio
       </button>
     </div>
 
     <dialog id="{{ leader.id }}">
-      <div class="bg-surface text-onBackground rounded-md flex shadow-xs shadow-black">
+      <div class="bg-background text-onBackground rounded-md flex shadow-xs shadow-black">
         <div class="grow flex flex-col gap-4 max-w-2xl p-4 lg:h-auto">
           <div class="overflow-y-auto max-h-[60vh] grow">
             <div class="pb-4 lg:hidden">
-              <div class="p-2 border-2 border-flair rounded-full mx-auto w-fit">
-                {{ img_macro::simple(
-                    image=image,
-                    sizes="100vw",
-                    alt="{{ leader.name ~ ' portrait' }}",
-                    class="aspect-square object-cover rounded-full h-[20vh] w-fit",
-                ) }}
-              </div>
+              {{ self::portrait(leader=leader, class="aspect-square object-cover") }}
             </div>
             <h4 class="font-bold text-center lg:text-left uppercase grow">{{ leader.name }}</h4>
             <div class="py-4">
               {{ leader.bio | markdown | safe }}
             </div>
-            <button class="regen-button" onclick="close_dialog('{{ leader.id }}')">
-              CLOSE
+            <button class="regen-button lg:mx-[unset] mb-1" onclick="close_dialog('{{ leader.id }}')">
+              Close
             </button>
           </div>
         </div> 
-        {{ img_macro::simple(
-            image=image,
-            sizes="30vw",
-            alt="{{ leader.name ~ ' portrait' }}",
-            class="rounded-r-md hidden lg:block object-cover max-w-xs",
-        ) }}
+        {{ self::portrait(leader=leader, class="rounded-r-md hidden lg:block object-cover max-w-xs min-w-[20vw]", sizes="30vw") }}
       </div>
     </dialog>
   {% endfor %}

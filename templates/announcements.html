@@ -11,16 +11,16 @@
     {% set data = load_data(path="pocketbase/Announcements/" ~ announcement_file, format="json") %}
     {% set image = 'pocketbase/Announcements/images/' ~ data.image %}
 
-    <div class="">
-      <h3> {{ data.title }} </h3>
+    <button class="flex flex-col" onclick="">
+      <h3 class="flex-grow"> {{ data.title }} </h3>
       <p class="italic"> {{ data.description }} </p>
       {{ img_macro::simple(
           image=image,
           sizes="100vw",
-          alt="{{ data.title ~ ' portrait' }}",
+          alt=data.title ~ ' Poster',
           class="rounded-md",
       ) }}
-    </div>
+    </button>
     
   {% endfor %}
 

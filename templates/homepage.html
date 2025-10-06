@@ -50,7 +50,7 @@
   <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-4">
     <div class="regen-button">
       <svg class="text-yellow-400"><use href="{{ sprites }}#church"></use></svg>
-      <div>PLAN A VISIT</div>
+      <div>Plan a Visit</div>
     </div>
   </a>
 
@@ -90,7 +90,7 @@
       <svg class="text-rose-500">
         <use href="{{ sprites }}#heart"></use>
       </svg>
-      <div>FIND AN MC</div>
+      <div>Find an MC</div>
     </div>
   </a>
 
@@ -107,7 +107,7 @@
       <svg class="size-8">
         <use href="{{ sprites }}#youtube-coloured"></use>
       </svg>
-      <div>JOIN OUR LIVESTREAM</div>
+      <div>Join Our Livestream</div>
     </div>
   </a>
 
@@ -129,20 +129,29 @@
       <a href="{{ get_url(path='@/church/announcements.md')}}">
         <div class="regen-button">
           <svg class="text-sky-500"><use href="{{ sprites }}#trumpet"></use></svg>
-          <div>ANNOUNCEMENTS</div>
+          <div>Announcements</div>
         </div>
       </a>
 
       <a href="{{ get_url(path='@/connect/_index.md')}}">
         <div class="regen-button-important">
           <svg><use href="{{ sprites }}#handshake"></use></svg>
-          <span>GET CONNECTED</span>
+          <span>Get Connected</span>
         </div>
       </a>
 
     </div>
 
-    {% include "partial/regen_map.html" %}
+    <a class="relative" href="https://maps.app.goo.gl/s9WxYijs8rEQn3X18" target="_blank">
+      <svg class="size-[unset] w-full h-full rounded-md aspect-square">
+        <use href="{{ sprites }}#google-map"></use>
+      </svg>
+      <div class="regen-button h-fit absolute bottom-12 inset-x-0 bg-background">
+        <svg><use href="{{ sprites }}#google-maps-icon"></use></svg>
+        Join us on Sunday
+      </div>
+    </a>
+
   </div>
 
 </main>
