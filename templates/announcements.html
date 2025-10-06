@@ -4,24 +4,53 @@
 
 {% block main %}
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
+  {% set_global annc_array = [] %}
   {% set files = load_data(path="pocketbase/Announcements/filenames.json", format="json") %}
   {% for announcement_file in files %}
-    {% set data = load_data(path="pocketbase/Announcements/" ~ announcement_file, format="json") %}
-    {% set image = 'pocketbase/Announcements/images/' ~ data.image %}
+  {% set data = load_data(path="pocketbase/Announcements/" ~ announcement_file, format="json") %}
+  {% set_global annc_array = annc_array | concat(with=data) %}
+  {% endfor %}
+  {% set_global annc_array = annc_array | sort(attribute="startdate") %}
 
-    <button class="flex flex-col" onclick="">
-      <h3 class="flex-grow"> {{ data.title }} </h3>
-      <p class="italic"> {{ data.description }} </p>
-      {{ img_macro::simple(
-          image=image,
-          sizes="100vw",
-          alt=data.title ~ ' Poster',
-          class="rounded-md",
-      ) }}
-    </button>
-    
+  {% for data in annc_array %}
+  {% set image = 'pocketbase/Announcements/images/' ~ data.image %}
+
+  <div class="bg-surface shadow-xs shadow-stone-400 rounded-md">
+    {{ img_macro::simple(
+    image=image,
+    sizes="",
+    alt=data.title ~ ' Poster',
+    class="rounded-t-md",
+    ) }}
+    <div class="p-4 flex flex-col gap-2 relative">
+      <div
+        class="flex flex-col absolute rounded-full bg-primary -top-6 right-2 aspect-square h-16 text-white text-wrap text-center leading-none">
+        {% set my_date = data.startdate | replace(from=" ", to="T") %}
+        <div class="text-xs -mb-1 mt-1">{{ my_date | date(format="%a") }}</div>
+        <div class="text-2xl font-bold">{{ my_date | date(format="%-d") }}</div>
+        <div class="text-xs -mt-1">{{ my_date | date(format="%b") }}</div>
+      </div>
+      <h4 class="font-semibold pr-16"> {{ data.title }} </h4>
+      <div class="flex gap-4">
+        <svg>
+          <use href="{{ sprites }}#map-pin"></use>
+        </svg>
+        {% if data.location == '' %}
+        Church
+        {% else %}
+        data.location
+        {% endif %}
+      </div>
+      {% if data.extra_info != '' %}
+      <div>
+        {{ data.extra_info }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
   {% endfor %}
 
 </div>
