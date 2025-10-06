@@ -1,12 +1,20 @@
 <button class="lg:hidden ml-2" onclick="openNavModal()" aria-label="Open the navigation drawer for mobile devices only">
-  <svg class="text-onBackground"><use href="{{ sprites }}#hamburger-menu"></use></svg>
+  <svg class="text-onBackground size-8">
+    <use href="{{ sprites }}#hamburger-menu"></use>
+  </svg>
 </button>
 
 <div class="fixed top-0 left-0 z-10 h-screen w-screen hidden" id="nav-modal">
   <div class="psuedo h-full backdrop-blur-xs"></div>
   <div class="flex z-10 absolute top-0 left-0 h-full w-full">
     <button onclick="closeNavModal()" class="flex-grow"></button>
-    <div class="flex flex-col justify-center gap-4 bg-surface/90 shadow-sm shadow-black min-w-56 rounded-l-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="nav-modal-drawer">
+    <div class="flex flex-col gap-4 bg-red-100/90 shadow-xs shadow-stone-400 min-w-56 rounded-l-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="nav-modal-drawer">
+      <button onclick="closeNavModal()" class="place-self-end">
+        <svg class="mx-6 my-6 size-8">
+          <use href="{{ sprites }}#x-mark"></use>
+        </svg>
+      </button>
+      <div class="flex-grow"></div>
       <div class="text-right px-8">
         {% for nav_item in config.extra.nav_menu %}
           <p class="font-bold uppercase">{{ nav_item.title }}</p>
@@ -22,15 +30,19 @@
               <a href="{{ page.permalink | safe }}">
                 <li class="py-2 flex flex-row-reverse items-center">
                   <div class="row-span-2 p-2 border-2 border-onBackground/80 rounded-md aspect-square ml-2 w-fit">
-                    <svg><use href="{{ sprites }}#{{ sub_item.icon }}"></use></svg>
+                    <svg>
+                      <use href="{{ sprites }}#{{ sub_item.icon }}"></use>
+                    </svg>
                   </div>
-                  <div class="">{{ page.title }}</div>
+                  <div>{{ page.title }}</div>
                 </li>
               </a>
               {% endfor %}
             </ul>
         {% endfor %}
       </div>
+      <div class="flex-grow"></div>
+      <div class="h-12"></div>
 
     </div>
   </div>

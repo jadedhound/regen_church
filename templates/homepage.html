@@ -14,12 +14,13 @@
           op="fill"
       ) }}
 
-      <div class="absolute inset-0 w-full bg-black/40 p-8 text-4xl text-center text-white tracking-wider flex items-center justify-center">
+      <div class="absolute inset-0 w-full bg-black/40 p-8 flex items-center justify-center">
         <div class="px-4 py-4 flex flex-col justify-center items-center">
-          <svg class="size-[unset] h-[30vh]">
-            <use href="{{ sprites }}#title"></use>
-          </svg>
-          <svg class="mt-8 size-12 animate-[bounce_1s_ease-in-out_3.5]">
+          <div class="text-5xl text-center text-white font-alumni tracking-wider">
+            Making diciples of<br>All Nations<br>
+            In the heart of<br>Clayton, Monash
+          </div>
+          <svg class="text-white mt-8 size-12 animate-[bounce_1s_ease-in-out_3.5]">
             <use href="{{ sprites }}#chevron-down-thin"></use>
           </svg>
         </div>
@@ -148,7 +149,7 @@
     </div>
 
     <a class="relative" href="https://maps.app.goo.gl/s9WxYijs8rEQn3X18" target="_blank">
-      <svg class="size-[unset] w-full h-full rounded-md aspect-square">
+      <svg class="size-[unset] w-full h-full rounded-md aspect-square shadow-xs shadow-stone-400">
         <use href="{{ sprites }}#google-map"></use>
       </svg>
       <div class="regen-button h-fit absolute bottom-12 inset-x-0 bg-background">
