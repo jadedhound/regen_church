@@ -2,11 +2,11 @@
 @config './tailwind.config.js';
 
 @font-face {
-  font-family: 'AlumniSans';
-  src: url('/fonts/AlumniSans-ExtraLight.woff2') format('woff2');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'AlumniSans';
+    src: url('/fonts/AlumniSans-ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
 }
 
 @theme {
@@ -122,10 +122,11 @@
 
 @layer components {
     .regen-button {
-        @apply rounded-md border-stone-400 border-1 shadow-xs shadow-stone-400;
+        @apply rounded-md border-stone-400 border-1 shadow-xs shadow-stone-300;
         @apply flex justify-center items-center p-2 gap-4 w-full max-w-xs mx-auto;
         @apply overflow-x-auto;
         @apply cursor-pointer;
+        @apply disabled:shadow-none disabled:bg-stone-200 disabled:border-none disabled:text-stone-400;
     }
 
     .regen-button-important {
