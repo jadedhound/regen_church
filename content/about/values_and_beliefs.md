@@ -1,5 +1,6 @@
 +++
 title = "Values and Beliefs"
+template = "article.html"
 
 [extra]
 header_image="values_and_beliefs"

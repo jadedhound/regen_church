@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&display=swap');
-
 @import 'tailwindcss';
 @config './tailwind.config.js';
 
@@ -11,7 +9,6 @@
     --color-onPrimary: var(--color-white);
     --color-primary-variant: var(--color-red-800);
     --color-flair: var(--color-yellow-700);
-    --font-alumni: "Alumni Sans Pinstripe", sans-serif;
 }
 
 /* ============================================= */
@@ -68,15 +65,15 @@
         h2,
         h3,
         h4 {
-            @apply my-4 text-flair font-serif;
+            @apply my-4;
         }
 
         h1 {
-            @apply text-4xl;
+            @apply text-4xl my-6;
         }
 
         h2 {
-            @apply text-3xl border-b-1 border-flair;
+            @apply text-3xl;
         }
 
         h3 {
@@ -129,7 +126,7 @@
     }
 
     .regen-title {
-        @apply text-center font-bold;
+        @apply text-center font-bold max-w-3xl mx-auto;
 
         b {
             @apply text-primary;

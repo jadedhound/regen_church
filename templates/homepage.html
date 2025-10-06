@@ -3,9 +3,9 @@
 {% import "macros/card.html" as card_macro %}
 
 {% block content %}
-<main class="flex flex-col gap-8 px-4">
+<main>
 
-   <div class="relative -mx-4">
+  <div class="relative">
       {{ img_macro::standalone(
           image="frontcover",
           sizes="100vw",
@@ -15,9 +15,10 @@
       ) }}
 
       <div class="absolute inset-0 w-full bg-black/40 p-8 text-4xl text-center text-white tracking-wider flex items-center justify-center">
-        <div class="px-4 py-4 flex flex-col justify-center items-center uppercase font-alumni font-bold">
-          <p class="mt-12 mb-4">Making Disciples of All Nations</p>
-          <p>In the heart of Clayton, Monash</p>
+        <div class="px-4 py-4 flex flex-col justify-center items-center">
+          <svg class="size-[unset] h-[30vh]">
+            <use href="{{ sprites }}#title"></use>
+          </svg>
           <svg class="mt-8 size-12 animate-[bounce_1s_ease-in-out_3.5]">
             <use href="{{ sprites }}#chevron-down-thin"></use>
           </svg>
@@ -25,36 +26,39 @@
       </div>
   </div>
 
-  <h1 class="regen-title mt-4">
-    <b>3 SERVICES,</b> 1 mission: encountering Jesus together every Sunday
-  </h1>
+  <div class="py-8 px-4 flex flex-col gap-8">
+    <h1 class="regen-title mt-4">
+      <b>3 SERVICES,</b> 1 mission: encountering Jesus together every Sunday
+    </h1>
 
-  <div class="flex gap-4 overflow-x-auto md:mx-auto">
-    {{ card_macro::image_with_caption(
-      image="morning_service",
-      title="10AM Morning Service",
-      body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
-    ) }}
-    {{ card_macro::image_with_caption(
-      image="mandarin_service",
-      title="2PM Mandarin Service",
-      body="A welcoming service in Mandarin, tailored for the Chinese-speaking community."
-    ) }}
-    {{ card_macro::image_with_caption(
-      image="night_service",
-      title="5PM Night Service",
-      body="A dynamic space for students and young adults to connect through worship and a meal together."
-    ) }}
+    <div class="flex gap-4 overflow-x-auto md:mx-auto">
+      {{ card_macro::image_with_caption(
+        image="morning_service",
+        title="10AM Morning Service",
+        body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
+      ) }}
+      {{ card_macro::image_with_caption(
+        image="mandarin_service",
+        title="2PM Mandarin Service",
+        body="A welcoming service in Mandarin, tailored for the Chinese-speaking community."
+      ) }}
+      {{ card_macro::image_with_caption(
+        image="night_service",
+        title="5PM Night Service",
+        body="A dynamic space for students and young adults to connect through worship and a meal together."
+      ) }}
+    </div>
+
+    <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-4">
+      <div class="regen-button">
+        <svg class="text-yellow-400"><use href="{{ sprites }}#church"></use></svg>
+        <div>Plan a Visit</div>
+      </div>
+    </a>
   </div>
 
-  <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-4">
-    <div class="regen-button">
-      <svg class="text-yellow-400"><use href="{{ sprites }}#church"></use></svg>
-      <div>Plan a Visit</div>
-    </div>
-  </a>
 
-  <hr>
+  <div class="bg-red-400/10 py-8 px-4 flex flex-col gap-8">
 
   <h1 class="regen-title">
     More Than a Small Group: <b>MISSIONAL COMMUNITIES</b>
@@ -94,8 +98,9 @@
     </div>
   </a>
 
-  <hr>
+  </div>
 
+  <div class="py-8 px-4 flex flex-col gap-8">
   <h1 class="regen-title">
     Come be transformed by <b>GOSPEL-CENTRED</b> sermons
   </h1>
@@ -110,9 +115,9 @@
       <div>Join Our Livestream</div>
     </div>
   </a>
+  </div>
 
-  <hr>
-
+  <div class="bg-amber-400/10 py-8 px-4 flex flex-col gap-8">
   <h1 id="get-in-touch" class="regen-title">
     Join us as we follow Jesus, who makes <b>DISCIPLES</b> of all nations.
   </h1>
@@ -152,6 +157,7 @@
       </div>
     </a>
 
+  </div>
   </div>
 
 </main>
