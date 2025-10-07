@@ -62,7 +62,7 @@
     }
 
     hr {
-        @apply my-4;
+        @apply my-4 text-stone-300;
     }
 
     svg {
@@ -122,7 +122,7 @@
 
 @layer components {
     .regen-button {
-        @apply rounded-md border-stone-400 border-1 shadow-xs shadow-stone-300;
+        @apply rounded-md border-stone-400 border-1 shadow-xs shadow-stone-300 bg-background;
         @apply flex justify-center items-center p-2 gap-4 w-full max-w-xs mx-auto;
         @apply overflow-x-auto;
         @apply cursor-pointer;
@@ -160,6 +160,22 @@
 
     .elvanto-form-required {
         @apply !text-flair font-bold;
+    }
+
+    .article-list {
+        --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
+        @apply list-none my-4;
+
+        li {
+            @apply relative pl-7 mb-2;
+            /* Increased padding to accommodate the icon */
+
+            &::before {
+                @apply text-primary absolute left-0 size-5 bg-no-repeat bg-contain;
+                content: "";
+                background-image: var(--chevron-right);
+            }
+        }
     }
 }
 

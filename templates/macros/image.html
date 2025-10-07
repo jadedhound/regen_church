@@ -1,11 +1,3 @@
-{% macro parallax(image) %}
-    {% set mdata = get_image_metadata(path=image) %}
-
-    <div class="bg-center bg-fixed absolute top-0 left-0 h-full w-full"
-         style="background-image:url('{{ get_url(path=image) }}')"
-    ></div>
-{% endmacro parallax %}
-
 {% macro simple(image, sizes, alt, class="", op="fit_width") %}
   {% set mdata = get_image_metadata(path=image) %}
   {% set sm = resize_image(path=image, width=360, height=mdata.height, op=op, format="webp", quality=75) %}
@@ -42,25 +34,4 @@
     ) }}
 {% endmacro simple %}
 
-
-{% macro with_heading(image, alt, title, subtitle) %}
-  <div class="px-4 grid md:grid-cols-2 gap-8 mt-12 max-w-5xl mx-auto">
-      <div class="flex flex-col justify-center">
-        <div class="font-bold mb-4 text-[clamp(1.8rem,10vw,3rem)]">
-            {{ title }}
-        </div>
-        <div class="text-lg text-onBackground/90">
-            {{ subtitle }}
-        </div>
-      </div>
-
-      {{ img_macro::standalone(
-        image=image,
-        alt=alt,
-        sizes="100vw",
-        class="rounded-md",
-      ) }}
-
-  </div>
-{% endmacro %}
 

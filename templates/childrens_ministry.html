@@ -1,0 +1,76 @@
+{% extends "page.html" %}
+
+{% macro icon_with_caption(image, title, body="") %}
+  
+  <div class="flex-shrink-0 relative">
+    {{ img_macro::standalone(
+        image=image,
+        sizes="18rem",
+        alt="service-preview",
+        class="rounded-md aspect-[9/16] w-2xs object-cover",
+    ) }}
+    <div class="absolute bottom-10 left-0 bg-black/40 flex flex-col gap-2 items-end justify-end p-4 w-full text-white">
+      <h3 class="text-center w-full">{{ title }}</h3>
+      {% if body | length != 0 %}
+        <p>{{ body }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+{% endmacro image_with_caption %}
+
+{% block main %}
+
+<p>
+<b>
+At Regeneration Church Monash, we think children are an important part of our
+church family!
+</b>
+<p>
+
+<p>
+We would love children at our church to know the hope and peace that Jesus
+brings. Our children’s ministry is committed to demonstrating that Jesus
+welcomes them, and that daily life in Jesus’ lordship is far valuable than
+living for anything else in this world, through:
+</p>
+
+<ul class="article-list">
+  <li>Presenting the Bible in ways that they understand</li>
+  <li>The example of volunteers in our church community</li>
+  <li>
+  Providing activities that encourages familiarity with spiritual habits (that
+  the family in Christ meet regularly every Sunday to encourage each other, to
+  gather around God’s Word, and worship God)
+  </li>
+</ul>
+
+<h2>We Run TWO Programs:</h2>
+
+<div class="flex gap-4 overflow-x-auto max-w-fit md:mx-auto my-4">
+
+    {{ self::icon_with_caption(
+      image="sprouts",
+      title="Sprouts",
+      body="For toddlers and pre-schoolers (~2 to 5yo)"
+    ) }}
+    {{ self::icon_with_caption(
+      image="buds",
+      title="Buds",
+      body="For children who have started school (~5 to 12yo)"
+    ) }}
+
+</div>
+
+We encourage children to worship with their families at the start of service. As
+many young children generally find it hard to relate to adult sermons, we
+encourage them to participate in the above programs during the sermon segment.
+
+<ul class="article-list">
+  <li>
+    Both programs run during the sermon segment, for approximately 45 mins – 1 hour
+  </li>
+  <li>All volunteers are Safe-Church trained</li>
+</ul>
+
+{% endblock %}

@@ -4,14 +4,27 @@
 {% block content %}
 <div class="h-16"></div>
 <div>
-  {{ img_macro::with_heading(
-  image=page.extra.header_image | default(value=section.extra.header_image),
-  alt="header_image",
-  title=page.title | default(value=section.title),
-  subtitle=page.extra.subtitle | default(value=section.extra.subtitle),
-  )}}
+  <div class="px-4 grid md:grid-cols-2 gap-4 mt-12 max-w-5xl mx-auto">
+      <div class="font-bold text-[clamp(1.8rem,10vw,3rem)] mt-auto -my-2">
+          {{ page.title | default(value=section.title) }}
+      </div>
 
-  <main class="p-4 mt-8 max-w-5xl mx-auto w-full">
+      <div class="text-lg text-onBackground/90 order-3">
+          {{ page.extra.subtitle | default(value=section.extra.subtitle) }}
+      </div>
+
+      {{ img_macro::standalone(
+        image=page.extra.header_image | default(value=section.extra.header_image),
+        alt="header images",
+        sizes="100vw",
+        class="rounded-md row-span-2",
+      ) }}
+
+  </div>
+
+  <hr class="mx-4 my-8 md:mx-8">
+
+  <main class="px-4 mb-16 max-w-5xl mx-auto w-full">
     {% block main %} {% endblock %}
   </main>
 

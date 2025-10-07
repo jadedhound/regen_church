@@ -33,83 +33,74 @@
   example: "Anon – Meal; Vinh – For Nara"
 `, format="yaml") %}
 
+{% set info_css = 'grid grid-cols-[6rem_auto] gap-4 [&>b]:text-right items-center' %}
+<div class="flex flex-col gap-4 py-4">
 
-<!-- Radio buttons -->
-<div class="grid grid-cols-2 gap-4 mt-8 max-w-md mx-auto">
-  {% set btn_css = 'regen-button max-w-full peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-colors' %}
-  {% for account in data %}
+{% for account in data %}
+  <section class="max-w-xl mx-auto w-full">
+    <details class="group border border-gray-300 rounded-lg overflow-hidden">
+      <summary
+        class="cursor-pointer px-4 py-3 bg-gray-100 flex justify-between items-center font-medium 
+               transition-colors duration-300 hover:bg-gray-200"
+      >
+        <span class="capitalize">{{ account.title }}</span>
+        <svg class="size-5 transition-transform duration-300 group-open:rotate-180">
+          <use href="{{ sprites }}#chevron-down"></use>
+        </svg>
+      </summary>
 
-    <label class="cursor-pointer">
-      <input type="radio" name="giving_account" class="peer hidden" value="{{ account.title }}">
-      <div class="{{ btn_css }}">
-        <span class="uppercase">{{ account.title }}</span>
+      <div
+        class="px-4 py-3 text-gray-700 border-t border-gray-300 max-h-0 overflow-hidden transition-all duration-300 group-open:max-h-96"
+      >
+      <div>
+        <div class="{{ info_css }}">
+          <b>NAME:</b>
+          <p class="capitalize">{{ account.name }}</p>
+          <b>BSB:</b>
+          <p class="capitalize">{{ account.bsb ~ " (" ~ account.bank ~ ")" }}</p>
+          <b>ACCOUNT:</b>
+          <p>{{ account.account }}</p>
+          <b>REFERENCE:</b>
+          <p>{{ account.reference_format }}</p>
+          <b>EXAMPLE:</b>
+          <p>{{ account.example }}</p>
+        </div>
       </div>
-    </label>
-
+      </div>
+    </details>
+  </section>
   {% endfor %}
 
-    <label class="cursor-pointer col-span-2">
-      <input type="radio" name="giving_account" class="peer hidden" value="international">
-      <div class="{{ btn_css }}">
-        <span class="uppercase">International</span>
+  <section class="max-w-xl mx-auto w-full">
+    <details class="group border border-gray-300 rounded-lg overflow-hidden">
+      <summary
+        class="cursor-pointer px-4 py-3 bg-gray-100 flex justify-between items-center font-medium 
+               transition-colors duration-300 hover:bg-gray-200"
+      >
+        <span>International</span>
+        <svg class="size-5 transition-transform duration-300 group-open:rotate-180">
+          <use href="{{ sprites }}#chevron-down"></use>
+        </svg>
+      </summary>
+
+      <div
+        class="px-4 py-3 text-gray-700 border-t border-gray-300 max-h-0 overflow-hidden transition-all duration-300 group-open:max-h-96"
+      >
+        <div>
+          <div class="{{ info_css }}">
+            <b>Name:</b>
+            <p>Regeneration Church Monash Incorporated</p>
+            <b>ACH Routing Number:</b>
+            <p>026073150</p>
+            <b>Account Number:</b>
+            <p>8334265053</p>
+            <b>Bank:</b>
+            <p>Community Federal Savings Bank (Barclays Partner)</p>
+            <b>Bank Address:</b>
+            <p>810 Seventh Avenue, New York, NY 10019, US</p>
+          </div>
+        </div>
       </div>
-    </label>
+    </details>
+  </section>
 </div>
-
-<!-- Account Info -->
-<div class="max-w-md mx-auto mt-4 px-2 py-8 border-y-6 border-double border-onBackground/60 mb-8">
-  {% set info_css = 'grid grid-cols-[6rem_auto] gap-4 [&>b]:text-right items-center' %}
-  {% for account in data %}
-
-  <div id="{{ account.title }}-content" class="hidden">
-    <div class="{{ info_css }}">
-      <b>NAME:</b>
-      <p class="capitalize">{{ account.name }}</p>
-      <b>BSB:</b>
-      <p class="capitalize">{{ account.bsb ~ " (" ~ account.bank ~ ")" }}</p>
-      <b>ACCOUNT:</b>
-      <p>{{ account.account }}</p>
-      <b>REFERENCE:</b>
-      <p>{{ account.reference_format }}</p>
-      <b>EXAMPLE:</b>
-      <p>{{ account.example }}</p>
-    </div>
-  </div>
-
-  {% endfor %}
-
-  <div id="international-content" class="hidden">
-    <div class="{{ info_css }}">
-      <b>Name:</b>
-      <p>Regeneration Church Monash Incorporated</p>
-      <b>ACH Routing Number:</b>
-      <p>026073150</p>
-      <b>Account Number:</b>
-      <p>8334265053</p>
-      <b>Bank:</b>
-      <p>Community Federal Savings Bank (Barclays Partner)</p>
-      <b>Bank Address:</b>
-      <p>810 Seventh Avenue, New York, NY 10019, US</p>
-    </div>
-  </div>
-</div>
-
-<script>
-  const buttonsTmp = document.querySelectorAll('input[name="giving_account"]');
-  buttonsTmp.forEach(radio => {
-      radio.addEventListener('change', function() {
-          // Hide all content divs
-          document.querySelectorAll('[id$="-content"]').forEach(div => {
-              div.classList.add('hidden');
-          });
-          
-          // Show the selected one
-          const contentId = `${this.value}-content`;
-          document.getElementById(contentId)?.classList.remove('hidden');
-      });
-  });
-
-  // Select the first button as a default.
-  buttonsTmp[0].click();
-</script>
-

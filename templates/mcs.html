@@ -4,27 +4,53 @@
 
 {% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
 {% set files = load_data(path="pocketbase/MC/filenames.json", format="json") %}
+{% set_global raw_mc_data = [] %}
+{% for file in files %}
+  {% set mc = load_data(path="pocketbase/MC/" ~ file, format="json") %}
+  {% set_global raw_mc_data = raw_mc_data | concat(with=mc) %}
+{% endfor %}
+{% set mc_data = raw_mc_data | group_by(attribute="day") %}
+{% set days_array = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
 
-<div class="grid sm:grid-cols-3 gap-4">
-  {% for mc_file in files %}
-    {% set mc = load_data(path="pocketbase/MC/" ~ mc_file, format="json") %}
-    <div class="flex flex-col gap-2 p-4 bg-surface rounded-md">
-      <h3>{{ mc.name }}</h3>
-      <div class="flex gap-2 capitalize">
-        <svg class="text-yellow-400"><use href="{{ sprites }}#clock"></use></svg>
-        {{ mc.day }}
-      </div>
-      <div class="flex gap-2 capitalize">
-        <svg class="text-blue-500"><use href="{{ sprites }}#map-pin"></use></svg>
-        {{ mc.location }}
-      </div>
-      <ul class="capitalize">
-        {% set mc_leaders = mc.leaders | split(pat=",") %}
-        {% for leader in mc_leaders %}
-          <li> {{ leader }} </li>
-        {% endfor %}
-      </ul>
+
+<div class="flex flex-col gap-4">
+  {% for day in days_array %}
+<div class="flex flex-col sm:flex-row gap-4 {% if loop.index is odd %}sm:flex-row-reverse sm:[&_h2]:text-right{% endif %}">
+  <div class="max-w-md">
+    <h2 class="pb-2">{{ day }}</h2>
+
+    {% set day_lower = day | lower %}
+    {{ img_macro::standalone(
+        image="mc_" ~ day_lower,
+        sizes="",
+        alt=day ~ "Promo",
+        class="rounded-md",
+    ) }}
+  </div>
+
+
+  <div class="grid lg:grid-cols-2 gap-4 sm:mt-10">
+  {% for mc in mc_data[day] %}
+
+  <div class="flex flex-col gap-2 p-4 bg-surface rounded-md">
+    <h3>{{ mc.name }}</h3>
+    <div class="flex gap-2 capitalize">
+      <svg class="text-blue-500"><use href="{{ sprites }}#map-pin"></use></svg>
+      {{ mc.location }}
     </div>
+    <ul class="capitalize article-list">
+      {% set mc_leaders = mc.leaders | split(pat=",") %}
+      {% for leader in mc_leaders %}
+        <li> {{ leader }} </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+  </div>
+</div>
+  {% if not loop.last %}
+  <hr>
+  {% endif %}
   {% endfor %}
 </div>
 
