@@ -1,5 +1,5 @@
 +++
-title = "Missional Communities"
+title = "Missional Communities (MC)"
 template = "mcs.html"
 
 [extra]

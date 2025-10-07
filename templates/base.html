@@ -11,7 +11,7 @@
   {% block head %} {% endblock %}
   <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}" />
   <link rel="icon" type="image/svg" href="{{ get_url(path='favicon.svg') | safe }}">
-  <title>Regneration Church Monash</title>
+  <title>Regeneration Church Monash</title>
 
   <script>
     function applyTheme(theme) {
@@ -41,10 +41,8 @@
 
       {% include "partial/nav_desktop.html" %}
 
-      <a href="{{ get_url(path='@/_index.md') }}#get-in-touch">
-        <div class="regen-button-important py-2 px-8">
-          Visit Us
-        </div>
+      <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="regen-button-important py-2 px-8 w-fit mx-[unset]">
+        Visit Us
       </a>
 
       {% include "partial/nav_mobile.html" %}

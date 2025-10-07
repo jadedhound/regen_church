@@ -131,7 +131,7 @@
 
     .regen-button-important {
         @apply rounded-md bg-primary text-onPrimary shadow-xs shadow-stone-400;
-        @apply flex justify-center items-center p-2 gap-4 w-full max-w-xs mx-auto;
+        @apply flex justify-center items-center p-2.5 gap-4 w-full max-w-xs mx-auto;
         @apply overflow-x-auto;
         @apply cursor-pointer;
     }

@@ -7,7 +7,7 @@ header_image="values_and_beliefs"
 subtitle="Our purpose and mission"
 +++
 
-# Purpose & Mission
+# Purpose and Mission
 
 We believe that Jesus has made the purpose and mission of every Christian and
 every church clear in Scripture, so there is no need to reinvent the wheel.

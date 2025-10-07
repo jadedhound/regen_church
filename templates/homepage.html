@@ -17,8 +17,8 @@
       <div class="absolute inset-0 w-full bg-black/40 p-8 flex items-center justify-center">
         <div class="px-4 py-4 flex flex-col justify-center items-center">
           <div class="text-5xl text-center text-white font-alumni tracking-wider">
-            Making diciples of<br>All Nations<br>
-            In the heart of<br>Clayton, Monash
+            Making diciples of<br>all Nations<br>
+            in the heart of<br>Clayton, Monash
           </div>
           <svg class="text-white mt-8 size-12 animate-[bounce_1s_ease-in-out_3.5]">
             <use href="{{ sprites }}#chevron-down-thin"></use>
@@ -29,40 +29,38 @@
 
   <div class="py-8 px-4 flex flex-col gap-8">
     <h1 class="regen-title mt-4">
-      <b>3 SERVICES,</b> 1 mission: encountering Jesus together every Sunday
+      <b>3 Services,</b> 1 Mission<br>Encountering Jesus together every Sunday
     </h1>
 
     <div class="flex gap-4 overflow-x-auto md:mx-auto">
       {{ card_macro::image_with_caption(
         image="morning_service",
-        title="10AM Morning Service",
+        title="10am Morning Service",
         body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
       ) }}
       {{ card_macro::image_with_caption(
         image="mandarin_service",
-        title="2PM Mandarin Service",
+        title="2pm Mandarin Service",
         body="A welcoming service in Mandarin, tailored for the Chinese-speaking community."
       ) }}
       {{ card_macro::image_with_caption(
         image="night_service",
-        title="5PM Night Service",
+        title="5pm Night Service",
         body="A dynamic space for students and young adults to connect through worship and a meal together."
       ) }}
     </div>
 
-    <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-4">
-      <div class="regen-button">
-        <svg class="text-yellow-400"><use href="{{ sprites }}#church"></use></svg>
-        <div>Plan a Visit</div>
-      </div>
+    <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-4 regen-button">
+      <svg class="text-yellow-400"><use href="{{ sprites }}#church"></use></svg>
+      <div>Plan a Visit</div>
     </a>
   </div>
 
 
-  <div class="bg-red-400/10 py-8 px-4 flex flex-col gap-8">
+  <div class="bg-primary/10 py-8 px-4 flex flex-col gap-8">
 
   <h1 class="regen-title">
-    More Than a Small Group: <b>MISSIONAL COMMUNITIES</b>
+    More Than a Small Group: <b>Missional Communities</b>
   </h1>
   <h4 class="-my-2 max-w-xl mx-auto">
     Missional Communities (MCs) are small groups committed to being formed by Jesus in community for the sake of others.
@@ -70,7 +68,7 @@
   </h4>
 
   <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 text-white mx-auto">
-    {% set card_css = 'flex flex-col gap-2 items-center justify-center aspect-square p-8 w-full h-full bg-red-500 md:rounded-full md:p-12' %}
+    {% set card_css = 'flex flex-col gap-2 items-center justify-center aspect-square p-8 w-full h-full bg-primary md:rounded-full md:p-12' %}
 
     <div class="{{ card_css }} rounded-t-full rounded-l-full">
       <svg><use href="{{ sprites }}#spoon-fork"></use></svg>
@@ -90,47 +88,41 @@
     </div>
   </div>
 
-  <a href="{{ get_url(path='@/church/mcs.md') }}" class="mt-4">
-    <div class="regen-button">
+  <a href="{{ get_url(path='@/church/mcs.md') }}" class="mt-4 regen-button">
       <svg class="text-rose-500">
         <use href="{{ sprites }}#heart"></use>
       </svg>
       <div>Find an MC</div>
-    </div>
   </a>
 
   </div>
 
   <div class="py-8 px-4 flex flex-col gap-8">
   <h1 class="regen-title">
-    Come be transformed by <b>GOSPEL-CENTRED</b> sermons
+    Come be Transformed by <b>Gospel-Centred</b> Sermons
   </h1>
 
   {% include "partial/sermon_series.html" %}
 
   <div class="py-8 px-4 flex flex-col gap-2">
-  <a href="https://www.youtube.com/@RegenerationMonash/live" target="_blank">
-    <div class="regen-button mt-4">
+  <a href="https://www.youtube.com/@RegenerationMonash/live" target="_blank" class="regen-button mt-4">
       <svg class="size-8">
         <use href="{{ sprites }}#youtube-coloured"></use>
       </svg>
       <div>Join Our Livestream</div>
-    </div>
   </a>
-  <a href="https://open.spotify.com/user/31a2u4zg7qy2vopmchtesxdfu3jy" target="_blank">
-    <div class="regen-button">
+  <a href="https://open.spotify.com/user/31a2u4zg7qy2vopmchtesxdfu3jy" target="_blank" class="regen-button">
       <svg class="size-8 text-[#11c84b]">
         <use href="{{ sprites }}#spotify"></use>
       </svg>
       <div>Listen to Past Sermons</div>
-    </div>
   </a>
   </div>
   </div>
 
-  <div class="bg-amber-400/10 py-8 px-4 flex flex-col gap-8">
+  <div class="bg-primary/10 py-8 px-4 flex flex-col gap-8">
   <h1 id="get-in-touch" class="regen-title">
-    Join us as we follow Jesus, who makes <b>DISCIPLES</b> of all nations.
+    Join us as we follow Jesus, who makes <b>Disciples</b> of all Nations
   </h1>
 
   <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -149,18 +141,14 @@
           class="rounded-md",
       ) }}
 
-      <a href="{{ get_url(path='@/church/announcements.md')}}">
-        <div class="regen-button">
+      <a href="{{ get_url(path='@/church/announcements.md')}}" class="regen-button">
           <svg class="text-sky-500"><use href="{{ sprites }}#trumpet"></use></svg>
           <div>Announcements</div>
-        </div>
       </a>
 
-      <a href="{{ get_url(path='@/connect/_index.md')}}">
-        <div class="regen-button-important">
+      <a href="{{ get_url(path='@/connect/_index.md')}}" class="regen-button-important">
           <svg><use href="{{ sprites }}#handshake"></use></svg>
           <span>Get Connected</span>
-        </div>
       </a>
 
     </div>
