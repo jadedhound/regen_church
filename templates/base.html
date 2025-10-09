@@ -1,7 +1,7 @@
 {% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
 
 <!DOCTYPE html>
-<html lang="en" data-theme='light'>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -9,39 +9,28 @@
   <meta name="description"
     content="Come join us, a gospel-centred, community on mission for Jesus in Clayton, City of Monash. We meet every Sunday 10AM, 2PM and 5PM.">
   {% block head %} {% endblock %}
-  <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}" />
+  {% include "partial/critical_css.html" %}
+  <link rel="preload" href="{{ get_url(path='styles.css', cachebust=true) | safe }}" as="style"
+    onload="this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}">
+  </noscript>
   <link rel="icon" type="image/svg" href="{{ get_url(path='favicon.svg') | safe }}">
   <title>Regeneration Church Monash</title>
-
-  <script>
-    function applyTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-    }
-
-    function initTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'light' || savedTheme === 'dark') {
-        applyTheme(savedTheme);
-      } else {
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        applyTheme(systemPrefersDark ? 'dark' : 'light');
-      }
-    }
-
-    initTheme();
-  </script>
 </head>
 
 <body class="bg-background text-onBackground">
   <div class="fixed top-0 z-10 w-full mt-4 px-2 md:px-12">
-    <div class="w-full h-12 flex bg-background gap-4 items-center justify-between px-4 md:px-8 rounded-md shadow-xs shadow-zinc-600">
+    <div
+      class="w-full h-12 flex bg-background gap-4 items-center justify-between px-4 md:px-8 rounded-md shadow-xs shadow-zinc-600">
       {% include "partial/nav_favicon.html" %}
 
       <div class="flex-grow lg:hidden"></div>
 
       {% include "partial/nav_desktop.html" %}
 
-      <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="regen-button-important py-2 px-8 w-fit mx-[unset]">
+      <a href="{{ get_url(path='@/_index.md') }}#get-in-touch"
+        class="regen-button-important py-2 px-8 w-fit mx-[unset]">
         Visit Us
       </a>
 

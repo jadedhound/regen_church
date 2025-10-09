@@ -6,25 +6,34 @@
 <main>
 
   <div class="relative">
-      {{ img_macro::standalone(
-          image="frontcover",
-          sizes="100vw",
-          alt="cover image",
-          class="h-[calc(95vh-4rem)] w-full object-cover bg-no-repeat bg-cover bg-center",
-          op="fill"
-      ) }}
+    {% set image_json = load_data(path="pocketbase/Images/" ~ "frontcover.json", format="json") %}
+    {% set image = "pocketbase/Images/images/" ~ image_json.image %}
+    {% set mdata = get_image_metadata(path=image) %}
+    {% set sm = resize_image(path=image, width=360, height=mdata.height, op="fill", format="webp", quality=75) %}
+    {% set md = resize_image(path=image, width=720, height=mdata.height, op="fill", format="webp", quality=75) %}
+    {% set lg = resize_image(path=image, width=1080, height=mdata.height, op="fill", format="webp", quality=75) %}
+    {% set xl = resize_image(path=image, width=1920, height=mdata.height, op="fill", format="webp", quality=75) %}
 
-      <div class="absolute inset-0 w-full bg-black/40 p-8 flex items-center justify-center">
-        <div class="px-4 py-4 flex flex-col justify-center items-center">
-          <div class="text-5xl text-center text-white font-alumni tracking-wider">
-            Making diciples of<br>all Nations<br>
-            in the heart of<br>Clayton, Monash
-          </div>
-          <svg class="text-white mt-8 size-12 animate-[bounce_1s_ease-in-out_3.5]">
-            <use href="{{ sprites }}#chevron-down-thin"></use>
-          </svg>
+    <picture>
+      <source srcset="{{ xl.url }}" media="(min-width: 1200px)">
+      <source srcset="{{ lg.url }}" media="(min-width: 768px)">
+      <source srcset="{{ md.url }}" media="(min-width: 425px)">
+      <img src="{{ sm.url }}" fetchpriority="high" alt="frontpage regeneration church"
+        class="h-[calc(95vh-4rem)] w-full object-cover bg-no-repeat bg-cover bg-center" height="{{ xl.height }}"
+        width="{{ xl.width }}">
+    </picture>
+
+    <div class="absolute inset-0 w-full bg-black/40 p-8 flex items-center justify-center">
+      <div class="px-4 py-4 flex flex-col justify-center items-center">
+        <div class="text-5xl text-center text-white font-alumni tracking-wider">
+          Making diciples of<br>all Nations<br>
+          in the heart of<br>Clayton, Monash
         </div>
+        <svg class="text-white mt-8 size-12 animate-[bounce_1s_ease-in-out_3.5]">
+          <use href="{{ sprites }}#chevron-down-thin"></use>
+        </svg>
       </div>
+    </div>
   </div>
 
   <div class="py-8 px-4 flex flex-col gap-8">
@@ -34,24 +43,26 @@
 
     <div class="flex gap-4 overflow-x-auto md:mx-auto">
       {{ card_macro::image_with_caption(
-        image="morning_service",
-        title="10am Morning Service",
-        body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
+      image="morning_service",
+      title="10am Morning Service",
+      body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
       ) }}
       {{ card_macro::image_with_caption(
-        image="mandarin_service",
-        title="2pm Mandarin Service",
-        body="A welcoming service in Mandarin, tailored for the Chinese-speaking community."
+      image="mandarin_service",
+      title="2pm Mandarin Service",
+      body="A welcoming service in Mandarin, tailored for the Chinese-speaking community."
       ) }}
       {{ card_macro::image_with_caption(
-        image="night_service",
-        title="5pm Night Service",
-        body="A dynamic space for students and young adults to connect through worship and a meal together."
+      image="night_service",
+      title="5pm Night Service",
+      body="A dynamic space for students and young adults to connect through worship and a meal together."
       ) }}
     </div>
 
     <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-4 regen-button">
-      <svg class="text-yellow-400"><use href="{{ sprites }}#church"></use></svg>
+      <svg class="text-yellow-400">
+        <use href="{{ sprites }}#church"></use>
+      </svg>
       <div>Plan a Visit</div>
     </a>
   </div>
@@ -59,111 +70,127 @@
 
   <div class="bg-primary/10 py-8 px-4 flex flex-col gap-8">
 
-  <h1 class="regen-title">
-    More Than a Small Group: <b>Missional Communities</b>
-  </h1>
-  <h4 class="-my-2 max-w-xl mx-auto">
-    Missional Communities (MCs) are small groups committed to being formed by Jesus in community for the sake of others.
-    We usually meet weekly in homes where we:
-  </h4>
+    <h1 class="regen-title">
+      More Than a Small Group: <b>Missional Communities</b>
+    </h1>
+    <h4 class="-my-2 max-w-xl mx-auto">
+      Missional Communities (MCs) are small groups committed to being formed by Jesus in community for the sake of
+      others.
+      We usually meet weekly in homes where we:
+    </h4>
 
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 text-white mx-auto">
-    {% set card_css = 'flex flex-col gap-2 items-center justify-center aspect-square p-8 w-full h-full bg-primary md:rounded-full md:p-12' %}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 text-white mx-auto">
+      {% set card_css = 'flex flex-col gap-2 items-center justify-center aspect-square p-8 w-full h-full bg-primary
+      md:rounded-full md:p-12' %}
 
-    <div class="{{ card_css }} rounded-t-full rounded-l-full">
-      <svg><use href="{{ sprites }}#spoon-fork"></use></svg>
-      <h3>Eat</h3>
+      <div class="{{ card_css }} rounded-t-full rounded-l-full">
+        <svg>
+          <use href="{{ sprites }}#spoon-fork"></use>
+        </svg>
+        <h3>Eat</h3>
+      </div>
+      <div class="{{ card_css }} rounded-t-full rounded-r-full">
+        <svg>
+          <use href="{{ sprites }}#pray"></use>
+        </svg>
+        <h3>Pray</h3>
+      </div>
+      <div class="{{ card_css }} rounded-b-full rounded-l-full">
+        <svg>
+          <use href="{{ sprites }}#bible"></use>
+        </svg>
+        <h3>Study</h3>
+      </div>
+      <div class="{{ card_css }} rounded-b-full rounded-r-full">
+        <svg>
+          <use href="{{ sprites }}#people-heart"></use>
+        </svg>
+        <h3>Serve</h3>
+      </div>
     </div>
-    <div class="{{ card_css }} rounded-t-full rounded-r-full">
-      <svg><use href="{{ sprites }}#pray"></use></svg>
-      <h3>Pray</h3>
-    </div>
-    <div class="{{ card_css }} rounded-b-full rounded-l-full">
-      <svg><use href="{{ sprites }}#bible"></use></svg>
-      <h3>Study</h3>
-    </div>
-    <div class="{{ card_css }} rounded-b-full rounded-r-full">
-      <svg><use href="{{ sprites }}#people-heart"></use></svg>
-      <h3>Serve</h3>
-    </div>
-  </div>
 
-  <a href="{{ get_url(path='@/church/mcs.md') }}" class="mt-4 regen-button">
+    <a href="{{ get_url(path='@/church/mcs.md') }}" class="mt-4 regen-button">
       <svg class="text-rose-500">
         <use href="{{ sprites }}#heart"></use>
       </svg>
       <div>Find an MC</div>
-  </a>
+    </a>
 
   </div>
 
   <div class="py-8 px-4 flex flex-col gap-8">
-  <h1 class="regen-title">
-    Come be Transformed by <b>Gospel-Centred</b> Sermons
-  </h1>
+    <h1 class="regen-title">
+      Come be Transformed by <b>Gospel-Centred</b> Sermons
+    </h1>
 
-  {% include "partial/sermon_series.html" %}
+    {% include "partial/sermon_series.html" %}
 
-  <div class="py-8 px-4 flex flex-col gap-2">
-  <a href="https://www.youtube.com/@RegenerationMonash/live" target="_blank" class="regen-button mt-4">
-      <svg class="size-8">
-        <use href="{{ sprites }}#youtube-coloured"></use>
-      </svg>
-      <div>Join Our Livestream</div>
-  </a>
-  <a href="https://open.spotify.com/user/31a2u4zg7qy2vopmchtesxdfu3jy" target="_blank" class="regen-button">
-      <svg class="size-8 text-[#11c84b]">
-        <use href="{{ sprites }}#spotify"></use>
-      </svg>
-      <div>Listen to Past Sermons</div>
-  </a>
-  </div>
+    <div class="py-8 px-4 flex flex-col gap-2">
+      <a href="https://www.youtube.com/@RegenerationMonash/live" target="_blank" class="regen-button mt-4">
+        <svg class="size-8">
+          <use href="{{ sprites }}#youtube-coloured"></use>
+        </svg>
+        <div>Join Our Livestream</div>
+      </a>
+      <a href="https://open.spotify.com/user/31a2u4zg7qy2vopmchtesxdfu3jy" target="_blank" class="regen-button">
+        <svg class="size-8 text-[#11c84b]">
+          <use href="{{ sprites }}#spotify"></use>
+        </svg>
+        <div>Listen to Past Sermons</div>
+      </a>
+    </div>
   </div>
 
   <div class="bg-primary/10 py-8 px-4 flex flex-col gap-8">
-  <h1 id="get-in-touch" class="regen-title">
-    Join us as we follow Jesus, who makes <b>Disciples</b> of all Nations
-  </h1>
+    <h1 id="get-in-touch" class="regen-title">
+      Join us as we follow Jesus, who makes <b>Disciples</b> of all Nations
+    </h1>
 
-  <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
-    <div class="flex flex-col gap-4 md:px-10">
+      <div class="flex flex-col gap-4 md:px-10">
 
-      <p class="text-lg">
-        We are a church community in Clayton, across the street from Monash University
-        Clayton campus.
-      </p>
+        <p class="text-lg">
+          We are a church community in Clayton, across the street from Monash University
+          Clayton campus.
+        </p>
 
-      {{ img_macro::standalone(
-          image="homepage_building",
-          sizes="",
-          alt="Regeneration Church Building",
-          class="rounded-md",
-      ) }}
+        {{ img_macro::standalone(
+        image="homepage_building",
+        sizes="",
+        alt="Regeneration Church Building",
+        class="rounded-md",
+        ) }}
 
-      <a href="{{ get_url(path='@/church/announcements.md')}}" class="regen-button">
-          <svg class="text-sky-500"><use href="{{ sprites }}#trumpet"></use></svg>
+        <a href="{{ get_url(path='@/church/announcements.md')}}" class="regen-button">
+          <svg class="text-sky-500">
+            <use href="{{ sprites }}#trumpet"></use>
+          </svg>
           <div>Announcements</div>
-      </a>
+        </a>
 
-      <a href="{{ get_url(path='@/connect/_index.md')}}" class="regen-button-important">
-          <svg><use href="{{ sprites }}#handshake"></use></svg>
+        <a href="{{ get_url(path='@/connect/_index.md')}}" class="regen-button-important">
+          <svg>
+            <use href="{{ sprites }}#handshake"></use>
+          </svg>
           <span>Get Connected</span>
+        </a>
+
+      </div>
+
+      <a class="relative" href="https://maps.app.goo.gl/s9WxYijs8rEQn3X18" target="_blank">
+        <svg class="size-[unset] w-full h-full rounded-md aspect-square shadow-xs shadow-stone-400">
+          <use href="{{ sprites }}#google-map"></use>
+        </svg>
+        <div class="regen-button h-fit absolute bottom-12 inset-x-0 bg-background">
+          <svg>
+            <use href="{{ sprites }}#google-maps-icon"></use>
+          </svg>
+          Join us on Sunday
+        </div>
       </a>
 
     </div>
-
-    <a class="relative" href="https://maps.app.goo.gl/s9WxYijs8rEQn3X18" target="_blank">
-      <svg class="size-[unset] w-full h-full rounded-md aspect-square shadow-xs shadow-stone-400">
-        <use href="{{ sprites }}#google-map"></use>
-      </svg>
-      <div class="regen-button h-fit absolute bottom-12 inset-x-0 bg-background">
-        <svg><use href="{{ sprites }}#google-maps-icon"></use></svg>
-        Join us on Sunday
-      </div>
-    </a>
-
-  </div>
   </div>
 
 </main>
