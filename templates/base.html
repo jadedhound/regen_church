@@ -9,7 +9,8 @@
   <meta name="description"
     content="Come join us, a gospel-centred, community on mission for Jesus in Clayton, City of Monash. We meet every Sunday 10AM, 2PM and 5PM.">
   {% block head %} {% endblock %}
-  {% include "partial/critical_css.html" %}
+  {% set inlinecss = load_data(path="styles-inline.css") %}
+  <style>{{ inlinecss }}</style>
   <link rel="preload" href="{{ get_url(path='styles.css', cachebust=true) | safe }}" as="style"
     onload="this.rel='stylesheet'" />
   <noscript>
