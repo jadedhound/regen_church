@@ -21,17 +21,15 @@
 
     <label class="cursor-pointer bg-primary rounded-md flex flex-col items-center justify-center font-bold gap-2">
       <input type="checkbox" class="size-0 opacity-0 peer" checked />
-      <div>
         <div class="hidden group-has-checked:flex gap-2 justify-center">
           {% set circle_css = 'rounded-full size-5 bg-onPrimary' %}
           <div class="{{ circle_css }}"></div>
           <div class="{{ circle_css }}"></div>
           <div class="{{ circle_css }}"></div>
         </div>
-        <div class="group-has-checked:hidden flex justify-center">
+        <div class="flex group-has-checked:hidden justify-center">
           <svg class="size-16 text-onPrimary"><use href="{{ sprites }}#chevron-up"></use></svg>
         </div>
-      </div>
     </label>
 
 </div>
