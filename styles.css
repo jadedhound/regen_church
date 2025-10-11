@@ -1,24 +1,23 @@
 @import 'tailwindcss';
-@config './tailwind.config.js';
 
 @font-face {
-    font-family: 'AlumniSans';
-    src: url('/fonts/AlumniSans-ExtraLight.woff2') format('woff2');
-    font-weight: 200;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'AlumniSans';
+  src: url('/fonts/AlumniSans-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
 }
 
 @theme {
-    --color-background: var(--color-white);
-    --color-onBackground: var(--color-black);
-    --color-surface: var(--color-zinc-100);
-    --color-primary: var(--color-red-700);
-    --color-onPrimary: var(--color-white);
-    --color-primary-variant: var(--color-red-800);
-    --color-flair: var(--color-yellow-700);
+  --color-background: var(--color-white);
+  --color-onBackground: var(--color-black);
+  --color-surface: var(--color-zinc-100);
+  --color-primary: var(--color-red-700);
+  --color-onPrimary: var(--color-white);
+  --color-primary-variant: var(--color-red-800);
+  --color-flair: var(--color-yellow-700);
 
-    --font-alumni: "AlumniSans", sans-serif;
+  --font-alumni: "AlumniSans", sans-serif;
 }
 
 /* ============================================= */
@@ -27,93 +26,93 @@
 
 @layer base {
 
-    /* Stop scroll when dialog is open */
-    body:has(dialog[open]) {
-        overflow: hidden;
+  /* Stop scroll when dialog is open */
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  dialog {
+    @apply m-auto bg-transparent;
+
+    &::backdrop {
+      @apply bg-black/50;
     }
+  }
 
-    dialog {
-        @apply m-auto bg-transparent;
+  h1 {
+    @apply text-3xl;
 
-        &::backdrop {
-            @apply bg-black/50;
-        }
+    /* Scroll down lower than the navbar when navigating with anchor links. */
+    &:target {
+      @apply scroll-mt-28;
+    }
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h4 {
+    @apply text-lg;
+  }
+
+  hr {
+    @apply my-4 text-stone-300;
+  }
+
+  svg {
+    @apply shrink-0 size-6;
+  }
+
+  article {
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      @apply my-4;
     }
 
     h1 {
-        @apply text-3xl;
-
-        /* Scroll down lower than the navbar when navigating with anchor links. */
-        &:target {
-            @apply scroll-mt-28;
-        }
+      @apply text-4xl my-6;
     }
 
     h2 {
-        @apply text-2xl;
+      @apply text-3xl;
     }
 
     h3 {
-        @apply text-xl;
+      @apply text-2xl uppercase;
     }
 
     h4 {
-        @apply text-lg;
+      @apply text-xl;
     }
 
-    hr {
-        @apply my-4 text-stone-300;
+    p {
+      @apply mb-2;
     }
 
-    svg {
-        @apply shrink-0 size-6;
+    ul {
+      --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
+      @apply list-none my-4;
+
+      li {
+        @apply relative pl-7 mb-2;
+        /* Increased padding to accommodate the icon */
+
+        &::before {
+          @apply text-primary absolute left-0 size-5 bg-no-repeat bg-contain;
+          content: "";
+          background-image: var(--chevron-right);
+        }
+      }
     }
-
-    article {
-
-        h1,
-        h2,
-        h3,
-        h4 {
-            @apply my-4;
-        }
-
-        h1 {
-            @apply text-4xl my-6;
-        }
-
-        h2 {
-            @apply text-3xl;
-        }
-
-        h3 {
-            @apply text-2xl uppercase;
-        }
-
-        h4 {
-            @apply text-xl;
-        }
-
-        p {
-            @apply mb-2;
-        }
-
-        ul {
-            --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
-            @apply list-none my-4;
-
-            li {
-                @apply relative pl-7 mb-2;
-                /* Increased padding to accommodate the icon */
-
-                &::before {
-                    @apply text-primary absolute left-0 size-5 bg-no-repeat bg-contain;
-                    content: "";
-                    background-image: var(--chevron-right);
-                }
-            }
-        }
-    }
+  }
 }
 
 /* ============================================= */
@@ -121,64 +120,64 @@
 /* ============================================= */
 
 @layer components {
-    .regen-button {
-        @apply rounded-md border-stone-400 border-1 shadow-xs shadow-stone-300 bg-background;
-        @apply flex justify-center items-center p-2 gap-4 w-full max-w-xs mx-auto;
-        @apply overflow-x-auto;
-        @apply cursor-pointer;
-        @apply disabled:shadow-none disabled:bg-stone-200 disabled:border-none disabled:text-stone-400;
+  .regen-button {
+    @apply rounded-md border-stone-400 border-1 shadow-xs shadow-stone-300 bg-background;
+    @apply flex justify-center items-center p-2 gap-4 w-full max-w-xs mx-auto;
+    @apply overflow-x-auto;
+    @apply cursor-pointer;
+    @apply disabled:shadow-none disabled:bg-stone-200 disabled:border-none disabled:text-stone-400;
+  }
+
+  .regen-button-important {
+    @apply rounded-md bg-primary text-onPrimary shadow-xs shadow-stone-400;
+    @apply flex justify-center items-center p-2.5 gap-4 w-full max-w-xs mx-auto;
+    @apply overflow-x-auto;
+    @apply cursor-pointer;
+  }
+
+  .regen-title {
+    @apply text-center font-bold max-w-3xl mx-auto;
+
+    b {
+      @apply text-primary;
     }
+  }
 
-    .regen-button-important {
-        @apply rounded-md bg-primary text-onPrimary shadow-xs shadow-stone-400;
-        @apply flex justify-center items-center p-2.5 gap-4 w-full max-w-xs mx-auto;
-        @apply overflow-x-auto;
-        @apply cursor-pointer;
+  .fade-edges {
+    mask-image: linear-gradient(to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%);
+  }
+
+  .elvanto-submit {
+    @apply !bg-primary !border-none;
+    @apply !flex justify-center items-center p-4 gap-4 w-full sm:max-w-xs mx-auto;
+    @apply !font-semibold !text-white !uppercase;
+  }
+
+  .elvanto-form-required {
+    @apply !text-flair font-bold;
+  }
+
+  .article-list {
+    --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
+    @apply list-none my-4;
+
+    li {
+      @apply relative pl-7 mb-2;
+      /* Increased padding to accommodate the icon */
+
+      &::before {
+        @apply text-primary absolute left-0 size-5 bg-no-repeat bg-contain;
+        content: "";
+        background-image: var(--chevron-right);
+      }
     }
-
-    .regen-title {
-        @apply text-center font-bold max-w-3xl mx-auto;
-
-        b {
-            @apply text-primary;
-        }
-    }
-
-    .fade-edges {
-        mask-image: linear-gradient(to right,
-                transparent 0%,
-                black 10%,
-                black 90%,
-                transparent 100%);
-    }
-
-    .elvanto-submit {
-        @apply !bg-primary !border-none;
-        @apply !flex justify-center items-center p-4 gap-4 w-full sm:max-w-xs mx-auto;
-        @apply !font-semibold !text-white !uppercase;
-    }
-
-    .elvanto-form-required {
-        @apply !text-flair font-bold;
-    }
-
-    .article-list {
-        --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
-        @apply list-none my-4;
-
-        li {
-            @apply relative pl-7 mb-2;
-            /* Increased padding to accommodate the icon */
-
-            &::before {
-                @apply text-primary absolute left-0 size-5 bg-no-repeat bg-contain;
-                content: "";
-                background-image: var(--chevron-right);
-            }
-        }
-    }
+  }
 }
 
 .regen-service-cards {
-    @apply flex gap-4 overflow-x-auto mx-4 md:mx-auto;
+  @apply flex gap-4 overflow-x-auto mx-4 md:mx-auto;
 }

@@ -2,8 +2,7 @@
   "scripts": {
     "dev": "IP=$(ip addr | grep 'inet ' | grep -v 127.0.0.1 | awk '{print $2}' | cut -d'/' -f1 | head -n 1) && zola serve --interface 0.0.0.0 --base-url $IP & bunx @tailwindcss/cli -i styles.css -o static/styles.css --watch",
     "dev-base": "zola serve & bunx @tailwindcss/cli -i styles.css -o static/styles.css --watch",
-    "pretty": "bunx prettier --write content/ README.md",
-    "prod": "NODE_ENV=production bunx @tailwindcss/cli -i styles.css -o static/styles.css --minify; zola build",
+    "prod": "NODE_ENV=production bunx @tailwindcss/cli -i styles.css -o static/styles.css --minify; zola build"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.10",
@@ -11,7 +10,6 @@
     "tailwindcss": "^4.1.3"
   },
   "devDependencies": {
-    "pocketbase": "^0.26.0",
-    "prettier": "3.2.4"
+    "pocketbase": "^0.26.0"
   }
 }
