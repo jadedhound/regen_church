@@ -4,7 +4,7 @@ template = "article.html"
 
 [extra]
 header_image="values_and_beliefs"
-subtitle="Our purpose and mission"
+verse=["Mankind, he has told each of you what is good and what it is the Lord requires of you: to act justly, to love faithfulness, and to walk humbly with your God.", "Micah 6:8"]
 +++
 
 # Purpose and Mission

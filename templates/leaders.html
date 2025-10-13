@@ -2,22 +2,22 @@
 
 {% import "macros/image.html" as img_macro %}
 
-{% macro portrait(leader, class, sizes="100vw") %}
-{% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
-{% if leader.portrait %}
-{% set image = 'pocketbase/Leaders/images/' ~ leader.portrait %}
-{{ img_macro::simple(
-image=image,
-sizes=sizes,
-alt=leader.name ~ ' Portrait',
-class=class,
-) }}
-{% else %}
-<div class="{{ class ~ ' bg-background' }}">
-  <svg class="size-8 m-auto h-full">
-    <use href="{{ sprites }}#user"></use>
-  </svg>
-</div>
+{% macro portrait(leader, class, sizes="") %}
+  {% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
+  {% if leader.portrait %}
+    {% set image = 'pocketbase/Leaders/images/' ~ leader.portrait %}
+    {{ img_macro::simple(
+      image=image,
+      sizes=sizes,
+      alt=leader.name ~ ' Portrait',
+      class=class,
+    ) }}
+  {% else %}
+  <div class="{{ class ~ ' bg-background' }}">
+    <svg class="size-8 m-auto h-full">
+      <use href="{{ sprites }}#user"></use>
+    </svg>
+  </div>
 {% endif %}
 
 {% endmacro %}

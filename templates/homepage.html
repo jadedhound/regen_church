@@ -49,8 +49,9 @@
       >
     </picture>
 
-    <div class="absolute inset-0 w-full bg-black/40 p-8 flex items-center justify-center">
-      <div class="px-4 py-4 flex flex-col justify-center items-center">
+    <div class="scroll-smooth absolute inset-0 w-full bg-black/40 p-8 flex items-center justify-center">
+      <button class="cursor-pointer px-4 py-4 flex flex-col justify-center items-center"
+        onclick="document.getElementById('3-services').scrollIntoView({ behavior: 'smooth' })">
         <div class="text-5xl text-center text-white font-alumni tracking-wider">
           Making diciples of<br>all Nations<br>
           in the heart of<br>Clayton, Monash
@@ -58,21 +59,21 @@
         <svg class="text-white mt-8 size-12 animate-[bounce_1s_ease-in-out_3.5]">
           <use href="{{ sprites }}#chevron-down-thin"></use>
         </svg>
-      </div>
+      </button>
     </div>
   </div>
 
   <div class="py-8 px-4 flex flex-col gap-8">
-    <h1 class="regen-title mt-4">
+    <h1 class="regen-title mt-4" id="3-services">
       <b>3 Services,</b> 1 Mission<br>Encountering Jesus together every Sunday
     </h1>
 
-    <div class="flex gap-4 overflow-x-auto md:mx-auto">
-      {{ card_macro::image_with_caption(
-      image="morning_service",
-      title="10am Morning Service",
-      body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
-      ) }}
+    <div class="flex gap-4 overflow-x-auto md:mx-auto w-fit max-w-[95vw]">
+        {{ card_macro::image_with_caption(
+        image="morning_service",
+        title="10am Morning Service",
+        body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
+        ) }}
       {{ card_macro::image_with_caption(
       image="mandarin_service",
       title="2pm Mandarin Service",

@@ -4,5 +4,5 @@ template = "connect.html"
 
 [extra]
 header_image="connect"
-subtitle="They devoted themselves to the apostles’ teaching, to the fellowship, to the breaking of bread, and to prayer. Acts 2:42 CSB."
+verse=["Ask, and it will be given to you. Seek, and you will find. Knock, and the door will be opened to you", "Matthew 7:7"]
 +++

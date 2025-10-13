@@ -4,5 +4,5 @@ template = "announcements.html"
 
 [extra]
 header_image = "announcements"
-subtitle = "Find out what's happening at Regeneration Church today."
+verse=["Let the word of Christ dwell richly among you, in all wisdom teaching and admonishing one another through psalms, hymns, and spiritual songs, singing to God with gratitude in your hearts", "Colossians 3:16"]
 +++

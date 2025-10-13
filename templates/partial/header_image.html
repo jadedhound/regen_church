@@ -1,0 +1,36 @@
+<div class="h-16"></div>
+
+<div class="px-4 grid md:grid-cols-2 gap-4 mt-12 max-w-5xl mx-auto">
+    <div class="font-bold text-[clamp(1.8rem,10vw,3rem)] mt-auto -my-2">
+        {{ page.title | default(value=section.title) }}
+    </div>
+
+    <div class="text-onBackground/90 order-3">
+        {% if page.extra.verse %}
+          <p>
+            {{ '"' ~ page.extra.verse[0] ~ '"'}}
+          </p>
+          <p class="text-right text-xs font-bold">
+            {{ page.extra.verse[1] }}
+          </p>
+        {% endif %}
+        {% if section.extra.verse %}
+          <p>
+            {{ '"' ~ section.extra.verse[0] ~ '"'}}
+          </p>
+          <p class="text-right text-xs font-bold">
+            {{ section.extra.verse[1] }}
+          </p>
+        {% endif %}
+    </div>
+
+    {{ img_macro::standalone(
+      image=page.extra.header_image | default(value=section.extra.header_image),
+      alt="header images",
+      sizes="100vw",
+      class="rounded-md row-span-2",
+    ) }}
+
+</div>
+
+<hr class="mx-4 my-8 md:mx-8">

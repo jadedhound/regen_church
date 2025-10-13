@@ -15,7 +15,7 @@
   --color-primary: var(--color-red-700);
   --color-onPrimary: var(--color-white);
   --color-primary-variant: var(--color-red-800);
-  --color-flair: var(--color-yellow-700);
+  --color-flair: var(--color-yellow-600);
 
   --font-alumni: "AlumniSans", sans-serif;
 }
@@ -186,8 +186,44 @@
       }
     }
   }
-}
 
-.regen-service-cards {
-  @apply flex gap-4 overflow-x-auto mx-4 md:mx-auto;
+  .regen-service-cards {
+    @apply flex gap-4 overflow-x-auto mx-4 md:mx-auto;
+  }
+
+  .regen-summary {
+    @apply mx-auto w-full max-w-xl border border-gray-300 rounded-lg bg-white divide-y divide-gray-300;
+
+    details {
+      summary {
+        @apply cursor-pointer list-none relative px-4 py-8 md:px-8 flex gap-4;
+
+        div {
+          @apply relative w-4 h-4 mt-px flex-none;
+
+          div:first-child {
+            @apply absolute top-0 left-1/2 w-1 h-full bg-primary -translate-x-1/2 transition-all duration-300 ease-in-out group-open:opacity-0 group-open:scale-y-0 origin-center;
+
+            .group:hover {
+              @apply opacity-0 scale-y-0;
+
+            }
+          }
+
+          div:last-child {
+            @apply absolute top-1/2 left-0 w-full h-1 bg-primary -translate-y-1/2;
+          }
+        }
+
+        span {
+          @apply font-bold;
+        }
+      }
+
+      &>div {
+        @apply pl-12 md:pl-16 pr-4 pb-6;
+      }
+    }
+
+  }
 }
