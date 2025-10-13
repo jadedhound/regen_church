@@ -39,6 +39,16 @@
     }
   }
 
+  h1,
+  h2 {
+    @apply my-8;
+  }
+
+  h3,
+  h4 {
+    @apply my-6;
+  }
+
   h1 {
     @apply text-3xl;
 

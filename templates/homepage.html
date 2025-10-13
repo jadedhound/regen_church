@@ -2,25 +2,51 @@
 {% import "macros/image.html" as img_macro %}
 {% import "macros/card.html" as card_macro %}
 
+{% macro faq(question, answer, sprites) %}
+  <details class="group open">
+    <summary class="cursor-pointer list-none relative p-4 md:p-8 flex gap-4">
+      <div class="relative w-4 h-4 mt-px flex-none">
+        <div class="absolute top-0 left-1/2 w-1 h-full bg-primary -translate-x-1/2 transition-all duration-300 ease-in-out group-open:opacity-0 group-open:scale-y-0 origin-center"></div>
+        <div class="absolute top-1/2 left-0 w-full h-1 bg-primary -translate-y-1/2"></div>
+      </div>
+      <span class="font-bold">
+        {{ question }}
+      </span>
+    </summary>
+    <div class="pl-12 md:pl-16 pr-4 pb-6">
+      {{ answer }}
+    </div>
+  </details>
+{% endmacro %}
+
+
 {% block content %}
 <main>
 
-  <div class="relative">
-    {% set image_json = load_data(path="pocketbase/Images/" ~ "frontcover.json", format="json") %}
-    {% set image = "pocketbase/Images/images/" ~ image_json.image %}
+  {% set image_json = load_data(path="pocketbase/Images/" ~ "frontcover.json", format="json") %}
+  {% set image = "pocketbase/Images/images/" ~ image_json.image %}
+  {% set filename = image | split(pat="/") | last %}
+  {% set lqip_file = "pocketbase/lqip/" ~ filename ~ ".base64" %}
+  {% set lqip = load_data(path=lqip_file) %}
+  <div class="relative h-[calc(95vh-4rem)] bg-cover bg-center"
+    style="background-image: url('{{ lqip }}')">
     {% set mdata = get_image_metadata(path=image) %}
     {% set sm = resize_image(path=image, width=360, height=mdata.height, op="fill", format="webp", quality=75) %}
     {% set md = resize_image(path=image, width=720, height=mdata.height, op="fill", format="webp", quality=75) %}
     {% set lg = resize_image(path=image, width=1080, height=mdata.height, op="fill", format="webp", quality=75) %}
     {% set xl = resize_image(path=image, width=1920, height=mdata.height, op="fill", format="webp", quality=75) %}
 
-    <picture>
+    <picture style="background-image: url('{{ lqip }}');">
       <source srcset="{{ xl.url }}" media="(min-width: 1200px)">
       <source srcset="{{ lg.url }}" media="(min-width: 768px)">
       <source srcset="{{ md.url }}" media="(min-width: 425px)">
-      <img src="{{ sm.url }}" fetchpriority="high" alt="frontpage regeneration church"
-        class="h-[calc(95vh-4rem)] w-full object-cover bg-no-repeat bg-cover bg-center" height="{{ xl.height }}"
-        width="{{ xl.width }}">
+      <img src="{{ sm.url }}"
+        fetchpriority="high"
+        alt="frontpage regeneration church"
+        class="inset-0 opacity-0 transition-opacity duration-700 w-full h-full object-cover"
+        height="{{ xl.height }}" width="{{ xl.width }}"
+        onload="this.classList.remove('opacity-0')"
+      >
     </picture>
 
     <div class="absolute inset-0 w-full bg-black/40 p-8 flex items-center justify-center">
@@ -59,10 +85,9 @@
       ) }}
     </div>
 
-    <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="mt-4 regen-button">
-      <svg class="text-yellow-400">
-        <use href="{{ sprites }}#church"></use>
-      </svg>
+    <a href="{{ get_url(path='@/_index.md') }}#get-in-touch"
+      class="mt-4 regen-button">
+      <svg class="text-yellow-400"><use href="{{ sprites }}#church"></use></svg>
       <div>Plan a Visit</div>
     </a>
   </div>
@@ -87,25 +112,25 @@
         <svg>
           <use href="{{ sprites }}#spoon-fork"></use>
         </svg>
-        <h3>Eat</h3>
+        <div class="text-xl">Eat</div>
       </div>
       <div class="{{ card_css }} rounded-t-full rounded-r-full">
         <svg>
           <use href="{{ sprites }}#pray"></use>
         </svg>
-        <h3>Pray</h3>
+        <div class="text-xl">Pray</div>
       </div>
       <div class="{{ card_css }} rounded-b-full rounded-l-full">
         <svg>
           <use href="{{ sprites }}#bible"></use>
         </svg>
-        <h3>Study</h3>
+        <div class="text-xl">Study</div>
       </div>
       <div class="{{ card_css }} rounded-b-full rounded-r-full">
         <svg>
           <use href="{{ sprites }}#people-heart"></use>
         </svg>
-        <h3>Serve</h3>
+        <div class="text-xl">Serve</div>
       </div>
     </div>
 
@@ -145,50 +170,151 @@
     <h1 id="get-in-touch" class="regen-title">
       Join us as we follow Jesus, who makes <b>Disciples</b> of all Nations
     </h1>
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
 
-    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      {{ img_macro::standalone(
+      image="homepage_building",
+      sizes="",
+      alt="Regeneration Church Building",
+      class="rounded-md my-auto md:order-2",
+      ) }}
 
-      <div class="flex flex-col gap-4 md:px-10">
-
-        <p class="text-lg">
-          We are a church community in Clayton, across the street from Monash University
-          Clayton campus.
+      <div class="md:order-1 my-auto">
+        <h3 class="font-bold">When should I come?</h3>
+        <p>
+          We have 3 services every Sunday, choose the one that fits you best:
+          <ul class="article-list">
+            <li>
+              <strong>Morning Service: 10am.</strong>
+              A welcoming start to the day with a kids’ program.
+            </li>
+            <li>
+              <strong>Mandarin Service: 2pm.</strong>
+              Feel at home worshiping in your native language.
+            </li>
+            <li>
+              <strong>Night Service: 5pm.</strong>
+              End the day on a high note, great for university students and young adults.
+            </li>
+          </ul>
         </p>
-
-        {{ img_macro::standalone(
-        image="homepage_building",
-        sizes="",
-        alt="Regeneration Church Building",
-        class="rounded-md",
-        ) }}
-
-        <a href="{{ get_url(path='@/church/announcements.md')}}" class="regen-button">
-          <svg class="text-sky-500">
-            <use href="{{ sprites }}#trumpet"></use>
-          </svg>
-          <div>Announcements</div>
-        </a>
-
-        <a href="{{ get_url(path='@/connect/_index.md')}}" class="regen-button-important">
-          <svg>
-            <use href="{{ sprites }}#handshake"></use>
-          </svg>
-          <span>Get Connected</span>
-        </a>
-
       </div>
 
-      <a class="relative" href="https://maps.app.goo.gl/s9WxYijs8rEQn3X18" target="_blank">
+
+      <a class="relative md:order-4 md:col-span-2 w-full max-w-md mx-auto" href="https://maps.app.goo.gl/s9WxYijs8rEQn3X18" target="_blank">
         <svg class="size-[unset] w-full h-full rounded-md aspect-square shadow-xs shadow-stone-400">
           <use href="{{ sprites }}#google-map"></use>
         </svg>
         <div class="regen-button h-fit absolute bottom-12 inset-x-0 bg-background">
-          <svg>
-            <use href="{{ sprites }}#google-maps-icon"></use>
-          </svg>
-          Join us on Sunday
+          <svg><use href="{{ sprites }}#google-maps-icon"></use></svg>
+          <div class="w-full leading-none text-center">
+            <span class="text-lg">118 Wellington Rd</span>
+            <br>
+            <span class="text-onBackground/70 text-xs">Clayton VIC 3168</span>
+          </div>
+          <div class="w-5"></div>
         </div>
       </a>
+
+      <h1 class="font-bold md:order-5 md:col-span-2 text-center mt-16">
+        What happens at church?
+      </h1>
+
+      <div class="md:order-6 my-auto">
+        <h3 class="font-bold">Before the service</h3>
+        <p>
+          There’s plenty of on-site parking.
+          Our Hospitality Team will greet you at the entrance and
+          help with anything you need.
+          Don’t worry if you’re running late—they’ll make sure
+          you find a seat as soon as you arrive.
+        </p>
+      </div>
+      {{ img_macro::standalone(
+      image="homepage_before_service",
+      sizes="",
+      alt="Before service",
+      class="rounded-md my-auto md:order-7",
+      ) }}
+
+      <div class="md:order-9 my-auto">
+      <h3 class="font-bold">During the service</h3>
+        <p>
+          We sing to God, pray collectively, read the Bible,
+          and hear a sermon from one of our pastors. Every other
+          week we also partake in communion.
+          Don't worry if any of this sounds odd or unfamiliar; come
+          as you are and participate as much or as little as you feel comfortable.
+        </p>
+      </div>
+      {{ img_macro::standalone(
+      image="homepage_during_service",
+      sizes="",
+      alt="During service",
+      class="rounded-md my-auto md:order-8",
+      ) }}
+
+      <div class="md:order-10 my-auto">
+        <h3 class="font-bold">Kids and families</h3>
+        <p>
+          Children start the service with the adults. After singing songs to God,
+          they hear an engaging kids' talk before they head off to programs tailored
+          for them. Feel free to accompany your child to their program or to
+          remain with the congregation.
+        </p>
+      </div>
+      {{ img_macro::standalone(
+      image="homepage_kids",
+      sizes="",
+      alt="Kids and families during service",
+      class="rounded-md my-auto md:order-11",
+      ) }}
+
+      <div class="md:order-13 my-auto">
+        <h3 class="font-bold">After the service</h3>
+        <p>
+          After the service, hang around for a delicous cup of barista-style
+          coffee and some light morning snacks. This is our gift to you and is
+          completely free. 
+        </p>
+      </div>
+      {{ img_macro::standalone(
+      image="homepage_after_service",
+      sizes="",
+      alt="After service",
+      class="rounded-md my-auto md:order-12",
+      ) }}
+
+      <h1 class="font-bold md:order-14 md:col-span-2 text-center my-12">
+        Common Questions
+      </h1>
+      <section class="md:order-15 md:col-span-2 mx-auto w-full max-w-xl border border-gray-300 rounded-lg bg-white divide-y divide-gray-300">
+        {{ self::faq(
+          question="Can I visit church if I'm not religious?",
+          answer="Absolutely. Many people visit just to see what church is like, ask questions, or enjoy the community. We would be honoured to be able to share Jesus with you.",
+          sprites=sprites
+        )}}
+        {{ self::faq(
+          question="How long does church go for?",
+          answer="Our services normally go for 1 hr 30 mins.",
+          sprites=sprites
+        )}}
+        {{ self::faq(
+          question="What should I wear?",
+          answer="Dress comfortably, there is no need to dress up.",
+          sprites=sprites
+        )}}
+        {{ self::faq(
+          question="What should I bring?",
+          answer="Just bring your wonderful self. If you have kids, feel free to bring any food or drink that they'd need.",
+          sprites=sprites
+        )}}
+        {{ self::faq(
+          question="Will I have to do anything?",
+          answer="No. You’re welcome to simply watch and listen, with no pressure to participate in anything.",
+          sprites=sprites
+        )}}
+      </section>
 
     </div>
   </div>

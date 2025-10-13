@@ -5,9 +5,11 @@ import { promises as fs } from "node:fs";
 import path from "path";
 import PocketBase from "pocketbase";
 import { argv, exit } from "process";
+import sharp from "sharp";
 
 const secretsFile = "secrets.json.gpg";
 const outputDir = "pocketbase/";
+const lqipDir = path.join(outputDir, "lqip")
 /** @type {str} */
 let url;
 /** @type {PocketBase} */
@@ -72,10 +74,24 @@ async function getImages(imagePath, record) {
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
-      await Bun.write(outputPath, await response.bytes());
+      const resp = await response.bytes();
+      await Bun.write(outputPath, resp);
+      await genLQIP(outputPath, value);
       console.log(`Downloaded: ${value}`);
     }
   }
+}
+
+
+async function genLQIP(imagePath, imageName) {
+  const buffer = await sharp(imagePath)
+    .rotate()
+    .resize(20)
+    .blur()
+    .avif({ quality: 50 })
+    .toBuffer();
+  const base64 = `data:image/avif;base64,${buffer.toString("base64")}`;
+  await Bun.write(path.join(lqipDir, `${imageName}.base64`), base64);
 }
 
 /**
@@ -136,6 +152,7 @@ async function main() {
       const basePath = path.join(outputDir, collection.name);
       const imagePath = path.join(basePath, "images");
       await fs.mkdir(imagePath, { recursive: true });
+      await fs.mkdir(lqipDir, { recursive: true });
       await getCollection(collection, basePath, imagePath);
       await createFilenamesJson(basePath);
     }
