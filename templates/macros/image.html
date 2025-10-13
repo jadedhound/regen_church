@@ -11,10 +11,10 @@
 {% set lqip_file = "pocketbase/lqip/" ~ filename ~ ".base64" %}
 {% set lqip = load_data(path=lqip_file) %}
 {% set mdata = get_image_metadata(path=image) %}
-{% set sm = resize_image(path=image, width=360, height=mdata.height, op=op, format="webp", quality=75) %}
-{% set md = resize_image(path=image, width=720, height=mdata.height, op=op, format="webp", quality=75) %}
-{% set lg = resize_image(path=image, width=1080, height=mdata.height, op=op, format="webp", quality=75) %}
-{% set xl = resize_image(path=image, width=1920, height=mdata.height, op=op, format="webp", quality=75) %}
+{% set sm = resize_image(path=image, width=360, height=mdata.height, op=op, format="avif", quality=50) %}
+{% set md = resize_image(path=image, width=720, height=mdata.height, op=op, format="avif", quality=50) %}
+{% set lg = resize_image(path=image, width=1080, height=mdata.height, op=op, format="avif", quality=50) %}
+{% set xl = resize_image(path=image, width=1920, height=mdata.height, op=op, format="avif", quality=50) %}
 
 <div class='{{ "relative bg-cover bg-center rounded-md " ~ class }}'
     style="aspect-ratio: {{ xl.width / xl.height }}; background-image: url('{{ lqip }}')">

@@ -15,8 +15,8 @@
   {% for data in annc_array %}
   {% set image = 'pocketbase/Announcements/images/' ~ data.image %}
   {% set mdata = get_image_metadata(path=image) %}
-  {% set md = resize_image(path=image, width=720, height=mdata.height, op="fit_width", format="webp", quality=75) %}
-  {% set xl = resize_image(path=image, width=1920, height=mdata.height, op="fit_width", format="webp", quality=75) %}
+  {% set md = resize_image(path=image, width=720, height=mdata.height, op="fit_width", format="avif", quality=50) %}
+  {% set xl = resize_image(path=image, width=1920, height=mdata.height, op="fit_width", format="avif", quality=50) %}
 
   <a href="{{ xl.url }}" target="_blank">
   <div class="bg-surface shadow-xs shadow-stone-400 rounded-md h-full">

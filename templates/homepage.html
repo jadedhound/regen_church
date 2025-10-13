@@ -4,7 +4,7 @@
 
 {% macro faq(question, answer, sprites) %}
   <details class="group open">
-    <summary class="cursor-pointer list-none relative p-4 md:p-8 flex gap-4">
+    <summary class="cursor-pointer list-none relative px-4 py-8 md:px-8 flex gap-4">
       <div class="relative w-4 h-4 mt-px flex-none">
         <div class="absolute top-0 left-1/2 w-1 h-full bg-primary -translate-x-1/2 transition-all duration-300 ease-in-out group-open:opacity-0 group-open:scale-y-0 origin-center"></div>
         <div class="absolute top-1/2 left-0 w-full h-1 bg-primary -translate-y-1/2"></div>
@@ -31,10 +31,10 @@
   <div class="relative h-[calc(95vh-4rem)] bg-cover bg-center"
     style="background-image: url('{{ lqip }}')">
     {% set mdata = get_image_metadata(path=image) %}
-    {% set sm = resize_image(path=image, width=360, height=mdata.height, op="fill", format="webp", quality=75) %}
-    {% set md = resize_image(path=image, width=720, height=mdata.height, op="fill", format="webp", quality=75) %}
-    {% set lg = resize_image(path=image, width=1080, height=mdata.height, op="fill", format="webp", quality=75) %}
-    {% set xl = resize_image(path=image, width=1920, height=mdata.height, op="fill", format="webp", quality=75) %}
+    {% set sm = resize_image(path=image, width=360, height=mdata.height, op="fill", format="avif", quality=55) %}
+    {% set md = resize_image(path=image, width=720, height=mdata.height, op="fill", format="avif", quality=55) %}
+    {% set lg = resize_image(path=image, width=1080, height=mdata.height, op="fill", format="avif", quality=55) %}
+    {% set xl = resize_image(path=image, width=1920, height=mdata.height, op="fill", format="avif", quality=55) %}
 
     <picture style="background-image: url('{{ lqip }}');">
       <source srcset="{{ xl.url }}" media="(min-width: 1200px)">
