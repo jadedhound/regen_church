@@ -6,22 +6,14 @@
     </div>
 
     <div class="text-onBackground/90 order-3">
-        {% if page.extra.verse %}
-          <p>
-            {{ '"' ~ page.extra.verse[0] ~ '"'}}
-          </p>
-          <p class="text-right text-xs font-bold">
-            {{ page.extra.verse[1] }}
-          </p>
-        {% endif %}
-        {% if section.extra.verse %}
-          <p>
-            {{ '"' ~ section.extra.verse[0] ~ '"'}}
-          </p>
-          <p class="text-right text-xs font-bold">
-            {{ section.extra.verse[1] }}
-          </p>
-        {% endif %}
+        {% set verse = page.extra.verse[0] | default(value=section.extra.verse[0]) %}
+        {% set reference = page.extra.verse[1] | default(value=section.extra.verse[1]) %}
+        <p>
+          {{ verse }}
+        </p>
+        <p class="mr-4 mt-4 text-right text-xs font-bold">
+          {{ reference }}
+        </p>
     </div>
 
     {{ img_macro::standalone(

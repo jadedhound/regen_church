@@ -165,7 +165,7 @@
       };
     }
   }
-  document.addEventListener('DOMContentLoaded', handleHashCheckbox);
   window.addEventListener('hashchange', handleHashCheckbox);
+  handleHashCheckbox();
 </script>
 {% endblock %}
