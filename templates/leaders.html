@@ -2,7 +2,7 @@
 
 {% import "macros/image.html" as img_macro %}
 
-{% macro portrait(leader, class, sizes) %}
+{% macro portrait(leader, class, sizes, image_class="") %}
   {% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
   {% if leader.portrait %}
     {% set image = 'pocketbase/Leaders/images/' ~ leader.portrait %}
@@ -11,6 +11,7 @@
       sizes=sizes,
       alt=leader.name ~ ' Portrait',
       class=class,
+      image_class=image_class,
     ) }}
   {% else %}
   <div class="{{ class ~ ' bg-background rounded-md aspect-square' }}">
@@ -57,7 +58,7 @@
       </div>
     </div>
     <div class="grow">
-      <div class="text-center uppercase font-bold text-lg">{{ leader.name }}</div>
+      <div class="text-center font-bold text-lg">{{ leader.name }}</div>
       <div class="text-center text-onBackground/80">{{ leader.title }}</div>
     </div>
     <button class="regen-button" onclick="show_dialog('{{ leader.id }}')" {% if leader.bio=='' %}disabled{% endif %}>
@@ -67,29 +68,25 @@
 
   <dialog id="{{ leader.id }}">
     <div class="bg-background text-onBackground rounded-md flex shadow-xs shadow-black">
-      <div class="grow flex flex-col gap-4 max-w-2xl p-4 lg:h-auto">
-        <div class="overflow-y-auto max-h-[60vh] grow">
-          <div class="pb-4 lg:hidden">
-            {{ self::portrait(
-              leader=leader,
-              class="aspect-square object-cover",
-              sizes="95vw"
-            ) }}
-          </div>
-          <h4 class="font-bold text-center lg:text-left uppercase grow">{{ leader.name }}</h4>
-          <div class="py-4">
-            {{ leader.bio | markdown | safe }}
-          </div>
-          <button class="regen-button lg:mx-[unset] mb-1" onclick="close_dialog('{{ leader.id }}')">
+      <div class="grid md:grid-cols-3 max-w-3xl">
+        {{ self::portrait(
+          leader=leader,
+          class="h-full rounded-b-none md:rounded-l-none md:rounded-r-md md:aspect-[unset]! md:order-2 md:row-span-3",
+          image_class="h-full object-cover md:aspect-none",
+          sizes=""
+        ) }}
+        <h4 class="px-4 font-bold md:col-span-2 md:order-1">
+          {{ leader.name }}
+        </h4>
+        <div class="px-4 overflow-y-auto md:max-h-[40vh] md:col-span-2 md:order-3">
+          {{ leader.bio | markdown | safe }}
+        </div>
+        <div class="p-4 md:col-span-2 md:order-4">
+          <button class="regen-button md:mx-[unset]" onclick="close_dialog('{{ leader.id }}')">
             Close
           </button>
         </div>
       </div>
-      {{ self::portrait(
-        leader=leader,
-        class="rounded-r-md hidden lg:block object-cover max-w-xs min-w-[20vw]",
-        sizes="30vw"
-      ) }}
     </div>
   </dialog>
   {% endfor %}

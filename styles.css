@@ -17,6 +17,7 @@
   --color-primary-variant: var(--color-red-800);
   --color-flair: var(--color-yellow-600);
 
+  --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
   --font-alumni: "AlumniSans", sans-serif;
 }
 
@@ -71,11 +72,15 @@
   }
 
   hr {
-    @apply my-4 text-stone-300;
+    @apply my-12 text-stone-300;
   }
 
   svg {
     @apply shrink-0 size-6;
+  }
+
+  main {
+    @apply px-4 mb-16 max-w-5xl mx-auto;
   }
 
   article {
@@ -108,7 +113,6 @@
     }
 
     ul {
-      --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
       @apply list-none my-4;
 
       li {
@@ -172,7 +176,6 @@
   }
 
   .article-list {
-    --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E");
     @apply list-none my-4;
 
     li {

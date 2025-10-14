@@ -1,6 +1,10 @@
-{% extends "page.html" %}
+{% extends "base.html" %}
 
-{% block main %}
+{% import "macros/image.html" as img_macro %}
+
+{% block content %}
+
+{% include "partial/header_image.html" %}
 
 {% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
 {% set files = load_data(path="pocketbase/MC/filenames.json", format="json") %}
@@ -13,48 +17,59 @@
 {% set days_array = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
 
 
-<div class="flex flex-col gap-4">
+<main class="">
   {% for day in days_array %}
-<div class="flex flex-col sm:flex-row gap-4 {% if loop.index is odd %}sm:flex-row-reverse sm:[&_h2]:text-right{% endif %}">
-  <div class="w-full max-w-md my-auto">
-    <h2>{{ day }}</h2>
-    {% set day_lower = day | lower %}
-    {{ img_macro::standalone(
+    <div class="text-2xl font-bold md:col-span-2 order-1
+    {% if loop.index is odd %}md:text-right{% endif %}">
+      {{ day }}
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-4 {% if loop.index is odd %}md:flex-row-reverse{% endif %}">
+      {% set day_lower = day | lower %}
+      {{ img_macro::standalone(
         image="mc_" ~ day_lower,
         sizes="(min-width: 1040px) 448px, (min-width: 800px) calc(94.55vw - 516px), (min-width: 760px) calc(-1140vw + 9112px), (min-width: 640px) calc(38vw + 167px), (min-width: 520px) 448px, 90vw",
-        alt=day ~ "Promo"
-    ) }}
-  </div>
+        alt=day ~ "Promo",
+        class="w-full h-fit my-auto md:max-w-xs",
+      ) }}
 
-
-  <div class="grid md:grid-cols-2 gap-4 sm:mt-10 md:min-w-lg">
-  {% for mc in mc_data[day] %}
-  <div class="flex flex-col gap-2 p-4 bg-surface rounded-md">
-    <h3>{{ mc.name }}</h3>
-    <div class="flex gap-2 capitalize">
-      <svg class="text-yellow-400"><use href="{{ sprites }}#clock"></use></svg>
-      {{ mc.time }}
+      <div class="grid lg:grid-cols-2 gap-4 w-full mx-auto md:w-fit">
+        {% if loop.index is odd and mc_data[day] | length == 1 %}
+          <div class="w-1"></div>
+        {% endif %}
+        {% for mc in mc_data[day] %}
+          <div class="flex flex-col gap-2 p-4 bg-surface rounded-md min-w-3xs">
+            <div class="font-bold text-lg">{{ mc.name }}</div>
+            <div class="font-bold text-onBackground/60 text-xs">Details</div>
+            <div class="flex gap-2 capitalize">
+              <svg class="text-yellow-400">
+                <use href="{{ sprites }}#clock"></use>
+              </svg>
+              {{ mc.time }}
+            </div>
+            <div class="flex gap-2 capitalize">
+              <svg class="text-blue-500">
+                <use href="{{ sprites }}#map-pin"></use>
+              </svg>
+              {{ mc.location }}
+            </div>
+            {% if mc.leaders %}
+            <div class="font-bold text-onBackground/60 text-xs mt-4">Leaders</div>
+            <ul class="capitalize article-list mt-0">
+              {% set mc_leaders = mc.leaders | split(pat=",") %}
+              {% for leader in mc_leaders %}
+              <li> {{ leader }} </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
     </div>
-    <div class="flex gap-2 capitalize">
-      <svg class="text-blue-500"><use href="{{ sprites }}#map-pin"></use></svg>
-      {{ mc.location }}
-    </div>
-    {% if mc.leaders %}
-    <ul class="capitalize article-list">
-      {% set mc_leaders = mc.leaders | split(pat=",") %}
-      {% for leader in mc_leaders %}
-        <li> {{ leader }} </li>
-      {% endfor %}
-    </ul>
+    {% if not loop.last %}
+      <hr class="order-last">
     {% endif %}
-  </div>
   {% endfor %}
-  </div>
-</div>
-  {% if not loop.last %}
-  <hr>
-  {% endif %}
-  {% endfor %}
-</div>
+</main>
 
 {% endblock %}

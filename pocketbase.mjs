@@ -86,9 +86,9 @@ async function getImages(imagePath, record) {
 async function genLQIP(imagePath, imageName) {
   const buffer = await sharp(imagePath)
     .rotate()
-    .resize(20)
-    .blur()
-    .avif({ quality: 50 })
+    .resize(32)
+    .blur(2)
+    .avif({ quality: 35, chromaSubsampling: '4:2:0' })
     .toBuffer();
   const base64 = `data:image/avif;base64,${buffer.toString("base64")}`;
   await Bun.write(path.join(lqipDir, `${imageName}.base64`), base64);

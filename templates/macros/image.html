@@ -19,7 +19,7 @@
 <div class='{{ "relative bg-cover bg-center rounded-md " ~ class }}'
     style="aspect-ratio: {{ xl.width / xl.height }}; background-image: url('{{ lqip }}')">
     <img {% if priority %} fetchpriority="high" {% endif %}
-        class="{{ 'absolute inset-0 opacity-0 transition-opacity duration-700 rounded-md ' ~ image_class }}"
+        class="absolute inset-0 opacity-0 transition-opacity duration-700 rounded-md {{ image_class }}"
         src="{{ xl.url }}"
         srcset="{{ sm.url }} {{ sm.width }}w,
           {{ md.url }} {{ md.width }}w,
