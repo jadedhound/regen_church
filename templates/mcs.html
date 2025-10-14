@@ -21,7 +21,7 @@
     {% set day_lower = day | lower %}
     {{ img_macro::standalone(
         image="mc_" ~ day_lower,
-        sizes="",
+        sizes="(min-width: 1040px) 448px, (min-width: 800px) calc(94.55vw - 516px), (min-width: 760px) calc(-1140vw + 9112px), (min-width: 640px) calc(38vw + 167px), (min-width: 520px) 448px, 90vw",
         alt=day ~ "Promo"
     ) }}
   </div>
