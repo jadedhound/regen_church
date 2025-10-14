@@ -152,17 +152,20 @@
     iframe.contentWindow.document.documentElement.setAttribute('data-theme', theme);
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  function handleHashCheckbox() {
     const hash = window.location.hash;
     if (!hash) return;
     const id = hash.substring(1);
 
     const checkbox = document.querySelector(`input[name="connect-form"][value="${id}"]`);
     if (checkbox) {
-    console.log(hash)
       checkbox.click();
+      if (!document.getElementById('nav-modal').classList.contains('hidden')) {
+        closeNavModal();
+      };
     }
-  });
-
+  }
+  document.addEventListener('DOMContentLoaded', handleHashCheckbox);
+  window.addEventListener('hashchange', handleHashCheckbox);
 </script>
 {% endblock %}

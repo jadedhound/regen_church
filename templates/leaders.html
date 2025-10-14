@@ -109,8 +109,9 @@
     dialog = document.getElementById(id);
     dialog.showModal();
     dialog.addEventListener('click', handleBackdropClick);
-    const scrollable = dialog.querySelector('[class*="overflow-y-auto"]');
-    if (scrollable) scrollable.scrollTop = 0;
+    if (dialog.scrollTop != 0) {
+      dialog.scrollTop = 0
+    }
   }
 
   function close_dialog(id) {

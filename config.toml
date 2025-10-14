@@ -1,6 +1,5 @@
 # The URL the site will be built for
 base_url = "https://beta.regeneration.org.au"
-#base_url = "http://192.168.1.20:1111/"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
@@ -8,7 +7,7 @@ compile_sass = false
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
-minify_html = false
+minify_html = true
 
 # For overriding the default output directory `public`, set it to another value (e.g.: "docs")
 output_dir = "dist"
@@ -33,7 +32,7 @@ title = "About"
     desc = "Our purpose and mission"
 
 [[extra.nav_menu]]
-title = "For Our Church"
+title = "Our Church"
 
     [[extra.nav_menu.menu]]
     path = "church/announcements.md"
@@ -50,8 +49,13 @@ title = "For Our Church"
     icon = "baby"
     desc = "Faith like a Mustard Seed"
 
-    [[extra.nav_menu.menu]]
-    path = "connect/_index.md"
-    icon = "handshake"
-    desc = "Connect with Us"
-    is_section = true
+
+[[extra.nav_menu]]
+title = "Connect"
+link = "/connect"
+icon = "handshake"
+
+[[extra.nav_menu]]
+title = "Giving"
+link = "/connect#0005"
+icon = "people-heart"
