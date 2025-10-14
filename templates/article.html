@@ -1,15 +1,13 @@
-{% extends "page.html" %}
+{% extends "base.html" %}
 
-{% block main %}
+{% import "macros/image.html" as img_macro %}
 
-{% if page.content is defined %}
-  {% set content = page.content %}
-{% elif section.content is defined %}
-  {% set content = section.content %}
-{% endif %}
+{% block content %}
+
+{% include "partial/header_image.html" %}
 
 <article class="max-w-2xl mx-auto">
-{{ content | safe }}
+  {{ page.content | default(value=section.content) | safe }}
 </article>
 
 {% endblock %}

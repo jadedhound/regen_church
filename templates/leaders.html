@@ -1,4 +1,4 @@
-{% extends "page.html" %}
+{% extends "base.html" %}
 
 {% import "macros/image.html" as img_macro %}
 
@@ -23,12 +23,13 @@
 
 {% endmacro %}
 
-{% block main %}
+{% block content %}
+
+{% include "partial/header_image.html" %}
 
 {% set title_order = ["pastor", "elder", "deacon", "admin", ""] %}
 
-
-<div class="grid grid-cols-2 md:grid-cols-4 mx-auto gap-4">
+<main class="grid grid-cols-2 md:grid-cols-4 mx-auto gap-4">
 
   {% set_global leader_array = [] %}
   {% set files = load_data(path="pocketbase/Leaders/filenames.json", format="json") %}
@@ -92,7 +93,7 @@
   {% endfor %}
 
 
-</div>
+</main>
 
 <script>
   var dialog;

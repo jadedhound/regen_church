@@ -16,14 +16,14 @@
 
 
 {% block content %}
-<main>
+<main class="max-w-[unset] px-[unset]">
 
   {% set image_json = load_data(path="pocketbase/Images/" ~ "frontcover.json", format="json") %}
   {% set image = "pocketbase/Images/images/" ~ image_json.image %}
   {% set filename = image | split(pat="/") | last %}
   {% set lqip_file = "pocketbase/lqip/" ~ filename ~ ".base64" %}
   {% set lqip = load_data(path=lqip_file) %}
-  <div class="relative h-[calc(95vh-4rem)] bg-cover bg-center"
+  <div class="relative h-screen bg-cover bg-center"
     style="background-image: url('{{ lqip }}')">
     {% set mdata = get_image_metadata(path=image) %}
     {% set sm = resize_image(path=image, width=360, height=mdata.height, op="fill", format="avif", quality=55) %}
