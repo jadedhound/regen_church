@@ -2,6 +2,7 @@
 node_modules/
 dist/
 static/styles.css
+static/scripts.min.js
 static/sprites.svg
 static/processed_images/
 

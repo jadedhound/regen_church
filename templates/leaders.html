@@ -91,34 +91,6 @@
     </div>
   </dialog>
   {% endfor %}
-
-
 </main>
-
-<script>
-  var dialog;
-
-  function handleBackdropClick(e) {
-    if (e.target === dialog) {
-      dialog.close();
-      dialog.removeEventListener('click', handleBackdropClick);
-    }
-  }
-
-  function show_dialog(id) {
-    dialog = document.getElementById(id);
-    dialog.showModal();
-    dialog.addEventListener('click', handleBackdropClick);
-    if (dialog.scrollTop != 0) {
-      dialog.scrollTop = 0
-    }
-  }
-
-  function close_dialog(id) {
-    dialog = document.getElementById(id);
-    dialog.close();
-    dialog.removeEventListener('click', handleBackdropClick);
-  }
-</script>
 
 {% endblock %}

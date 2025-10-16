@@ -61,24 +61,3 @@
     </div>
   </div>
 </div>
-
-
-<script>
-  const overlay = document.getElementById('nav-modal');
-  const drawer = document.getElementById('nav-modal-drawer');
-
-  function openNavModal() {
-    document.body.classList.add('overflow-hidden');
-    overlay.classList.toggle('hidden');
-    setTimeout(() => {
-      drawer.classList.toggle('translate-x-full');
-    }, 10);
-  }
-  function closeNavModal() {
-    document.body.classList.toggle('overflow-hidden');
-    drawer.classList.add('translate-x-full');
-    setTimeout(() => {
-      overlay.classList.add('hidden');
-    }, 300);
-  }
-</script>
