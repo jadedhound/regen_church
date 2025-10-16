@@ -9,6 +9,7 @@ import sharp from "sharp";
 
 const secretsFile = "secrets.json.gpg";
 const outputDir = "pocketbase/";
+const imageDir = path.join(outputDir, "img");
 const lqipDir = path.join(outputDir, "lqip")
 /** @type {str} */
 let url;
@@ -55,11 +56,11 @@ async function createFilenamesJson(basePath) {
  * @param {str} imagePath
  * @param {import("pocketbase").RecordModel} record
  */
-async function getImages(imagePath, record) {
+async function getImages(record) {
   for (const [_, value] of Object.entries(record)) {
     if (/\.(jpg|jpeg|png|webp)$/i.test(value)) {
       const imageURL = `${url}/api/files/${record.collectionId}/${record.id}/${value}`;
-      const outputPath = path.join(imagePath, value);
+      const outputPath = path.join(imageDir, value);
 
       if (await fs.exists(outputPath)) {
         const response = await fetch(imageURL, { method: "HEAD" });
@@ -100,13 +101,13 @@ async function genLQIP(imagePath, imageName) {
  * @param {str} basePath
  * @param {str} imagePath
  */
-async function getCollection(collection, basePath, imagePath) {
+async function getCollection(collection, basePath) {
   const records = await pb.collection(collection.name).getFullList();
   console.log(`${collection.name}: ${records.length} records.`);
   for (const record of records) {
     const outputPath = path.join(basePath, `${record.id}.json`);
     await Bun.write(outputPath, JSON.stringify(record));
-    await getImages(imagePath, record);
+    await getImages(record);
   }
 }
 
@@ -146,14 +147,15 @@ async function main() {
     if (!pb.authStore.isSuperuser && !pb.authStore.isValid) {
       throw ("Unable to authenticate");
     }
+
+    await fs.mkdir(imageDir, { recursive: true });
+
     const collections = (await pb.collections.getFullList())
       .filter((c) => !c.name.startsWith("_") && c.name != "users");
     for (const collection of collections) {
       const basePath = path.join(outputDir, collection.name);
-      const imagePath = path.join(basePath, "images");
-      await fs.mkdir(imagePath, { recursive: true });
       await fs.mkdir(lqipDir, { recursive: true });
-      await getCollection(collection, basePath, imagePath);
+      await getCollection(collection, basePath);
       await createFilenamesJson(basePath);
     }
     createRedirectFiles();

@@ -8,24 +8,25 @@ jobs:
   build:
     name: Build Website
     runs-on: self-hosted
-    env:
-      IMG_CACHE: /runner/data/cache/processed_images
+    # env:
+    #   CACHE_DIR: /runner/data/cache/
 
     steps:
     - name: Checkout main
       uses: actions/checkout@v4
-
     
-    - name: Restore local image cache
-      run: |
-        if [ -d "$IMG_CACHE" ]; then
-          cp -r "$IMG_CACHE" ./static/processed_images
-        fi
+    # Note: Don't know why this caching doesn't work.
+    # - name: Restore local image cache
+    #   run: |
+    #     if [[ -d "$CACHE_DIR/processed_images" ]]; then
+    #       cp -r "$CACHE_DIR/processed_images" "./static"
+    #       echo "Copied $(ls './static/processed_images' | wc -l) processed image files"
+    #     fi
 
     - name: Download zola
       uses: taiki-e/install-action@v2
       with:
-        tool: zola@0.20.0
+        tool: zola@0.21.0
 
     - name: Setup bun
       uses: oven-sh/setup-bun@v2
@@ -35,17 +36,18 @@ jobs:
         GPG_PASSPHRASE: ${{ secrets.REGEN_PASSPHRASE }}
       run: |
         bun install
-        bun pocketbase.mjs $GPG_PASSPHRASE
-        bun gen-sprites.mjs
+        bun gen-pocketbase.js $GPG_PASSPHRASE
+        bun gen-sprites.js
         bun run prod
 
-    - name: Save local image cache
-      run: |
-        if [ -d "$IMG_CACHE" ]; then
-          rm -r "$IMG_CACHE"
-        fi
-        mkdir -p "$IMG_CACHE"
-        cp -r ./static/processed_images/* "$IMG_CACHE/"
+    # - name: Save local image cache
+    #   run: |
+    #     ls -la './static/processed_images' | grep front
+    #     if [ -d "$CACHE_DIR" ]; then
+    #       rm -r "$CACHE_DIR"
+    #     fi
+    #     mkdir -p "$CACHE_DIR"
+    #     cp -r "./static/processed_images" "$CACHE_DIR"
 
     - name: Deploy
       uses: cloudflare/wrangler-action@v3

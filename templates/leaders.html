@@ -5,9 +5,8 @@
 {% macro portrait(leader, class, sizes, image_class="") %}
   {% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
   {% if leader.portrait %}
-    {% set image = 'pocketbase/Leaders/images/' ~ leader.portrait %}
     {{ img_macro::simple(
-      image=image,
+      image=leader.portrait,
       sizes=sizes,
       alt=leader.name ~ ' Portrait',
       class=class,

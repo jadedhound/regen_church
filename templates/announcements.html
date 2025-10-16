@@ -16,7 +16,7 @@
   {% set_global annc_array = annc_array | sort(attribute="startdate") %}
 
   {% for data in annc_array %}
-    {% set image = 'pocketbase/Announcements/images/' ~ data.image %}
+    {% set image = 'pocketbase/img/' ~ data.image %}
     {% set mdata = get_image_metadata(path=image) %}
     {% set md = resize_image(path=image, width=720, height=mdata.height, op="fit_width", format="avif", quality=50) %}
     {% set xl = resize_image(path=image, width=1920, height=mdata.height, op="fit_width", format="avif", quality=50) %}

@@ -19,7 +19,7 @@
 <main class="max-w-[unset] px-[unset]">
 
   {% set image_json = load_data(path="pocketbase/Images/" ~ "frontcover.json", format="json") %}
-  {% set image = "pocketbase/Images/images/" ~ image_json.image %}
+  {% set image = "pocketbase/img/" ~ image_json.image %}
   {% set filename = image | split(pat="/") | last %}
   {% set lqip_file = "pocketbase/lqip/" ~ filename ~ ".base64" %}
   {% set lqip = load_data(path=lqip_file) %}

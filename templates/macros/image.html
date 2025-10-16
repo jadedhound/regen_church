@@ -10,11 +10,13 @@
 {% set filename = image | split(pat="/") | last %}
 {% set lqip_file = "pocketbase/lqip/" ~ filename ~ ".base64" %}
 {% set lqip = load_data(path=lqip_file) %}
-{% set mdata = get_image_metadata(path=image) %}
-{% set sm = resize_image(path=image, width=360, height=mdata.height, op=op, format="avif", quality=50) %}
-{% set md = resize_image(path=image, width=720, height=mdata.height, op=op, format="avif", quality=50) %}
-{% set lg = resize_image(path=image, width=1080, height=mdata.height, op=op, format="avif", quality=50) %}
-{% set xl = resize_image(path=image, width=1920, height=mdata.height, op=op, format="avif", quality=50) %}
+
+{% set image_path = "pocketbase/img/" ~ image %}
+{% set mdata = get_image_metadata(path=image_path) %}
+{% set sm = resize_image(path=image_path, width=360, height=mdata.height, op=op, format="avif", quality=50) %}
+{% set md = resize_image(path=image_path, width=720, height=mdata.height, op=op, format="avif", quality=50) %}
+{% set lg = resize_image(path=image_path, width=1080, height=mdata.height, op=op, format="avif", quality=50) %}
+{% set xl = resize_image(path=image_path, width=1920, height=mdata.height, op=op, format="avif", quality=50) %}
 
 <div class='{{ "relative bg-cover bg-center rounded-md " ~ class }}'
     style="aspect-ratio: {{ xl.width / xl.height }}; background-image: url('{{ lqip }}')">
@@ -35,10 +37,9 @@
 
 {% macro standalone(image, sizes, alt, class="", image_class="", op="fit_width", priority=false) %}
 {% set image_json = load_data(path="pocketbase/Images/" ~ image ~ ".json", format="json") %}
-{% set image_path = "pocketbase/Images/images/" ~ image_json.image %}
 
 {{ img_macro::simple(
-    image=image_path,
+    image=image_json.image,
     alt=alt,
     sizes=sizes,
     class=class,
