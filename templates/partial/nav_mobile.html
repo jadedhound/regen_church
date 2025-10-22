@@ -1,4 +1,4 @@
-<button class="lg:hidden ml-2" onclick="openNavModal()" aria-label="Open the navigation drawer for mobile devices only">
+<button class="lg:hidden ml-2" id="hamburger-open" aria-label="Open the navigation drawer for mobile devices only">
   <svg class="text-onBackground size-8">
     <use href="{{ sprites }}#hamburger-menu"></use>
   </svg>
@@ -7,9 +7,9 @@
 <div class="fixed top-0 left-0 z-10 h-screen w-screen hidden" id="nav-modal">
   <div class="psuedo h-full backdrop-blur-xs"></div>
   <div class="flex z-10 absolute top-0 left-0 h-full w-full">
-    <button onclick="closeNavModal()" class="flex-grow"></button>
+    <button id="mobile-nav-backdrop" class="flex-grow"></button>
     <div class="flex flex-col bg-background/90 shadow-xs shadow-stone-400 max-w-[95vw] rounded-l-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="nav-modal-drawer">
-      <button onclick="closeNavModal()" class="place-self-end">
+      <button id="hamburger-close" class="place-self-end">
         <svg class="mx-6 my-6 size-8">
           <use href="{{ sprites }}#x-mark"></use>
         </svg>

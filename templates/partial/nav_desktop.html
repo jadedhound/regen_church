@@ -4,8 +4,7 @@
       <a href="{{ nav_item.link }}" class="mr-2">{{ nav_item.title }}</a>
     {% else %}
     <div class="relative group">
-        <div data-desktop-nav
-          data-target="navdrop-{{ nav_item.title }}"
+        <div data-nav-target="navdrop-{{ nav_item.title }}"
           class="flex gap-1 items-center cursor-pointer p-2 rounded-md"
         >
             {{ nav_item.title }}

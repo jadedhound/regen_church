@@ -1,6 +1,48 @@
 // ==============================
+// HOMEPAGE
+// ==============================
+
+const urlPaths = window.location.pathname.split('/')
+switch (urlPaths[1] || '') {
+  case 'connect':
+    window.addEventListener('hashchange', hashChange);
+    window.addEventListener('load', () => {
+      hashChange();
+    })
+    break
+
+  case 'about':
+    switch (urlPaths[2] || '') {
+      case 'leaders':
+        document.querySelectorAll('[data-bio-href]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            show_dialog(btn.getAttribute('data-bio-href'))
+          })
+        })
+        break
+      default:
+        break
+    }
+    break
+
+  case '':
+    document.getElementById('main-title').addEventListener('click', () => {
+      document.getElementById('3-services').scrollIntoView({ behavior: 'smooth' })
+    })
+    break
+
+  default:
+    break
+}
+
+
+// ==============================
 // NAV MOBILE
 // ==============================
+
+document.getElementById('hamburger-open').addEventListener('click', openNavModal)
+document.getElementById('hamburger-close').addEventListener('click', closeNavModal)
+document.getElementById('mobile-nav-backdrop').addEventListener('click', closeNavModal)
 
 const overlay = document.getElementById('nav-modal');
 const drawer = document.getElementById('nav-modal-drawer');
@@ -24,14 +66,12 @@ function closeNavModal() {
 // NAV DESKTOP
 // ==============================
 
-const navButtons = document.querySelectorAll('[data-desktop-nav]');
 let currentOpenMenu = null;
 
-// Handle clicks on navigation buttons
-navButtons.forEach(button => {
-  button.addEventListener('click', function(e) {
+document.querySelectorAll('[data-nav-target]').forEach(btn => {
+  btn.addEventListener('click', function(e) {
     e.stopPropagation();
-    const targetId = this.getAttribute('data-target');
+    const targetId = this.getAttribute('data-nav-target');
     const targetMenu = document.getElementById(targetId);
     // Close currently open menu if clicking the same button
     if (currentOpenMenu === targetMenu) {
@@ -64,54 +104,54 @@ if (window.matchMedia('(min-width: 1024px)').matches) {
 // CONNECT FORM
 // ==============================
 
-const connectBtns = document.querySelectorAll('input[name="connect-form"]');
+const connectBtns = document.querySelectorAll('input[name="connect-form"]')
+connectBtns.forEach(btn => btn.addEventListener('change', changeCurrForm));
 
-connectBtns.forEach(btn => {
-  btn.addEventListener('change', function() {
-    if (this.checked) {
-      Array.from(connectBtns).filter(btn => btn.value != this.value)
-        .forEach(btn => {
-          const parentLabel = btn.closest('label')
-          const targetDiv = parentLabel.querySelector('div');
-          targetDiv.classList.add('hidden');
-        });
-
-      // Show the correct form; hide all others.
-      document.getElementById('placeholder')?.classList.remove('md:flex');
-      document.querySelectorAll('[id^="elvanto-form-"]').forEach(div => {
-        div.classList.add('hidden');
-      });
-      const contentId = `form-${this.value}`;
-      document.getElementById(contentId)?.classList.remove('hidden');
-
-      // Style the IFrame
-      const iframe = document.getElementById(`iframe-form-${this.value}`);
-      if (iframe) {
-        if (iframe.getAttribute("src") === null) {
-          iframe.src = iframe.dataset.src;
-          iframe.addEventListener("load", () => {
-            beautifyIframe(iframe)
-            const cover = document.getElementById(`cover-form-${this.value}`);
-            cover.classList.add('hidden');
-          });
-        } else {
-          beautifyIframe(iframe)
-        }
-      }
-    } else {
-      // Show all buttons again.
-      connectBtns.forEach(btn => {
+function changeCurrForm() {
+  if (this.checked) {
+    Array.from(connectBtns).filter(btn => btn.value != this.value)
+      .forEach(btn => {
         const parentLabel = btn.closest('label')
         const targetDiv = parentLabel.querySelector('div');
-        targetDiv.classList.remove('hidden');
+        targetDiv.classList.add('hidden');
       });
 
-      document.getElementById('placeholder')?.classList.add('md:flex');
-      document.querySelectorAll('[id^="form-"]')
-        .forEach(div => div.classList.add('hidden'));
+    // Show the correct form; hide all others.
+    document.getElementById('placeholder')?.classList.remove('md:flex');
+    document.querySelectorAll('[id^="elvanto-form-"]').forEach(div => {
+      div.classList.add('hidden');
+    });
+    const contentId = `form-${this.value}`;
+    document.getElementById(contentId)?.classList.remove('hidden');
+
+    // Style the IFrame
+    const iframe = document.getElementById(`iframe-form-${this.value}`);
+    if (iframe) {
+      if (iframe.getAttribute("src") === null) {
+        iframe.src = iframe.dataset.src;
+        iframe.addEventListener("load", () => {
+          beautifyIframe(iframe)
+          const cover = document.getElementById(`cover-form-${this.value}`);
+          cover.classList.add('hidden');
+        });
+      } else {
+        beautifyIframe(iframe)
+      }
     }
-  });
-});
+  } else {
+    // Show all buttons again.
+    connectBtns.forEach(btn => {
+      const parentLabel = btn.closest('label')
+      const targetDiv = parentLabel.querySelector('div');
+      targetDiv.classList.remove('hidden');
+    });
+
+    document.getElementById('placeholder')?.classList.add('md:flex');
+    document.querySelectorAll('[id^="form-"]')
+      .forEach(div => div.classList.add('hidden'));
+  }
+}
+
 
 function beautifyIframe(iframe) {
   iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 20 + 'px';
@@ -119,21 +159,22 @@ function beautifyIframe(iframe) {
   iframe.contentWindow.document.documentElement.setAttribute('data-theme', theme);
 }
 
-function handleHashCheckbox() {
+function hashChange() {
   const hash = window.location.hash;
   if (!hash) return;
   const id = hash.substring(1);
 
-  const checkbox = document.querySelector(`input[name="connect-form"][value="${id}"]`);
-  if (checkbox) {
-    checkbox.click();
+  const checked = document.querySelector(`input[name="connect-form"]:checked`);
+  if (checked) checked.click();
+  const target = document.querySelector(`input[name="connect-form"][value="${id}"]`);
+  if (target) {
+    target.click();
+    history.replaceState(null, '', window.location.pathname + window.location.search)
     if (!document.getElementById('nav-modal').classList.contains('hidden')) {
       closeNavModal();
     };
   }
 }
-window.addEventListener('hashchange', handleHashCheckbox);
-handleHashCheckbox();
 
 // ==============================
 // LEADERS
