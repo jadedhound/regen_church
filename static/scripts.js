@@ -1,13 +1,13 @@
 // ==============================
-// HOMEPAGE
+// LOAD ON SPECIFIC URL
 // ==============================
 
 const urlPaths = window.location.pathname.split('/')
 switch (urlPaths[1] || '') {
   case 'connect':
-    window.addEventListener('hashchange', hashChange);
     window.addEventListener('load', () => {
       hashChange();
+      window.addEventListener('hashchange', hashChange);
     })
     break
 
@@ -17,6 +17,11 @@ switch (urlPaths[1] || '') {
         document.querySelectorAll('[data-bio-href]').forEach(btn => {
           btn.addEventListener('click', () => {
             show_dialog(btn.getAttribute('data-bio-href'))
+          })
+        })
+        document.querySelectorAll('[data-closebio-href]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            close_dialog(btn.getAttribute('data-closebio-href'))
           })
         })
         break

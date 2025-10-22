@@ -82,7 +82,7 @@
           {{ leader.bio | markdown | safe }}
         </div>
         <div class="p-4 md:col-span-2 md:order-4">
-          <button class="regen-button md:mx-[unset]" onclick="close_dialog('{{ leader.id }}')">
+          <button class="regen-button md:mx-[unset]" data-closebio-href="{{ leader.id }}">
             Close
           </button>
         </div>
