@@ -9,6 +9,7 @@ import sharp from "sharp";
 
 const secretsFile = "secrets.json.gpg";
 const outputDir = "pocketbase/";
+const staticDir = "static/pocketbase/";
 const imageDir = path.join(outputDir, "img");
 const lqipDir = path.join(outputDir, "lqip")
 /** @type {str} */
@@ -53,7 +54,6 @@ async function createFilenamesJson(basePath) {
 
 /**
  * Downloads images from a record, if they exist.
- * @param {str} imagePath
  * @param {import("pocketbase").RecordModel} record
  */
 async function getImages(record) {
@@ -83,6 +83,34 @@ async function getImages(record) {
   }
 }
 
+/**
+ * Downloads images from a record, if they exist.
+ * @param {import("pocketbase").RecordModel} record
+ */
+async function getStatic(record) {
+  if ('static' in record) {
+    const value = record['static'];
+    const fileURL = `${url}/api/files/${record.collectionId}/${record.id}/${value}`;
+    const outputPath = path.join(staticDir, value);
+
+    if (await fs.exists(outputPath)) {
+      const response = await fetch(fileURL, { method: "HEAD" });
+      const urlSize = response.headers.get("content-length");
+      const cachedSize = (await fs.stat(outputPath)).size;
+      if (urlSize == cachedSize) {
+        return;
+      }
+    }
+
+    const response = await fetch(fileURL);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    const resp = await response.bytes();
+    await Bun.write(outputPath, resp);
+    console.log(`Downloaded: ${value}`);
+  }
+}
 
 async function genLQIP(imagePath, imageName) {
   const buffer = await sharp(imagePath)
@@ -108,6 +136,7 @@ async function getCollection(collection, basePath) {
     const outputPath = path.join(basePath, `${record.id}.json`);
     await Bun.write(outputPath, JSON.stringify(record));
     await getImages(record);
+    await getStatic(record);
   }
 }
 
@@ -155,6 +184,7 @@ async function main() {
     for (const collection of collections) {
       const basePath = path.join(outputDir, collection.name);
       await fs.mkdir(lqipDir, { recursive: true });
+      await fs.mkdir(staticDir, { recursive: true });
       await getCollection(collection, basePath);
       await createFilenamesJson(basePath);
     }

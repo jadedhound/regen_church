@@ -1,15 +1,7 @@
-# The URL the site will be built for
 base_url = "https://beta.regeneration.org.au"
-
-# Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
-
-# Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
-
 minify_html = true
-
-# For overriding the default output directory `public`, set it to another value (e.g.: "docs")
 output_dir = "dist"
 
 [markdown]
@@ -22,40 +14,50 @@ external_links_target_blank = true
 title = "About"
 
     [[extra.nav_menu.menu]]
-    path = "about/leaders.md"
+    link = "/about/leaders"
     icon = "leaders"
+    title = "Our Leaders"
     desc = "Pastors and Ministry Leaders"
 
     [[extra.nav_menu.menu]]
-    path = "about/values_and_beliefs.md"
+    link = "/about/values-and-beliefs"
     icon = "bible"
-    desc = "Our purpose and mission"
+    title = "Our Values and Beliefs"
+    desc = "Our Purpose and Mission"
 
 [[extra.nav_menu]]
 title = "Our Church"
 
     [[extra.nav_menu.menu]]
-    path = "church/announcements.md"
+    link = "/church/announcements"
     icon = "trumpet"
+    title = "Announcements"
     desc = "What's Happening"
 
     [[extra.nav_menu.menu]]
-    path = "church/mcs.md"
+    link = "/church/mcs"
     icon = "group"
+    title = "MCs"
     desc = "Find a Small Group"
 
     [[extra.nav_menu.menu]]
-    path = "church/childrens_ministry.md"
+    link = "/church/childrens-ministry"
     icon = "baby"
+    title = "Children's Ministry"
     desc = "Faith like a Mustard Seed"
 
+    [[extra.nav_menu.menu]]
+    link = "/church/venue-hire"
+    icon = "church"
+    title = "Venue Hire"
+    desc = "Church Hire Policy"
 
 [[extra.nav_menu]]
-title = "Connect"
 link = "/connect"
 icon = "handshake"
+title = "Connect"
 
 [[extra.nav_menu]]
-title = "Giving"
 link = "/connect#0005"
 icon = "people-heart"
+title = "Giving"

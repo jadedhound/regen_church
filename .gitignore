@@ -5,6 +5,7 @@ static/styles.css
 static/scripts.min.js
 static/sprites.svg
 static/processed_images/
+static/pocketbase/
 
 # POCKETBASE
 secrets.json
