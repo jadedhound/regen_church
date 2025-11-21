@@ -29,9 +29,9 @@ title = "About"
 title = "Our Church"
 
     [[extra.nav_menu.menu]]
-    link = "/church/announcements"
+    link = "/church/events"
     icon = "trumpet"
-    title = "Announcements"
+    title = "Events"
     desc = "What's Happening"
 
     [[extra.nav_menu.menu]]

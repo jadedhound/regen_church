@@ -7,15 +7,15 @@
 {% include "partial/header_image.html" %}
 
 <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-  {% set_global annc_array = [] %}
-  {% set files = load_data(path="pocketbase/Announcements/filenames.json", format="json") %}
-  {% for announcement_file in files %}
-    {% set data = load_data(path="pocketbase/Announcements/" ~ announcement_file, format="json") %}
-    {% set_global annc_array = annc_array | concat(with=data) %}
+  {% set_global events = [] %}
+  {% set files = load_data(path="pocketbase/Events/filenames.json", format="json") %}
+  {% for f in files %}
+    {% set data = load_data(path="pocketbase/Events/" ~ f, format="json") %}
+    {% set_global events = events | concat(with=data) %}
   {% endfor %}
-  {% set_global annc_array = annc_array | sort(attribute="startdate") %}
+  {% set_global events = events | sort(attribute="startdate") %}
 
-  {% for data in annc_array %}
+  {% for data in events %}
     {% set image = 'pocketbase/img/' ~ data.image %}
     {% set mdata = get_image_metadata(path=image) %}
     {% set md = resize_image(path=image, width=720, height=mdata.height, op="fit_width", format="avif", quality=50) %}
