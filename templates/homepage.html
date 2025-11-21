@@ -23,8 +23,7 @@
   {% set filename = image | split(pat="/") | last %}
   {% set lqip_file = "pocketbase/lqip/" ~ filename ~ ".base64" %}
   {% set lqip = load_data(path=lqip_file) %}
-  <div class="relative h-screen bg-cover bg-center"
-    style="background-image: url('{{ lqip }}')">
+  <div class="relative h-screen bg-cover bg-center overflow-hidden">
     {% set mdata = get_image_metadata(path=image) %}
     {% set sm = resize_image(path=image, width=360, height=mdata.height, op="fill", format="avif", quality=55) %}
     {% set md = resize_image(path=image, width=720, height=mdata.height, op="fill", format="avif", quality=55) %}
@@ -38,9 +37,8 @@
       <img src="{{ sm.url }}"
         fetchpriority="high"
         alt="frontpage regeneration church"
-        class="inset-0 opacity-0 transition-opacity duration-700 w-full h-full"
+        class="inset-0 opacity-0 transition-opacity duration-700 h-full w-full object-cover"
         height="{{ xl.height }}" width="{{ xl.width }}"
-        style="height: 100%; width: calc(100% + ((100% * ((100% / 16) * 9)) - 100%));"
         onload="this.classList.remove('opacity-0')"
       >
     </picture>
