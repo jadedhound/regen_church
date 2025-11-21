@@ -22,30 +22,29 @@
     {% set xl = resize_image(path=image, width=1920, height=mdata.height, op="fit_width", format="avif", quality=50) %}
 
     <a href="{{ xl.url }}" target="_blank">
-      <div class="bg-surface shadow-xs shadow-stone-400 rounded-md h-full">
+      <div class="bg-surface shadow-xs shadow-stone-400 rounded-md h-full flex flex-col">
         <img class="rounded-t-md" src="{{ xl.url }}"
           srcset="{{ md.url }} {{ md.width }}w,
             {{ xl.url }} {{ xl.width }}w"
           sizes="(min-width: 1040px) 320px, (min-width: 780px) calc(50vw - 24px), calc(100vw - 32px)"
           alt="{{ data.title ~ 'Poster' }}"
           height="{{ xl.height }}" width="{{ xl.width }}">
-        <div class="p-4 flex flex-col gap-2 relative">
-          <div
-            class="flex flex-col absolute rounded-full bg-primary -top-6 right-2 aspect-square h-16 text-white text-wrap text-center leading-none">
+        <div class="p-4 flex flex-col gap-2 relative h-full">
+          <div class="flex flex-col absolute rounded-full bg-primary -top-6 right-2 aspect-square h-16 text-white text-wrap text-center leading-none">
             {% set my_date = data.startdate | replace(from=" ", to="T") %}
             <div class="text-xs -mb-1 mt-1">{{ my_date | date(format="%a") }}</div>
             <div class="text-2xl font-bold">{{ my_date | date(format="%-d") }}</div>
             <div class="text-xs -mt-1">{{ my_date | date(format="%b") }}</div>
           </div>
-          <h4 class="font-semibold pr-16"> {{ data.title }} </h4>
+          <h4 class="font-semibold pr-16 grow"> {{ data.title }} </h4>
           <div class="flex gap-4">
             <svg>
               <use href="{{ sprites }}#map-pin"></use>
             </svg>
             {% if data.location == '' %}
-            Church
+              Church
             {% else %}
-            data.location
+              {{ data.location }}
             {% endif %}
           </div>
           {% if data.extra_info != '' %}

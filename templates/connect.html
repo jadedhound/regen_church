@@ -38,9 +38,9 @@
 
 {% include "partial/header_image.html" %}
 
-<main class="grid gap-4 md:grid-cols-[68%_30%]">
+<main class="grid gap-4 md:grid-cols-[30%_68%]">
 
-  <div class="flex flex-col [&>label>div]:mb-4 md:order-2">
+  <div class="flex flex-col [&>label>div]:mb-4">
 
   {{ self::connect_form(
     id="0001",
@@ -76,9 +76,14 @@
   </div>
 
   <div>
-    <div id="placeholder" class="hidden md:flex text-center flex-col justify-center h-full">
-      <div class="text-2xl mb-2">How can we help you today?</div>
-      <div class="text-onBackground/80">Select a form on the right to get started.</div>
+    <div id="placeholder" class="hidden md:flex items-center justify-center h-full">
+      <svg class="my-auto mr-12 size-12 animate-[bounce_1s_ease-in-out_infinite] rotate-90">
+        <use href="{{ sprites }}#chevron-down-thin"></use>
+      </svg>
+      <div class="text-center flex flex-col justify-center">
+        <div class="text-2xl mb-2">How can we help you today?</div>
+        <div class="text-onBackground/80">Select a form on the left to get started.</div>
+      </div>
     </div>
     {{ self::form(id="0001", src="/form/newcomer") }}
     {{ self::form(id="0002", src="/form/serve") }}
@@ -93,6 +98,7 @@
       {% include "partial/giving_accounts.html" %}
     </div>
   </div>
+
 </main>
 
 {% endblock %}

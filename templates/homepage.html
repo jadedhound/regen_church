@@ -38,8 +38,9 @@
       <img src="{{ sm.url }}"
         fetchpriority="high"
         alt="frontpage regeneration church"
-        class="inset-0 opacity-0 transition-opacity duration-700 w-full h-full object-cover"
+        class="inset-0 opacity-0 transition-opacity duration-700 w-full h-full"
         height="{{ xl.height }}" width="{{ xl.width }}"
+        style="height: 100%; width: calc(100% + ((100% * ((100% / 16) * 9)) - 100%));"
         onload="this.classList.remove('opacity-0')"
       >
     </picture>
@@ -143,7 +144,45 @@
       Come be Transformed by <b>Gospel-Centred</b> Sermons
     </h1>
 
-    {% include "partial/sermon_series.html" %}
+    {% set files = load_data(path="pocketbase/Sermons/filenames.json", format="json") %}
+    {% set_global sermon_series = [] %}
+    {% for f in files %}
+      {% set s = load_data(path="pocketbase/Sermons/" ~ f, format="json") %}
+      {% set_global sermon_series = sermon_series | concat(with=s) %}
+    {% endfor %}
+    {% set_global sermon_series = sermon_series | sort(attribute="created") | reverse %}
+
+    <div class="grid md:grid-cols-4 grid-cols-2 gap-2 group w-full max-w-2xl mx-auto">
+
+      {% for series in sermon_series %}
+        <a
+          href={{ series.link }} target="_blank"
+          class="opacity-100 nth-[n+4]:group-has-checked:hidden"
+        >
+          {{ img_macro::simple(
+              image=series.image,
+              sizes="(min-width: 800px) 162px, (min-width: 760px) calc(-850vw + 6792px), calc(45.91vw - 8px)",
+              alt="sermon series thumbnail",
+              class="rounded-md",
+          ) }}
+
+        </a>
+      {% endfor %}
+
+        <label class="cursor-pointer bg-primary rounded-md flex flex-col items-center justify-center font-bold gap-2 aspect-square">
+          <input type="checkbox" class="size-0 opacity-0 peer" checked />
+            <div class="hidden group-has-checked:flex gap-2 justify-center">
+              {% set circle_css = 'rounded-full size-5 bg-onPrimary' %}
+              <div class="{{ circle_css }}"></div>
+              <div class="{{ circle_css }}"></div>
+              <div class="{{ circle_css }}"></div>
+            </div>
+            <div class="flex group-has-checked:hidden justify-center">
+              <svg class="size-16 text-onPrimary"><use href="{{ sprites }}#chevron-up"></use></svg>
+            </div>
+        </label>
+
+    </div>
 
     <div class="py-8 px-4 flex flex-col gap-2">
       <a href="https://www.youtube.com/@RegenerationMonash/live" target="_blank" class="regen-button mt-4">
@@ -296,7 +335,7 @@
         )}}
         {{ self::faq(
           question="What should I wear?",
-          answer="Dress comfortably, there is no need to dress up.",
+          answer="Dress comfortably, there is no need to dress up. People usually wear what they wear to go to the movies.",
           sprites=sprites
         )}}
         {{ self::faq(
