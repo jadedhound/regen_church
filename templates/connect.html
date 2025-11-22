@@ -72,6 +72,12 @@
     title="Give to the Church",
     subtitle="Support the mission and fuel life-changing ministry.",
   ) }}
+  {{ self::connect_form(
+    id="0006",
+    icon="questions",
+    title="General Enquiry",
+    subtitle="Got a question that doesn't fit into the above forms?",
+  ) }}
 
   </div>
 
@@ -97,6 +103,7 @@
 
       {% include "partial/giving_accounts.html" %}
     </div>
+    {{ self::form(id="0006", src="/form/general-enquiry") }}
   </div>
 
 </main>

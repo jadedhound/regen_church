@@ -25,16 +25,14 @@
   {% set lqip = load_data(path=lqip_file) %}
   <div class="relative h-screen bg-cover bg-center">
     {% set mdata = get_image_metadata(path=image) %}
-    {% set sm = resize_image(path=image, width=360, height=mdata.height, op="fill", format="avif", quality=55) %}
     {% set md = resize_image(path=image, width=720, height=mdata.height, op="fill", format="avif", quality=55) %}
     {% set lg = resize_image(path=image, width=1080, height=mdata.height, op="fill", format="avif", quality=55) %}
     {% set xl = resize_image(path=image, width=1920, height=mdata.height, op="fill", format="avif", quality=55) %}
 
     <picture style="background-image: url('{{ lqip }}');">
-      <source srcset="{{ xl.url }}" media="(min-width: 1200px)">
-      <source srcset="{{ lg.url }}" media="(min-width: 768px)">
-      <source srcset="{{ md.url }}" media="(min-width: 425px)">
-      <img src="{{ sm.url }}"
+      <source srcset="{{ xl.url }}" media="(min-width: 768px)">
+      <source srcset="{{ lg.url }}" media="(min-width: 425px)">
+      <img src="{{ md.url }}"
         fetchpriority="high"
         alt="frontpage regeneration church"
         class="inset-0 opacity-0 transition-opacity duration-700 h-full object-cover"
