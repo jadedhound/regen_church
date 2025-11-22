@@ -1,4 +1,4 @@
-base_url = "https://beta.regeneration.org.au"
+base_url = "https://regeneration.org.au"
 compile_sass = false
 build_search_index = false
 minify_html = true
