@@ -75,10 +75,11 @@
           image_class="h-full object-cover md:aspect-none",
           sizes=""
         ) }}
-        <h4 class="px-4 font-bold md:col-span-2 md:order-1">
-          {{ leader.name }}
-        </h4>
-        <div class="px-4 overflow-y-auto md:max-h-[40vh] md:col-span-2 md:order-3">
+        <div class="md:col-span-2 md:order-1 p-4">
+          <div class="font-bold text-xl">{{ leader.name }}</div>
+          <div class="text-onBackground/80 text-sm">{{ leader.title }}</div>
+        </div>
+        <div class="px-4 overflow-y-auto md:h-60 md:w-lg md:col-span-2 md:order-3">
           {{ leader.bio | markdown | safe }}
         </div>
         <div class="p-4 md:col-span-2 md:order-4">
