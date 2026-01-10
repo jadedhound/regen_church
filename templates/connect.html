@@ -44,39 +44,45 @@
 
   {{ self::connect_form(
     id="0001",
+    icon="questions",
+    title="General Enquiry",
+    subtitle="Got a question that doesn't fit into the below forms?",
+  ) }}
+  {{ self::connect_form(
+    id="0002",
+    icon="pray-colour",
+    title="Prayer Request",
+    subtitle="How can we pray for you today?",
+  ) }}
+  {{ self::connect_form(
+    id="0003",
     icon="family",
     title="Newcomer",
     subtitle="New to Regen? Tell us something about yourself.",
   ) }}
   {{ self::connect_form(
-    id="0002",
-    icon="3-hands-up",
-    title="Serve at Regen",
-    subtitle="Interested in serving Regen? Let us know how you want to serve.",
-  ) }}
-  {{ self::connect_form(
-    id="0003",
-    icon="bird-water",
-    title="Get Baptised",
-    subtitle="Ready to show your faith through baptism?",
-  ) }}
-  {{ self::connect_form(
     id="0004",
-    icon="membership",
-    title="Become a Member",
-    subtitle="Want to belong, grow, and actively shape the church?",
-  ) }}
-  {{ self::connect_form(
-    id="0005",
     icon="charity",
     title="Give to the Church",
     subtitle="Support the mission and fuel life-changing ministry.",
   ) }}
   {{ self::connect_form(
+    id="0005",
+    icon="3-hands-up",
+    title="Serve at Regen",
+    subtitle="Interested in serving Regen? Let us know how you want to serve.",
+  ) }}
+  {{ self::connect_form(
     id="0006",
-    icon="questions",
-    title="General Enquiry",
-    subtitle="Got a question that doesn't fit into the above forms?",
+    icon="bird-water",
+    title="Get Baptised",
+    subtitle="Ready to show your faith through baptism?",
+  ) }}
+  {{ self::connect_form(
+    id="0007",
+    icon="membership",
+    title="Become a Member",
+    subtitle="Want to belong, grow, and actively shape the church?",
   ) }}
 
   </div>
@@ -91,11 +97,10 @@
         <div class="text-onBackground/80">Select a form on the left to get started.</div>
       </div>
     </div>
-    {{ self::form(id="0001", src="/form/newcomer") }}
-    {{ self::form(id="0002", src="/form/serve") }}
-    {{ self::form(id="0003", src="/form/baptism") }}
-    {{ self::form(id="0004", src="/form/membership") }}
-    <div id="form-0005" class="hidden">
+    {{ self::form(id="0001", src="/form/general-enquiry") }}
+    {{ self::form(id="0002", src="/form/prayer") }}
+    {{ self::form(id="0003", src="/form/newcomer") }}
+    <div id="form-0004" class="hidden">
       The work of the church is made possible by the generous giving of God’s people.
       If you are a member or regular attendee who would like to give to the work of
       the church, you can give electronically by depositing funds into one of the
@@ -103,7 +108,9 @@
 
       {% include "partial/giving_accounts.html" %}
     </div>
-    {{ self::form(id="0006", src="/form/general-enquiry") }}
+    {{ self::form(id="0005", src="/form/serve") }}
+    {{ self::form(id="0006", src="/form/baptism") }}
+    {{ self::form(id="0007", src="/form/membership") }}
   </div>
 
 </main>

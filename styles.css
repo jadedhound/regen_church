@@ -175,6 +175,10 @@
     @apply !text-flair font-bold;
   }
 
+  .elvanto-col-1 p span {
+    @apply !text-onBackground;
+  }
+
   .article-list {
     @apply list-none my-4;
 

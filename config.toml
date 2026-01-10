@@ -58,6 +58,6 @@ icon = "handshake"
 title = "Connect"
 
 [[extra.nav_menu]]
-link = "/connect#0005"
+link = "/connect#0004"
 icon = "people-heart"
 title = "Giving"
