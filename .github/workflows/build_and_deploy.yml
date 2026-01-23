@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Checkout main
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     
     # Note: Don't know why this caching doesn't work.
     # - name: Restore local image cache
