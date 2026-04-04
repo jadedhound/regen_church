@@ -1,117 +1,152 @@
-<div class="fixed top-0 z-10 w-full mt-4 px-2 md:px-12">
-  <div class="w-full h-12 flex bg-background gap-4 items-center justify-between px-4 md:px-8 rounded-md shadow-xs shadow-zinc-600">
-
-    <a href="{{ get_url(path='@/_index.md') }}" aria-label="homepage">
-      <div class="flex gap-2 h-24 mt-12">
-        <svg class="size-[unset] w-10 mb-1">
-          <use href="{{ sprites }}#chiro-banner"></use>
-        </svg>
-        <div class="hidden lg:flex flex-col font-bold leading-none mt-2">
-          <div>REGENERATION</div>
-          <div>CHURCH MONASH</div>
-        </div>
+<div class="fixed top-0 z-10 w-full">
+  <a href="#get-in-touch">
+    <div class="bg-green-300 flex justify-center items-center">
+      <div class="p-2 font-bold text-center">
+        Join us for Easter, this Sunday!
       </div>
-    </a>
+      <svg class="text-black mb-1"><use href="{{ sprites }}#church"></use></svg>
+    </div>
+  </a>
+  <div class="mt-2 px-2 md:px-12">
+    <div
+      class="w-full h-12 flex bg-background gap-4 items-center justify-between px-4 md:px-8 rounded-md shadow-xs shadow-zinc-600"
+    >
+      <a href="{{ get_url(path='@/_index.md') }}" aria-label="homepage">
+        <div class="flex gap-2 h-24 mt-12">
+          <svg class="size-[unset] w-10 mb-1">
+            <use href="{{ sprites }}#chiro-banner"></use>
+          </svg>
+          <div class="hidden lg:flex flex-col font-bold leading-none mt-2">
+            <div>REGENERATION</div>
+            <div>CHURCH MONASH</div>
+          </div>
+        </div>
+      </a>
 
-    <div class="flex-grow lg:hidden"></div>
+      <div class="flex-grow lg:hidden"></div>
 
-    <div class="hidden lg:flex gap-4 whitespace-nowrap items-center">
-      {% for nav_item in config.extra.nav_menu %}
-        {% if nav_item.link %}
-          <a href="{{ nav_item.link }}" class="mr-2">{{ nav_item.title }}</a>
+      <div class="hidden lg:flex gap-4 whitespace-nowrap items-center">
+        {% for nav_item in config.extra.nav_menu %} {% if nav_item.link %}
+        <a href="{{ nav_item.link }}" class="mr-2">{{ nav_item.title }}</a>
         {% else %}
         <div class="relative group">
-            <div data-nav-target="navdrop-{{ nav_item.title }}"
-              class="flex gap-1 items-center cursor-pointer p-2 rounded-md"
-            >
-                {{ nav_item.title }}
-              <svg class="text-onBackground size-4 ml-1 group-hover:text-flair">
-                <use href="{{ sprites }}#chevron-down"></use>
-              </svg>
-            </div>
+          <div
+            data-nav-target="navdrop-{{ nav_item.title }}"
+            class="flex gap-1 items-center cursor-pointer p-2 rounded-md"
+          >
+            {{ nav_item.title }}
+            <svg class="text-onBackground size-4 ml-1 group-hover:text-flair">
+              <use href="{{ sprites }}#chevron-down"></use>
+            </svg>
+          </div>
 
-            <div id="navdrop-{{ nav_item.title }}" class="hidden group-hover:block absolute right-0">
-              <ul class="list-none flex flex-col px-4 py-2 mt-4 rounded-md bg-background shadow-sm shadow-black">
+          <div
+            id="navdrop-{{ nav_item.title }}"
+            class="hidden group-hover:block absolute right-0"
+          >
+            <ul
+              class="list-none flex flex-col px-4 py-2 mt-4 rounded-md bg-background shadow-sm shadow-black"
+            >
+              {% for sub_item in nav_item.menu %}
+
+              <a href="{{ sub_item.link }}">
+                <li
+                  class="py-2 grid grid-cols-[4rem_auto] items-center group/item"
+                >
+                  <div
+                    class="row-span-2 p-2 border-2 border-onBackground/80 group-hover/item:border-flair rounded-md aspect-square mr-2 w-fit"
+                  >
+                    <svg class="group-hover/item:text-flair">
+                      <use href="{{ sprites }}#{{ sub_item.icon }}"></use>
+                    </svg>
+                  </div>
+                  <div class="">{{ sub_item.title }}</div>
+                  <div class="text-onBackground/80 text-sm">
+                    {{ sub_item.desc }}
+                  </div>
+                </li>
+              </a>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+
+      <a
+        href="{{ get_url(path='@/_index.md') }}#get-in-touch"
+        class="regen-button-important py-2 px-8 w-fit mx-[unset]"
+      >
+        Visit Us
+      </a>
+
+      <button
+        class="lg:hidden ml-2"
+        id="hamburger-open"
+        aria-label="Open the navigation drawer for mobile devices only"
+      >
+        <svg class="text-onBackground size-8">
+          <use href="{{ sprites }}#hamburger-menu"></use>
+        </svg>
+      </button>
+      <div
+        class="fixed top-0 left-0 z-10 h-screen w-screen hidden"
+        id="nav-modal"
+      >
+        <div class="psuedo h-full backdrop-blur-xs"></div>
+        <div class="flex z-10 absolute top-0 left-0 h-full w-full">
+          <button id="mobile-nav-backdrop" class="flex-grow"></button>
+          <div
+            class="flex flex-col bg-background/90 shadow-xs shadow-stone-400 max-w-[95vw] rounded-l-xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto"
+            id="nav-modal-drawer"
+          >
+            <button id="hamburger-close" class="place-self-end">
+              <svg class="mx-6 my-6 size-8">
+                <use href="{{ sprites }}#x-mark"></use>
+              </svg>
+            </button>
+            <div class="flex-grow"></div>
+            <div class="text-right px-8 max-w-[95vw]">
+              {% for nav_item in config.extra.nav_menu %} {% if nav_item.link %}
+              <a href="{{ nav_item.link | safe }}">
+                <li class="py-2 flex flex-row-reverse items-center">
+                  <div
+                    class="row-span-2 p-2 border-2 border-onBackground/80 rounded-md aspect-square ml-2 w-fit"
+                  >
+                    <svg>
+                      <use href="{{ sprites }}#{{ nav_item.icon }}"></use>
+                    </svg>
+                  </div>
+                  <div>{{ nav_item.title }}</div>
+                </li>
+              </a>
+              {% else %}
+              <p class="font-bold text-xs text-onBackground/70 py-4">
+                {{ nav_item.title }}
+              </p>
+              <ul class="flex flex-col gap-2 text-onBackground/90">
                 {% for sub_item in nav_item.menu %}
 
                 <a href="{{ sub_item.link }}">
-                  <li class="py-2 grid grid-cols-[4rem_auto] items-center group/item">
-                    <div class="row-span-2 p-2 border-2 border-onBackground/80 group-hover/item:border-flair rounded-md aspect-square mr-2 w-fit">
-                      <svg class="group-hover/item:text-flair">
+                  <li class="py-2 flex flex-row-reverse items-center">
+                    <div
+                      class="row-span-2 p-2 border-2 border-onBackground/80 rounded-md aspect-square ml-2 w-fit"
+                    >
+                      <svg>
                         <use href="{{ sprites }}#{{ sub_item.icon }}"></use>
                       </svg>
                     </div>
-                    <div class="">{{ sub_item.title }}</div>
-                    <div class="text-onBackground/80 text-sm">{{ sub_item.desc }}</div>
+                    <div>{{ sub_item.title }}</div>
                   </li>
                 </a>
                 {% endfor %}
               </ul>
+              {% endif %} {% endfor %}
+              <div class="h-8"></div>
             </div>
-        </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-
-    <a href="{{ get_url(path='@/_index.md') }}#get-in-touch" class="regen-button-important py-2 px-8 w-fit mx-[unset]">
-      Visit Us
-    </a>
-
-    <button class="lg:hidden ml-2" id="hamburger-open" aria-label="Open the navigation drawer for mobile devices only">
-      <svg class="text-onBackground size-8">
-        <use href="{{ sprites }}#hamburger-menu"></use>
-      </svg>
-    </button>
-    <div class="fixed top-0 left-0 z-10 h-screen w-screen hidden" id="nav-modal">
-      <div class="psuedo h-full backdrop-blur-xs"></div>
-      <div class="flex z-10 absolute top-0 left-0 h-full w-full">
-        <button id="mobile-nav-backdrop" class="flex-grow"></button>
-        <div class="flex flex-col bg-background/90 shadow-xs shadow-stone-400 max-w-[95vw] rounded-l-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="nav-modal-drawer">
-          <button id="hamburger-close" class="place-self-end">
-            <svg class="mx-6 my-6 size-8">
-              <use href="{{ sprites }}#x-mark"></use>
-            </svg>
-          </button>
-          <div class="flex-grow"></div>
-          <div class="text-right px-8 max-w-[95vw]">
-            {% for nav_item in config.extra.nav_menu %}
-
-              {% if nav_item.link %}
-                <a href="{{ nav_item.link | safe }}">
-                  <li class="py-2 flex flex-row-reverse items-center">
-                    <div class="row-span-2 p-2 border-2 border-onBackground/80 rounded-md aspect-square ml-2 w-fit">
-                      <svg>
-                        <use href="{{ sprites }}#{{ nav_item.icon }}"></use>
-                      </svg>
-                    </div>
-                    <div>{{ nav_item.title }}</div>
-                  </li>
-                </a>
-              {% else %}
-                <p class="font-bold text-xs text-onBackground/70 py-4">
-                  {{ nav_item.title }}
-                </p>
-                <ul class="flex flex-col gap-2 text-onBackground/90">
-                  {% for sub_item in nav_item.menu %}
-
-                  <a href="{{ sub_item.link }}">
-                    <li class="py-2 flex flex-row-reverse items-center">
-                      <div class="row-span-2 p-2 border-2 border-onBackground/80 rounded-md aspect-square ml-2 w-fit">
-                        <svg>
-                          <use href="{{ sprites }}#{{ sub_item.icon }}"></use>
-                        </svg>
-                      </div>
-                      <div>{{ sub_item.title }}</div>
-                    </li>
-                  </a>
-                  {% endfor %}
-                </ul>
-              {% endif %}
-            {% endfor %}
+            <div class="flex-grow"></div>
+            <div class="h-30"></div>
           </div>
-          <div class="flex-grow"></div>
-          <div class="h-30"></div>
-
         </div>
       </div>
     </div>

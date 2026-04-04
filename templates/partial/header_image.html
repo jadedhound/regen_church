@@ -1,28 +1,22 @@
-<div class="h-16"></div>
+<div class="h-24"></div>
 
 <div class="px-4 grid md:grid-cols-2 gap-4 mt-12 max-w-5xl mx-auto">
-    <div class="font-bold text-[clamp(1.8rem,10vw,3rem)] mt-auto -my-2">
-        {{ page.title | default(value=section.title) }}
-    </div>
+  <div class="font-bold text-[clamp(1.8rem,10vw,3rem)] mt-auto -my-2">
+    {{ page.title | default(value=section.title) }}
+  </div>
 
-    <div class="text-onBackground/90 order-3">
-        {% set verse = page.extra.verse[0] | default(value=section.extra.verse[0]) %}
-        {% set reference = page.extra.verse[1] | default(value=section.extra.verse[1]) %}
-        <p>
-          {{ verse }}
-        </p>
-        <p class="mr-4 mt-4 text-right text-xs font-bold">
-          {{ reference }}
-        </p>
-    </div>
+  <div class="text-onBackground/90 order-3">
+    {% set verse = page.extra.verse[0] | default(value=section.extra.verse[0])
+    %} {% set reference = page.extra.verse[1] |
+    default(value=section.extra.verse[1]) %}
+    <p>{{ verse }}</p>
+    <p class="mr-4 mt-4 text-right text-xs font-bold">{{ reference }}</p>
+  </div>
 
-    {{ img_macro::standalone(
-      image=page.extra.header_image | default(value=section.extra.header_image),
-      alt="header images",
-      sizes="(min-width: 1100px) 488px, (min-width: 780px) calc(40.67vw + 49px), calc(100vw - 32px)",
-      class="rounded-md row-span-2 my-auto"
-    ) }}
-
+  {{ img_macro::standalone( image=page.extra.header_image |
+  default(value=section.extra.header_image), alt="header images",
+  sizes="(min-width: 1100px) 488px, (min-width: 780px) calc(40.67vw + 49px),
+  calc(100vw - 32px)", class="rounded-md row-span-2 my-auto" ) }}
 </div>
 
-<hr class="mx-4 my-8 md:mx-8">
+<hr class="mx-4 my-8 md:mx-8" />
