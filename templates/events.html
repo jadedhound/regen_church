@@ -39,7 +39,7 @@
           </div>
           <div class="text-xl font-semibold mb-2 pr-16"> {{ data.title }} </div>
           <div class="flex gap-4">
-            <svg>
+            <svg class="fill-blue-600">
               <use href="{{ sprites }}#map-pin"></use>
             </svg>
             {% if data.location == '' %}
@@ -54,6 +54,7 @@
           </div>
           {% endif %}
           {% if data.link != '' %}
+          <div class="h-1 grow"></div>
           <a href="{{ data.link }}" class="mt-4 regen-button">
             <svg><use href="{{ sprites }}#link"></use></svg>
             <span class="mr-5">Link</span>

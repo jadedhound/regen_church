@@ -1,3 +1,12 @@
-<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+<svg viewBox="0 0 582.47 582.47">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #010101;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="0" y="97.08" width="582.47" height="48.54" rx="11.08" ry="11.08" />
+  <rect class="cls-1" x="0" y="266.39" width="582.47" height="48.54" rx="11.08" ry="11.08" />
+  <rect class="cls-1" x="0" y="436.85" width="582.47" height="48.54" rx="11.08" ry="11.08" />
 </svg>

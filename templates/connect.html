@@ -1,29 +1,37 @@
-{% extends "base.html" %}
-
-{% import "macros/image.html" as img_macro %}
-
-{% macro form(id, src) %}
+{% extends "base.html" %} {% import "macros/image.html" as img_macro %} {% macro
+form(id, src) %}
 
 <div id="form-{{ id }}" class="hidden relative">
-  <div id="cover-form-{{ id }}" class="absolute z-1 w-full h-full bg-background"></div>
-  <iframe id="iframe-form-{{ id }}" data-src="{{ src }}" class="w-full h-full"></iframe>
+  <div
+    id="cover-form-{{ id }}"
+    class="absolute z-1 w-full h-full bg-background"
+  ></div>
+  <iframe
+    id="iframe-form-{{ id }}"
+    data-src="{{ src }}"
+    class="w-full h-full"
+  ></iframe>
 </div>
 
-{% endmacro %}
-
-{% macro connect_form(id, icon, title, subtitle) %}
-
+{% endmacro %} {% macro connect_form(id, icon, icon_color="fill-yellow-500", title, subtitle) %}
 {% set sprites = get_url(path='sprites.svg', cachebust=true) | safe %}
 
 <label class="cursor-pointer select-none">
-  <input type="checkbox" name="connect-form" class="peer hidden" value="{{ id }}">
-  <div class="flex rounded-md bg-surface p-4 gap-4 border-2 border-transparent peer-checked:border-flair peer-checked:[&_.cancel-form]:block transition-colors shadow-xs shadow-stone-400">
-    <svg class="size-16 place-self-center">
+  <input
+    type="checkbox"
+    name="connect-form"
+    class="peer hidden"
+    value="{{ id }}"
+  />
+  <div
+    class="flex rounded-md bg-surface p-4 gap-4 border-2 border-transparent peer-checked:border-flair peer-checked:[&_.cancel-form]:block transition-colors shadow-xs shadow-stone-400"
+  >
+    <svg class="size-16 place-self-center {{ icon_color }}">
       <use href="{{ sprites ~ '#' ~ icon }}"></use>
     </svg>
     <div class="flex flex-col w-full text-left">
       <div class="text-lg font-bold">{{ title }}</div>
-      <p class="text-onBackground/90 text-sm"> {{ subtitle }} </p>
+      <p class="text-onBackground/90 text-sm">{{ subtitle }}</p>
     </div>
     <svg class="size-5 place-self-center text-flair hidden cancel-form">
       <use href="{{ sprites ~ '#' ~ 'x-mark' }}"></use>
@@ -31,88 +39,98 @@
   </div>
 </label>
 
-
-{% endmacro %}
-
-{% block content %}
-
-{% include "partial/header_image.html" %}
+{% endmacro %} {% block content %} {% include "partial/header_image.html" %}
 
 <main class="grid gap-4 md:grid-cols-[30%_68%]">
+    <div class="flex flex-col [&>label>div]:mb-4">
+    {{ self::connect_form(
+        id="0001",
+        icon="questions",
+        icon_color="fill-blue-500",
+        title="General Enquiry",
+        subtitle="Got a question that doesn't fit into the below forms?",
+    ) }}
 
-  <div class="flex flex-col [&>label>div]:mb-4">
+    {{
+    self::connect_form(
+        id="0002",
+        icon="pray",
+        icon_color="fill-purple-500",
+        title="Prayer Request",
+        subtitle="How can we pray for you today?",
+    ) }}
 
-  {{ self::connect_form(
-    id="0001",
-    icon="questions",
-    title="General Enquiry",
-    subtitle="Got a question that doesn't fit into the below forms?",
-  ) }}
-  {{ self::connect_form(
-    id="0002",
-    icon="pray-colour",
-    title="Prayer Request",
-    subtitle="How can we pray for you today?",
-  ) }}
-  {{ self::connect_form(
-    id="0003",
-    icon="family",
-    title="Newcomer",
-    subtitle="New to Regen? Tell us something about yourself.",
-  ) }}
-  {{ self::connect_form(
-    id="0004",
-    icon="charity",
-    title="Give to the Church",
-    subtitle="Support the mission and fuel life-changing ministry.",
-  ) }}
-  {{ self::connect_form(
-    id="0005",
-    icon="3-hands-up",
-    title="Serve at Regen",
-    subtitle="Interested in serving Regen? Let us know how you want to serve.",
-  ) }}
-  {{ self::connect_form(
-    id="0006",
-    icon="bird-water",
-    title="Get Baptised",
-    subtitle="Ready to show your faith through baptism?",
-  ) }}
-  {{ self::connect_form(
-    id="0007",
-    icon="membership",
-    title="Become a Member",
-    subtitle="Want to belong, grow, and actively shape the church?",
-  ) }}
+    {{ self::connect_form(
+        id="0003",
+        icon="family",
+        icon_color="fill-green-500",
+        title="Newcomer",
+        subtitle="New to Regen? Tell us something about yourself.",
+    ) }}
 
-  </div>
+    {{ self::connect_form(
+        id="0004",
+        icon="charity",
+        icon_color="fill-yellow-500",
+        title="Give to the Church",
+        subtitle="Support the mission and fuel life-changing ministry.",
+    ) }}
+
+    {{ self::connect_form(
+        id="0005",
+        icon="3-hands-up",
+        icon_color="fill-orange-500",
+        title="Serve at Regen",
+        subtitle="Interested in serving Regen? Let us know how you want to serve.",
+    ) }}
+
+    {{ self::connect_form(
+        id="0006",
+        icon="bird-water",
+        icon_color="fill-cyan-500",
+        title="Get Baptised",
+        subtitle="Ready to show your faith through baptism?",
+    ) }}
+
+    {{ self::connect_form(
+        id="0007",
+        icon="membership",
+        icon_color="fill-indigo-500",
+        title="Become a Member",
+        subtitle="Want to belong, grow, and actively shape the church?",
+    ) }}
+    </div>
 
   <div>
-    <div id="placeholder" class="hidden md:flex items-center justify-center h-full">
-      <svg class="text-onBackground/80 my-auto mr-12 size-12 animate-[bounce_1s_ease-in-out_infinite] rotate-90">
+    <div
+      id="placeholder"
+      class="hidden md:flex items-center justify-center h-full"
+    >
+      <svg
+        class="text-onBackground/80 my-auto mr-12 size-12 animate-[bounce_1s_ease-in-out_infinite] rotate-90"
+      >
         <use href="{{ sprites }}#chevron-down-thin"></use>
       </svg>
       <div class="text-center flex flex-col justify-center">
         <div class="text-2xl mb-2">How can we help you today?</div>
-        <div class="text-onBackground/80">Select a form on the left to get started.</div>
+        <div class="text-onBackground/80">
+          Select a form on the left to get started.
+        </div>
       </div>
     </div>
-    {{ self::form(id="0001", src="/form/general-enquiry") }}
-    {{ self::form(id="0002", src="/form/prayer") }}
-    {{ self::form(id="0003", src="/form/newcomer") }}
+    {{ self::form(id="0001", src="/form/general-enquiry") }} {{
+    self::form(id="0002", src="/form/prayer") }} {{ self::form(id="0003",
+    src="/form/newcomer") }}
     <div id="form-0004" class="hidden">
-      The work of the church is made possible by the generous giving of God’s people.
-      If you are a member or regular attendee who would like to give to the work of
-      the church, you can give electronically by depositing funds into one of the
-      following accounts:
-
-      {% include "partial/giving_accounts.html" %}
+      The work of the church is made possible by the generous giving of God’s
+      people. If you are a member or regular attendee who would like to give to
+      the work of the church, you can give electronically by depositing funds
+      into one of the following accounts: {% include
+      "partial/giving_accounts.html" %}
     </div>
-    {{ self::form(id="0005", src="/form/serve") }}
-    {{ self::form(id="0006", src="/form/baptism") }}
-    {{ self::form(id="0007", src="/form/membership") }}
+    {{ self::form(id="0005", src="/form/serve") }} {{ self::form(id="0006",
+    src="/form/baptism") }} {{ self::form(id="0007", src="/form/membership") }}
   </div>
-
 </main>
 
 {% endblock %}

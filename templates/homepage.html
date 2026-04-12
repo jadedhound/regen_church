@@ -47,7 +47,7 @@
           Making disciples of<br>all Nations<br>
           in the heart of<br>Clayton, Monash
         </div>
-        <svg class="text-white mt-8 size-12 animate-[bounce_1s_ease-in-out_3.5]">
+        <svg class="fill-white mt-8 size-12 animate-[bounce_1s_ease-in-out_3.5]">
           <use href="{{ sprites }}#chevron-down-thin"></use>
         </svg>
       </button>
@@ -61,25 +61,25 @@
 
     <div class="flex gap-4 overflow-x-auto md:mx-auto w-fit max-w-[95vw]">
         {{ card_macro::image_with_caption(
-        image="morning_service",
-        title="10am Morning Service",
-        body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
+            image="morning_service",
+            title="10am Morning Service",
+            body="A vibrant, family-friendly service with a fun kids' program. Perfect for all ages!"
         ) }}
-      {{ card_macro::image_with_caption(
-      image="mandarin_service",
-      title="2pm Mandarin Service",
-      body="A welcoming service in Mandarin, tailored for the Chinese-speaking community."
-      ) }}
-      {{ card_macro::image_with_caption(
-      image="night_service",
-      title="5pm Night Service",
-      body="A dynamic space for students and young adults to connect through worship and a meal together."
-      ) }}
+        {{ card_macro::image_with_caption(
+            image="mandarin_service",
+            title="2pm Mandarin Service",
+            body="A welcoming service in Mandarin, tailored for the Chinese-speaking community."
+        ) }}
+        {{ card_macro::image_with_caption(
+            image="night_service",
+            title="5pm Night Service",
+            body="A dynamic space for students and young adults to connect through worship and a meal together."
+        ) }}
     </div>
 
     <a href="{{ get_url(path='@/_index.md') }}#get-in-touch"
       class="mt-4 regen-button">
-      <svg class="text-yellow-400"><use href="{{ sprites }}#church"></use></svg>
+      <svg class="fill-yellow-500"><use href="{{ sprites }}#church"></use></svg>
       <div>Plan a Visit</div>
     </a>
   </div>
@@ -96,7 +96,7 @@
       We usually meet weekly in homes where we:
     </h4>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 text-white mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 text-white fill-white mx-auto">
       {% set card_css = 'flex flex-col gap-2 items-center justify-center aspect-square p-8 w-full h-full bg-primary
       md:rounded-full md:p-12' %}
 
@@ -127,7 +127,7 @@
     </div>
 
     <a href="{{ get_url(path='@/church/mcs.md') }}" class="mt-4 regen-button">
-      <svg class="text-rose-500">
+      <svg class="fill-rose-500">
         <use href="{{ sprites }}#heart"></use>
       </svg>
       <div>Find an MC</div>
@@ -174,7 +174,7 @@
               <div class="{{ circle_css }}"></div>
             </div>
             <div class="flex group-has-checked:hidden justify-center">
-              <svg class="size-16 text-onPrimary"><use href="{{ sprites }}#chevron-up"></use></svg>
+              <svg class="size-16 fill-onPrimary"><use href="{{ sprites }}#chevron-up"></use></svg>
             </div>
         </label>
 
@@ -182,13 +182,13 @@
 
     <div class="py-8 px-4 flex flex-col gap-2">
       <a href="https://www.youtube.com/@RegenerationMonash/live" target="_blank" class="regen-button mt-4">
-        <svg class="size-8">
-          <use href="{{ sprites }}#youtube-coloured"></use>
+        <svg class="size-8 fill-red-700">
+          <use href="{{ sprites }}#youtube"></use>
         </svg>
         <div>Join Our Livestream</div>
       </a>
       <a href="https://open.spotify.com/user/31a2u4zg7qy2vopmchtesxdfu3jy" target="_blank" class="regen-button">
-        <svg class="size-8 text-[#11c84b]">
+        <svg class="size-8 fill-green-600">
           <use href="{{ sprites }}#spotify"></use>
         </svg>
         <div>Listen to Past Sermons</div>
@@ -202,12 +202,12 @@
     </h1>
     <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
 
-      {{ img_macro::standalone(
-      image="homepage_building",
-      sizes="(min-width: 1120px) 480px, (min-width: 780px) 43.13vw, calc(100vw - 64px)",
-      alt="Regeneration Church Building",
-      class="rounded-md my-auto md:order-2",
-      ) }}
+    {{ img_macro::standalone(
+        image="homepage_building",
+        sizes="(min-width: 1120px) 480px, (min-width: 780px) 43.13vw, calc(100vw - 64px)",
+        alt="Regeneration Church Building",
+        class="rounded-md my-auto md:order-2",
+    ) }}
 
       <div class="md:order-1 my-auto">
         <h3 class="font-bold">When should I come?</h3>
@@ -235,8 +235,10 @@
         <svg class="size-[unset] w-full h-full rounded-md aspect-square shadow-xs shadow-stone-400">
           <use href="{{ sprites }}#google-map"></use>
         </svg>
-        <div class="regen-button h-fit absolute bottom-12 inset-x-0 bg-background">
-          <svg><use href="{{ sprites }}#google-maps-icon"></use></svg>
+        <div class="regen-button h-fit absolute bottom-12 inset-x-0 bg-background px-4">
+          <svg class="fill-red-600">
+              <use href="{{ sprites }}#map-pin"></use>
+          </svg>
           <div class="w-full leading-none text-center">
             <span class="text-lg">118 Wellington Rd</span>
             <br>
@@ -261,10 +263,10 @@
         </p>
       </div>
       {{ img_macro::standalone(
-      image="homepage_before_service",
-      sizes="(min-width: 1120px) 480px, (min-width: 780px) 43.13vw, calc(100vw - 64px)",
-      alt="Before service",
-      class="rounded-md my-auto md:order-7",
+        image="homepage_before_service",
+        sizes="(min-width: 1120px) 480px, (min-width: 780px) 43.13vw, calc(100vw - 64px)",
+        alt="Before service",
+        class="rounded-md my-auto md:order-7",
       ) }}
 
       <div class="md:order-9 my-auto">
@@ -305,7 +307,7 @@
         <p>
           After the service, hang around for a delicous cup of barista-style
           coffee and some light morning snacks. This is our gift to you and is
-          completely free. 
+          completely free.
         </p>
       </div>
       {{ img_macro::standalone(
